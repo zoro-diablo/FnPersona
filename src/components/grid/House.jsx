@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Card, Flex, ProgressBar, Text, Title, Divider } from '@tremor/react'
+import { Card, Flex, ProgressBar, Text,  } from '@tremor/react'
 import './house.scss'
 import { FaChevronDown } from 'react-icons/fa'
 
@@ -18,9 +18,9 @@ const House = () => {
         >
           <motion.svg
             whileHover={{
-              rotate: 90, // Rotate 360 degrees
-              transition: { duration: 0.1, ease: 'easeOut' }, // Smooth animation
-              loop: Infinity, // Repeat indefinitely
+              rotate: 90, 
+              transition: { duration: 0.1, ease: 'easeOut' }, 
+              loop: Infinity, 
             }}
             xmlns='http://www.w3.org/2000/svg'
             width='50px'
@@ -44,7 +44,7 @@ const House = () => {
             }}
             drag
             dragConstraints={constraintsRef}
-            src='/house.png'
+            src='/house_pic.png'
             alt='house'
             className='cursor-pointer'
           />
