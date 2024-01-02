@@ -44,7 +44,7 @@ const House = () => {
             }}
             drag
             dragConstraints={constraintsRef}
-            src='/house_pic.png'
+            src='/home.png'
             alt='house'
             className='cursor-pointer'
           />
