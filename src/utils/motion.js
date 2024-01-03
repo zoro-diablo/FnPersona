@@ -2,28 +2,34 @@
 
 export const navVarents = {
   hidden: {
+    opacity: 0,
     y: '-80',
   },
   visible: {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.1,
+      delay: 1.5,
+      staggerChildren: 1
     },
     y: 0,
+    opacity: 1,
   },
 }
 export const navVarentsLogo = {
   hidden: {
+    opacity: 0,
     y: '-80',
   },
   visible: {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.4,
+      delay: 1.8,
+      staggerChildren: 1,
     },
     y: 0,
+    opacity: 1,
   },
 }
 
@@ -40,7 +46,8 @@ export const firstGrdVariant = {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.3,
+      delay: 2.2,
+      
     },
     x: 0,
     opacity: 1,
@@ -55,7 +62,8 @@ export const secondGrdVariant = {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.1,
+      delay: 2.4,
+      
     },
     y: 0,
     opacity: 1,
@@ -70,7 +78,8 @@ export const thirdGrdVariant = {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.1,
+      delay: 2.6,
+      
     },
     x: 0,
     opacity: 1,
@@ -85,7 +94,8 @@ export const forthGrdVariant = {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.1,
+      delay: 2.8,
+      
     },
     y: 0,
     opacity: 1,
@@ -100,7 +110,8 @@ export const fifthGrdVariant = {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 0.1,
+      delay: 3,
+      
     },
     x: 0,
     opacity: 1,
@@ -117,7 +128,7 @@ export const dokVariants = {
     transition: {
       type: 'spring',
       stiffness: 100,
-      delay: 0.3,
+      delay: 2,
     },
     y: 0,
   },
@@ -130,7 +141,7 @@ export const dokBallVariants = {
     transition: {
       type: 'spring',
       stiffness: 100,
-      delay: 0.6,
+      delay: 2.2,
     },
     y: 0,
   },

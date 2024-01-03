@@ -1,9 +1,8 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Card, Flex, ProgressBar, Text,  } from '@tremor/react'
+import { Card, Flex, ProgressBar, Text } from '@tremor/react'
 import './house.scss'
 import { FaChevronDown } from 'react-icons/fa'
-
 
 const House = () => {
   const constraintsRef = useRef(null)
@@ -18,9 +17,9 @@ const House = () => {
         >
           <motion.svg
             whileHover={{
-              rotate: 90, 
-              transition: { duration: 0.1, ease: 'easeOut' }, 
-              loop: Infinity, 
+              rotate: 90,
+              transition: { duration: 0.1, ease: 'easeOut' },
+              loop: Infinity,
             }}
             xmlns='http://www.w3.org/2000/svg'
             width='50px'
@@ -51,7 +50,7 @@ const House = () => {
         </motion.div>
       </div>
       <div className='boxshadow'>
-        <Card className=' mx-auto bg-gradient-to-r from-black to-gray-900'>
+        <Card className=' mx-auto bg-gradient-to-r from-black to-gray-900' decoration='bottom' decorationColor='gray'>
           <Flex>
             <Text className='font-semibold text-white'>House 1</Text>
             <Text className='text-slate-300'>$ 20,000</Text>
@@ -66,9 +65,8 @@ const House = () => {
           <div className='flex justify-between mt-5 items-center bg-slate-300 py-2 px-1 rounded-lg shadow-lg'>
             <Text className='font-bold text-black ml-2'>Financing</Text>
             <div className='flex items-center'>
-              {/* <Text className='text-slate-200'>$8.50</Text> */}
-              <div className='flex justify-center items-center rounded-full bg-white w-8 h-8 cursor-pointer shadow-2xl ml-5'>
-                <FaChevronDown className='text-black' />
+              <div className='flex justify-center items-center rounded-full bg-white w-8 h-8 cursor-pointer shadow-2xl ml-5 hover:bg-gray-800 '>
+                <FaChevronDown className='text-black hover:text-white' />
               </div>
             </div>
           </div>
