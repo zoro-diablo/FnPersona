@@ -1,10 +1,12 @@
 import Home from './routes/home/Home'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loader from './components/loader/Loader'
 import { AnimatePresence } from 'framer-motion'
+import Babylon from './routes/babylon/Babylon'
 
 function App() {
+  const location = useLocation()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -17,9 +19,12 @@ function App() {
     <>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
       {!loading && (
-        <Routes>
-          <Route path='/' element={<Home />} />
-        </Routes>
+        <AnimatePresence>
+          <Routes location={location} key={location.key}>
+            <Route path='/' element={<Home />} />
+            <Route path='/babylon' element={<Babylon />} />
+          </Routes>
+        </AnimatePresence>
       )}
     </>
   )

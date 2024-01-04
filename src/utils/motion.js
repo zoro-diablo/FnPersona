@@ -2,34 +2,28 @@
 
 export const navVarents = {
   hidden: {
-    opacity: 0,
-    y: '-80',
+    y: '-200vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 50,
+      stiffness: 41,
       delay: 1.5,
-      staggerChildren: 1
     },
     y: 0,
-    opacity: 1,
   },
 }
 export const navVarentsLogo = {
   hidden: {
-    opacity: 0,
-    y: '-80',
+    y: '-200vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 50,
+      stiffness: 41,
       delay: 1.8,
-      staggerChildren: 1,
     },
     y: 0,
-    opacity: 1,
   },
 }
 
@@ -40,14 +34,13 @@ export const navVarentsLogo = {
 export const firstGrdVariant = {
   hidden: {
     opacity: 0,
-    x: '-180',
+    x: '-180vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 50,
-      delay: 2.2,
-      
+      stiffness: 150,
+      delay: 1.8,
     },
     x: 0,
     opacity: 1,
@@ -55,66 +48,62 @@ export const firstGrdVariant = {
 }
 export const secondGrdVariant = {
   hidden: {
-    opacity: 0,
-    y: '-180',
+ 
+    y: '-200vh',
   },
   visible: {
     transition: {
       type: 'spring',
       stiffness: 50,
       delay: 2.4,
-      
     },
     y: 0,
-    opacity: 1,
+ 
   },
 }
 export const thirdGrdVariant = {
   hidden: {
-    opacity: 0,
-    x: '180',
-  },
-  visible: {
-    transition: {
-      type: 'spring',
-      stiffness: 50,
-      delay: 2.6,
-      
-    },
-    x: 0,
-    opacity: 1,
-  },
-}
-export const forthGrdVariant = {
-  hidden: {
-    opacity: 0,
-    y: '100',
+  
+    x: '100vh',
   },
   visible: {
     transition: {
       type: 'spring',
       stiffness: 50,
       delay: 2.8,
-      
     },
-    y: 0,
-    opacity: 1,
+    x: 0,
+  
   },
 }
-export const fifthGrdVariant = {
+export const forthGrdVariant = {
   hidden: {
-    opacity: 0,
-    x: '180',
+
+    y: '200vh',
   },
   visible: {
     transition: {
       type: 'spring',
       stiffness: 50,
-      delay: 3,
-      
+      delay: 3.2,
+    },
+    y: 0,
+  
+  },
+}
+export const fifthGrdVariant = {
+  hidden: {
+  
+    x: '180vh',
+  },
+  visible: {
+    transition: {
+      type: 'spring',
+      stiffness: 50,
+      delay: 3.6,
     },
     x: 0,
-    opacity: 1,
+ 
   },
 }
 
@@ -122,29 +111,42 @@ export const fifthGrdVariant = {
 
 export const dokVariants = {
   hidden: {
-    y: '200',
+    y: '100vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 100,
+      stiffness: 60,
       delay: 2,
     },
     y: 0,
   },
+  exit:{
+    y:'-100vh',
+    transition:{
+      ease:''
+    }
+  }
 }
 export const dokBallVariants = {
   hidden: {
-    y: '200',
+    y: '100vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 100,
+      stiffness: 60,
       delay: 2.2,
     },
     y: 0,
   },
+  exit:{
+    y:'-100vh',
+    transition:{
+      ease:'easeInOut',
+      duration:1
+    }
+  }
 }
 
 // <--------- Dock --------->

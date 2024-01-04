@@ -13,6 +13,7 @@ const Loader = () => {
 
   return (
     <motion.div
+    
       animate={{
         y: 0,
         transition: { ease: 'easeInOut', duration: 1.5 },
