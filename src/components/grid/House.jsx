@@ -12,7 +12,6 @@ import {
   Select,
   SelectItem,
   DatePicker,
-  Subtitle,
 } from '@tremor/react'
 import { FaChevronDown } from 'react-icons/fa'
 import Button from '@mui/material/Button'
@@ -28,6 +27,10 @@ import Radio from '@mui/material/Radio'
 import { houseRows } from '../../utils/data'
 import { FaEdit } from 'react-icons/fa'
 import { MdDelete } from 'react-icons/md'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import RadioGroup from '@mui/material/RadioGroup'
 
 const houseCols = [
   { field: 'id', headerName: 'ID', width: 30, headerAlign: 'center' },
@@ -104,11 +107,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 const House = () => {
-  const [selectedValue, setSelectedValue] = useState('a')
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value)
-  }
+ 
   const [value, setValue] = useState('')
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -155,6 +154,7 @@ const House = () => {
         </motion.button>
         <motion.div ref={constraintsRef}>
           <motion.img
+            whileTap={{ scale: 0.9 }}
             whileHover={{
               y: ['0%', '10%', '0%'],
               transition: { duration: 1, ease: 'easeInOut', yoyo: Infinity },
@@ -176,7 +176,6 @@ const House = () => {
         aria-describedby='alert-dialog-slide-description'
         fullScreen={fullScreen}
         maxWidth='xl'
-        
       >
         <Card
           decoration='bottom'
@@ -190,16 +189,16 @@ const House = () => {
             <div className='text-white grid grid-cols-2 gap-3  p-5 dark justify-center items-center'>
               <TextInput
                 placeholder='Name...'
-                className=' h-10 mb-5 max-w-[500px]'
+                className=' h-10 mb-5 max-w-[385px]'
               />
               <NumberInput
                 placeholder='Total Value...'
-                className=' h-10 mb-5 max-w-[400px] ml-3'
+                className=' h-10 mb-5 max-w-[385px] ml-5'
               />
               <Select
                 value={value}
                 onValueChange={setValue}
-                className='dark hover:bg-transparent overflow-visible h-10'
+                className='dark hover:bg-transparent overflow-visible h-10 max-w-[385px]'
                 placeholder='Country...'
               >
                 <SelectItem value='1'>India</SelectItem>
@@ -208,58 +207,52 @@ const House = () => {
                 <SelectItem value='4'>Russia</SelectItem>
               </Select>
               <DatePicker className='max-w-sm mx-auto dark overflow-visible h-10' />
-              <div className='flex items-center mt-5'>
-                <Subtitle className='dark font-medium mx-auto'>
-                  Property Status :
-                </Subtitle>
-                <p className='ml-4 text-gray-300'>Self</p>
-
-                <Radio
-                  checked={selectedValue === 'a'}
-                  onChange={handleChange}
-                  value='a'
-                  name='radio-buttons'
-                  inputProps={{ 'aria-label': 'A' }}
-                  className='border-gray-400'
-                  sx={{ color: 'gray' }}
-                />
-                <p className='ml-4 text-gray-300'>Rented</p>
-                <Radio
-                  checked={selectedValue === 'b'}
-                  onChange={handleChange}
-                  value='b'
-                  name='radio-buttons'
-                  inputProps={{ 'aria-label': 'B' }}
-                  className='border-gray-400'
-                  sx={{ color: 'gray' }}
-                />
-              </div>
-              <div className='flex items-center mt-5'>
-                <Subtitle className='dark font-medium mx-auto'>
-                  Payment Mode :
-                </Subtitle>
-                <p className='ml-4 text-gray-300'>Cash</p>
-
-                <Radio
-                  checked={selectedValue === 'c'}
-                  onChange={handleChange}
-                  value='c'
-                  name='radio-button'
-                  inputProps={{ 'aria-label': 'C' }}
-                  className='border-gray-400'
-                  sx={{ color: 'gray' }}
-                />
-                <p className='ml-4 text-gray-300'>Loan</p>
-                <Radio
-                  checked={selectedValue === 'd'}
-                  onChange={handleChange}
-                  value='d'
-                  name='radio-button'
-                  inputProps={{ 'aria-label': 'D' }}
-                  className='border-gray-400'
-                  sx={{ color: 'gray' }}
-                />
-              </div>
+             
+              <FormControl className='flex flex-row'>
+                <FormLabel id='demo-row-radio-buttons-group-label '></FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby='demo-row-radio-buttons-group-label'
+                  name='row-radio-buttons-group flex items-center my-auto '
+                >
+                  <p className='text-gray-400 flex items-center mr-5'>
+                    Property Status:
+                  </p>
+                  <FormControlLabel
+                    value='self'
+                    control={<Radio />}
+                    label='Self'
+                  />
+                  <FormControlLabel
+                    value='rented'
+                    control={<Radio />}
+                    label='Rented'
+                  />
+                </RadioGroup>
+              </FormControl>
+             
+              <FormControl className='flex flex-row'>
+                <FormLabel id='demo-row-radio-buttons-group-label '></FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby='demo-row-radio-buttons-group-label'
+                  name='row-radio-buttons-group flex item my-auto'
+                >
+                  <p className='text-gray-400 flex items-center mr-5 indent-6'>
+                    Payment Mode:
+                  </p>
+                  <FormControlLabel
+                    value='cash'
+                    control={<Radio />}
+                    label='cash'
+                  />
+                  <FormControlLabel
+                    value='loan'
+                    control={<Radio />}
+                    label='loan'
+                  />
+                </RadioGroup>
+              </FormControl>
             </div>
             <div style={{ height: 250, width: '100%' }}>
               <DataGrid

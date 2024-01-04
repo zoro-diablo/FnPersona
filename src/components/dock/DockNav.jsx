@@ -3,76 +3,24 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { dokBallVariants, dokVariants } from '../../utils/motion'
 import './dock.scss'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-
-
-
-function Dock() {
-  let mouseX = useMotionValue(Infinity)
-
-  const contents = [
-    <motion.div whileTap={{scale:0.9}} key='retirement' className='font-semibold text-sm flex flex-col'>
-      <img src='/valult.webp' alt='babylon' width={300} />
-      <p className='flex justify-center'>Retirement</p>
-    </motion.div>,
-    <motion.div whileTap={{scale:0.9}} key='loan' className='font-semibold text-sm'>
-      <img src='/erase.png' alt='loan' width={300} />
-      <p className='flex justify-center'>Loan</p>
-    </motion.div>,
-    <motion.div whileTap={{scale:0.9}} key='purchase' className='font-semibold text-sm'>
-      <img src='/perce.webp' alt='purchase' width={300} />
-      <p className='flex justify-center'>Purchase</p>
-    </motion.div>,
-    <motion.div whileTap={{scale:0.9}} key='Ramsy' className='font-semibold text-sm'>
-      <img src='/folder.png' alt='Ramsy' width={300} />
-      <p className='flex justify-center'>Ramsy</p>
-    </motion.div>,
-    <motion.div whileTap={{scale:0.9}} key='kiyosaki' className='font-semibold text-sm'>
-      <img src='/wallets.webp' alt='kiyosaki' width={300} />
-      <p className='flex justify-center'>Kiyosaki</p>
-    </motion.div>,
-    <motion.div whileTap={{scale:0.9}} key='emi' className='font-semibold text-sm'>
-      <img src='/card.png' alt='emi' width={300} />
-      <p className='flex justify-center'>EMI</p>
-    </motion.div>,
-    <motion.div whileTap={{scale:0.9}} key='babylon' className='font-semibold text-sm'>
-      <Link to='/babylon'>
-      <img src='/blkhouse.png' alt='retirement' width={300} />
-      <p className='flex justify-center'>Babylon</p>
-      </Link>
-    </motion.div>,
-  ]
-
-  return (
-    <motion.div
-      variants={dokVariants}
-      initial='hidden'
-      animate='visible'
-      exit='exit'
-      onMouseMove={(e) => mouseX.set(e.pageX)}
-      onMouseLeave={() => mouseX.set(Infinity)}
-     
-      className=' flex bottom-3 fixed justify-between h-[120px] w-[65%] mt-5  gap-x-2 items-center  rounded-2xl bg-slate-200 px-4 pb-3 nav'
-    >
-      {contents.map((content, i) => (
-        <AppIcon key={i} mouseX={mouseX} content={content} />
-      ))}
-    </motion.div>
-  )
+const icntapVar = {
+  whileTap: {
+    scale: 0.5,
+  },
 }
 
 function AppIcon({ mouseX, content }) {
-  let ref = useRef(null)
+  const ref = useRef(null)
 
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
-
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
     return val - bounds.x - bounds.width / 2
   })
 
-  let widthSync = useTransform(distance, [-150, 0, 150], [100, 200, 100])
-  let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 })
+  const widthSync = useTransform(distance, [-150, 0, 150], [100, 200, 100])
+  const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 })
 
   return (
     <motion.div
@@ -92,6 +40,80 @@ function AppIcon({ mouseX, content }) {
 AppIcon.propTypes = {
   mouseX: PropTypes.object.isRequired,
   content: PropTypes.node.isRequired,
+}
+
+function Dock() {
+  const mouseX = useMotionValue(Infinity)
+
+  const contents = [
+    {
+      key: 'retirement',
+      imgSrc: '/valult.webp',
+      alt: 'babylon',
+      text: 'Retirement',
+    },
+    { key: 'loan', imgSrc: '/erase.png', alt: 'loan', text: 'Loan' },
+    {
+      key: 'purchase',
+      imgSrc: '/perce.webp',
+      alt: 'purchase',
+      text: 'Purchase',
+    },
+    { key: 'Ramsy', imgSrc: '/folder.png', alt: 'Ramsy', text: 'Ramsy' },
+    {
+      key: 'kiyosaki',
+      imgSrc: '/wallets.webp',
+      alt: 'kiyosaki',
+      text: 'Kiyosaki',
+    },
+    { key: 'emi', imgSrc: '/card.png', alt: 'emi', text: 'EMI' },
+    {
+      key: 'babylon',
+      imgSrc: '/blkhouse.png',
+      alt: 'retirement',
+      text: 'Babylon',
+      link: '/babylon',
+    },
+  ]
+
+  return (
+    <motion.div
+      variants={dokVariants}
+      initial='hidden'
+      animate='visible'
+      exit='exit'
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+      className='flex bottom-4 fixed justify-between h-[120px] w-[65%] mt-5 gap-x-2 items-center rounded-2xl bg-slate-200 px-4 pb-3 nav'
+    >
+      {contents.map(({ key, imgSrc, alt, text, link }) => (
+        <AppIcon
+          key={key}
+          mouseX={mouseX}
+          content={
+            <motion.div
+              whileTap='whileTap'
+              variants={icntapVar}
+              exit='exit'
+              className='font-semibold text-sm flex flex-col'
+            >
+              {link ? (
+                <Link to={link}>
+                  <img src={imgSrc} alt={alt} width={300} />
+                  <p className='flex justify-center'>{text}</p>
+                </Link>
+              ) : (
+                <>
+                  <img src={imgSrc} alt={alt} width={300} />
+                  <p className='flex justify-center'>{text}</p>
+                </>
+              )}
+            </motion.div>
+          }
+        />
+      ))}
+    </motion.div>
+  )
 }
 
 export default Dock

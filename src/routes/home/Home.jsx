@@ -13,13 +13,14 @@ import './home.scss'
 const Home = () => {
   
   return (
-    <div className='home'>
+    <div className='home h-screen'>
       <Navbar />
       <div className='w-[95%] h-[550px] grid grid-cols-8 grid-rows-2 gap-3 mx-auto'>
         <motion.div
           variants={firstGrdVariant}
           initial='hidden'
           animate='visible'
+          exit='exit'
           className=' text-white col-span-2 row-span-2'
         >
           <House />
@@ -28,6 +29,7 @@ const Home = () => {
           variants={secondGrdVariant}
           initial='hidden'
           animate='visible'
+          exit='exit'
           className=' text-white col-span-3 row-span-1'
         >
           <Assets />
@@ -36,6 +38,7 @@ const Home = () => {
           variants={thirdGrdVariant}
           initial='hidden'
           animate='visible'
+          exit='exit'
           className=' text-white col-span-3 row-span-1'
         >
           <RoundChart />
@@ -44,6 +47,7 @@ const Home = () => {
           variants={forthGrdVariant}
           initial='hidden'
           animate='visible'
+          exit='exit'
           className=' text-white col-span-3 row-span-1'
         >
           <Loan />
@@ -52,6 +56,7 @@ const Home = () => {
           variants={fifthGrdVariant}
           initial='hidden'
           animate='visible'
+          exit='exit'
           className=' text-white col-span-3 row-span-1'
         >
           <Savings />

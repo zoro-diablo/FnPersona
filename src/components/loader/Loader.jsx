@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
 import './loader.scss'
+import { loaderVariants } from '../../utils/motion'
 
 const Loader = () => {
   useEffect(() => {
@@ -13,15 +14,9 @@ const Loader = () => {
 
   return (
     <motion.div
-    
-      animate={{
-        y: 0,
-        transition: { ease: 'easeInOut', duration: 1.5 },
-      }}
-      exit={{
-        y: '-100vh',
-        transition: { ease: 'easeInOut', duration: 1.5 },
-      }}
+      variants={loaderVariants}
+      animate='initial'
+      exit='exit'
       className='w-fill h-screen flex justify-center items-center bg-[#171717]'
     >
       <div className='spinner'>

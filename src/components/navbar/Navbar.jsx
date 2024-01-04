@@ -16,6 +16,7 @@ const Navbar = () => {
               variants={navVarents}
               initial='hidden'
               animate='visible'
+              exit='exit'
               src='/fn_logo.png'
               alt='fnlogo'
               width={40}
@@ -24,6 +25,7 @@ const Navbar = () => {
               variants={navVarentsLogo}
               initial='hidden'
               animate='visible'
+              exit='exit'
               className='font-semibold text-lg mb-1'
             >
               Fn<span className='text-xl'>P</span>ersona
@@ -34,6 +36,7 @@ const Navbar = () => {
           variants={navVarents}
           initial='hidden'
           animate='visible'
+          exit='exit'
           className='flex mr-10 items-center gap-x-6'
         >
           <button className='btn font-semibold'>
@@ -41,6 +44,7 @@ const Navbar = () => {
               variants={navVarentsLogo}
               initial='hidden'
               animate='visible'
+              exit='exit'
             >
               Dashboard
             </motion.p>
