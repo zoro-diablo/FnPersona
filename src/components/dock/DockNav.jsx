@@ -9,7 +9,7 @@ function Dock() {
 
   const contents = [
     <div key='retirement' className='font-semibold text-sm flex flex-col'>
-      <img src='/blkhouse.png' alt='retirement' width={300} />
+      <img src='/valult.webp' alt='babylon' width={300} />
       <p className='flex justify-center'>Retirement</p>
     </div>,
     <div key='loan' className='font-semibold text-sm'>
@@ -17,7 +17,7 @@ function Dock() {
       <p className='flex justify-center'>Loan</p>
     </div>,
     <div key='purchase' className='font-semibold text-sm'>
-      <img src='/bag.webp' alt='purchase' width={300} />
+      <img src='/perce.webp' alt='purchase' width={300} />
       <p className='flex justify-center'>Purchase</p>
     </div>,
     <div key='Ramsy' className='font-semibold text-sm'>
@@ -33,7 +33,7 @@ function Dock() {
       <p className='flex justify-center'>EMI</p>
     </div>,
     <div key='babylon' className='font-semibold text-sm'>
-      <img src='/valult.webp' alt='babylon' width={300} />
+      <img src='/blkhouse.png' alt='retirement' width={300} />
       <p className='flex justify-center'>Babylon</p>
     </div>,
   ]

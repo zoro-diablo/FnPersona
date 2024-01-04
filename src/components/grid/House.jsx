@@ -1,11 +1,128 @@
-import { useRef } from 'react'
+import * as React from 'react'
+import { useRef, useState } from 'react'
+import { DataGrid } from '@mui/x-data-grid'
 import { motion } from 'framer-motion'
-import { Card, Flex, ProgressBar, Text } from '@tremor/react'
-import './house.scss'
+import {
+  Card,
+  Flex,
+  ProgressBar,
+  Text,
+  TextInput,
+  NumberInput,
+  Select,
+  SelectItem,
+  DatePicker,
+  Subtitle,
+} from '@tremor/react'
 import { FaChevronDown } from 'react-icons/fa'
+import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
+import Slide from '@mui/material/Slide'
+import './house.scss'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import Radio from '@mui/material/Radio'
+import { houseRows } from '../../utils/data'
+import { FaEdit } from 'react-icons/fa'
+import { MdDelete } from 'react-icons/md'
+
+const houseCols = [
+  { field: 'id', headerName: 'ID', width: 30, headerAlign: 'center' },
+  { field: 'Name', headerName: 'Name', width: 70, headerAlign: 'center' },
+  {
+    field: 'type',
+    headerName: 'Bought on Loan/Cash',
+    width: 160,
+    headerAlign: 'center',
+  },
+  {
+    field: 'outstanding',
+    headerName: 'Outstanding Amount',
+    type: 'number',
+    width: 150,
+    headerAlign: 'center',
+  },
+  {
+    field: 'totalvalue',
+    headerName: 'Total Value',
+    width: 100,
+    headerAlign: 'center',
+  },
+  {
+    field: 'purchaseyear',
+    headerName: 'Purchase Year',
+    width: 120,
+    headerAlign: 'center',
+  },
+  {
+    field: 'country',
+    headerName: 'Country',
+    width: 100,
+    headerAlign: 'center',
+  },
+  {
+    field: 'actions',
+    headerName: 'Actions',
+    sortable: false,
+    width: 100,
+    disableClickEventBubbling: true,
+    renderCell: (params) => {
+      const onClickDelete = () => {
+        const id = params.row.id
+        console.log(`Delete button clicked for row with id: ${id}`)
+      }
+
+      const onClickEdit = () => {
+        const id = params.row.id
+        console.log(`Edit button clicked for row with id: ${id}`)
+      }
+
+      return (
+        <div className='flex gap-x-2'>
+          <FaEdit
+            size={20}
+            onClick={onClickEdit}
+            className='cursor-pointer hover:text-white'
+          />
+
+          <MdDelete
+            size={20}
+            onClick={onClickDelete}
+            className='cursor-pointer hover:text-white'
+          />
+        </div>
+      )
+    },
+  },
+]
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='up' ref={ref} {...props} />
+})
 
 const House = () => {
+  const [selectedValue, setSelectedValue] = useState('a')
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value)
+  }
+  const [value, setValue] = useState('')
+  const theme = useTheme()
+  const [open, setOpen] = React.useState(false)
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   const constraintsRef = useRef(null)
+
   return (
     <div className=''>
       <div className='relative'>
@@ -13,7 +130,8 @@ const House = () => {
           initial={{ opacity: 0 }}
           animate={{ x: 300, opacity: 1 }}
           title='Add New'
-          className='hover:rounded-full cursor-pointer outline-none z-10 sm:static  lg:fixed '
+          className='hover:rounded-full cursor-pointer outline-none z-10 sm:static  lg:fixed'
+          onClick={handleClickOpen}
         >
           <motion.svg
             whileHover={{
@@ -49,13 +167,141 @@ const House = () => {
           />
         </motion.div>
       </div>
+
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby='alert-dialog-slide-description'
+        fullScreen={fullScreen}
+        maxWidth='xl'
+        
+      >
+        <Card
+          decoration='bottom'
+          decorationColor='gray'
+          className='bg-gradient-to-r from-gray-950 to-gray-900  border-t-3 border-gray-200 rounded-s-none rounded-e-none   overflow-visible'
+        >
+          <DialogTitle className='text-white' sx={{ fontSize: 18 }}>
+            {'Add / Update Units'}
+          </DialogTitle>
+          <DialogContent sx={{ width: 950, height: 500, overflow: 'visible' }}>
+            <div className='text-white grid grid-cols-2 gap-3  p-5 dark justify-center items-center'>
+              <TextInput
+                placeholder='Name...'
+                className=' h-10 mb-5 max-w-[500px]'
+              />
+              <NumberInput
+                placeholder='Total Value...'
+                className=' h-10 mb-5 max-w-[400px] ml-3'
+              />
+              <Select
+                value={value}
+                onValueChange={setValue}
+                className='dark hover:bg-transparent overflow-visible h-10'
+                placeholder='Country...'
+              >
+                <SelectItem value='1'>India</SelectItem>
+                <SelectItem value='2'>USA</SelectItem>
+                <SelectItem value='3'>China</SelectItem>
+                <SelectItem value='4'>Russia</SelectItem>
+              </Select>
+              <DatePicker className='max-w-sm mx-auto dark overflow-visible h-10' />
+              <div className='flex items-center mt-5'>
+                <Subtitle className='dark font-medium mx-auto'>
+                  Property Status :
+                </Subtitle>
+                <p className='ml-4 text-gray-300'>Self</p>
+
+                <Radio
+                  checked={selectedValue === 'a'}
+                  onChange={handleChange}
+                  value='a'
+                  name='radio-buttons'
+                  inputProps={{ 'aria-label': 'A' }}
+                  className='border-gray-400'
+                  sx={{ color: 'gray' }}
+                />
+                <p className='ml-4 text-gray-300'>Rented</p>
+                <Radio
+                  checked={selectedValue === 'b'}
+                  onChange={handleChange}
+                  value='b'
+                  name='radio-buttons'
+                  inputProps={{ 'aria-label': 'B' }}
+                  className='border-gray-400'
+                  sx={{ color: 'gray' }}
+                />
+              </div>
+              <div className='flex items-center mt-5'>
+                <Subtitle className='dark font-medium mx-auto'>
+                  Payment Mode :
+                </Subtitle>
+                <p className='ml-4 text-gray-300'>Cash</p>
+
+                <Radio
+                  checked={selectedValue === 'c'}
+                  onChange={handleChange}
+                  value='c'
+                  name='radio-button'
+                  inputProps={{ 'aria-label': 'C' }}
+                  className='border-gray-400'
+                  sx={{ color: 'gray' }}
+                />
+                <p className='ml-4 text-gray-300'>Loan</p>
+                <Radio
+                  checked={selectedValue === 'd'}
+                  onChange={handleChange}
+                  value='d'
+                  name='radio-button'
+                  inputProps={{ 'aria-label': 'D' }}
+                  className='border-gray-400'
+                  sx={{ color: 'gray' }}
+                />
+              </div>
+            </div>
+            <div style={{ height: 250, width: '100%' }}>
+              <DataGrid
+                rows={houseRows}
+                columns={houseCols}
+                sx={{
+                  '& .MuiDataGrid-columnHeaderTitle': { color: 'white' },
+                  '& .MuiDataGrid-cell': { color: 'gray' },
+                }}
+                initialState={{
+                  pagination: {
+                    paginationModel: { poutstanding: 0, poutstandingSize: 5 },
+                  },
+                }}
+                poutstandingSizeOptions={[5, 10]}
+                checkboxSelection
+              />
+            </div>
+          </DialogContent>
+
+          <DialogActions>
+            <Button variant='outlined' color='error' onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant='outlined' onClick={handleClose}>
+              Add / Update
+            </Button>
+          </DialogActions>
+        </Card>
+      </Dialog>
+
       <div className='boxshadow'>
-        <Card className=' mx-auto bg-gradient-to-r from-black to-gray-900' decoration='bottom' decorationColor='gray'>
+        <Card
+          className=' mx-auto bg-gradient-to-r from-black to-gray-900'
+          decoration='bottom'
+          decorationColor='gray'
+        >
           <Flex>
             <Text className='font-semibold text-white'>House 1</Text>
             <Text className='text-slate-300'>$ 20,000</Text>
           </Flex>
-          <ProgressBar value={45} color='gray' className='mt-3' />
+          <ProgressBar value={45} color='teal' className='mt-3' />
           <Flex className='mt-5'>
             <Text className='font-semibold text-white'>National ROI</Text>
             <Text className='text-slate-300'>$ 1,000</Text>

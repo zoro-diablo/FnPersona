@@ -48,10 +48,10 @@ const Savings = () => {
             colors={[
               'slate',
               '#111827',
-              '#969393',
+              'teal',
               '#f2f0f0',
-              '#050505',
-              'gray',
+              'emerald',
+            
             ]}
           />
         </Card>

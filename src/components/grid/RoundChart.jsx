@@ -22,7 +22,7 @@ const RoundChart = () => {
           index='name'
           valueFormatter={valueFormatter}
           variant='donut'
-          colors={['#f2f0f0', '#111827', '#969393', '#050505']}
+          colors={['#f2f0f0', 'emerald', '#969393', '#111827']}
         />
 
         <DonutChart
@@ -32,7 +32,7 @@ const RoundChart = () => {
           category='tockens'
           valueFormatter={valueFormatter}
           variant='pie'
-          colors={['#050505', '#969393', '#111827']}
+          colors={['#969393', 'emerald', '#f2f0f0']}
         />
       </Card>
     </>

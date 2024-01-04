@@ -66,7 +66,7 @@ const Loan = () => {
                 <Text>$ 8,012 &bull; 25%</Text>
                 <Text>$ 50,000</Text>
               </Flex>
-              <ProgressBar value={25} color='gray' className='mt-3' />
+              <ProgressBar value={25} color='teal' className='mt-3' />
             </div>
             <div>
               <Flex>

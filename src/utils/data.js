@@ -95,6 +95,7 @@ export const roundPpl = [
   },
   //...
 ]
+
  export const cities = [
   {
     name: 'New York',
@@ -108,10 +109,7 @@ export const roundPpl = [
     name: 'Hong Kong',
     sales: 3908,
   },
-  {
-    name: 'San Francisco',
-    sales: 2400,
-  },
+  
   {
     name: 'Singapore',
     sales: 1908,
@@ -119,5 +117,28 @@ export const roundPpl = [
   {
     name: 'Zurich',
     sales: 1398,
+  },
+]
+
+
+
+export const houseRows = [
+  {
+    id: 1,
+    type: 'Cash',
+    Name: 'Jon',
+    outstanding: 35,
+    totalvalue: 100,
+    purchaseyear: 2010,
+    country: 'India',
+  },
+  {
+    id: 2,
+    type: 'Loan',
+    Name: 'Cersei',
+    outstanding: 42,
+    totalvalue: 100,
+    purchaseyear: 2010,
+    country: 'India',
   },
 ]

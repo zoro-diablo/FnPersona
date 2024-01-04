@@ -1,9 +1,6 @@
-// loader.scss
-import './loader.scss'
-
-// Loader.js
 import { motion } from 'framer-motion'
 import { useEffect } from 'react'
+import './loader.scss'
 
 const Loader = () => {
   useEffect(() => {
