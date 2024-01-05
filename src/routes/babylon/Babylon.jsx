@@ -10,26 +10,8 @@ import CashFlowQud from '../../components/babylon_grid/CashFlowQud'
 import LoanRepayMech from '../../components/babylon_grid/LoanRepayMech'
 import PrincipalPurchase from '../../components/babylon_grid/PrincipalPurchase'
 import { motion } from 'framer-motion'
+import { babylonScrollvariants } from '../../utils/motion'
 import './babylon.scss'
-
-const babylonScrollvariants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-    y: 200,
-  },
-  whileInView: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-
-    transition: {
-      type: 'spring',
-      stiffness: 50,
-      ease: 'easeInOut',
-    },
-  },
-}
 
 const components = [
   { component: Location, className: 'boxshadow' },
@@ -43,6 +25,7 @@ const components = [
   { component: LoanRepayMech, className: 'boxshadow' },
   { component: PrincipalPurchase, className: 'boxshadow' },
 ]
+
 const Babylon = () => {
   return (
     <div className=''>
@@ -53,6 +36,7 @@ const Babylon = () => {
             key={index}
             initial='hidden'
             whileInView='whileInView'
+            exit='exit'
             viewport={{ once: true }}
             variants={babylonScrollvariants}
             className={item.className}
