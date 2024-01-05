@@ -26,9 +26,9 @@ const customTooltip = ({ payload, active }) => {
 
  const Assets = () => {
   return (
-    <div>
+    <div className='boxshadow'>
       <Card
-        className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow '
+        className='bg-gradient-to-r from-gray-950 to-gray-900  '
         decoration='bottom'
         decorationColor='gray'
       >

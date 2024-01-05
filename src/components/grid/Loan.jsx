@@ -27,16 +27,18 @@ const customTooltip = ({ payload, active }) => {
 
 const Loan = () => {
   return (
-    <div className=' h-[100%] flex flex-col gap-y-2'>
-      <Card className='h-[20%] flex items-center justify-between font-semibold text-1xl rounded-3xl bg-gradient-to-r from-slate-600 to-gray-900 boxshadow '>
-        <p className='tracking-wide'>LOAN</p>
-        <div className='flex items-center'>
-          <div className='flex justify-center items-center rounded-full bg-white w-8 h-8 cursor-pointer shadow-2xl ml-5 hover:bg-gray-950 '>
-            <FaChevronDown className='text-black hover:text-white' />
+    <div className='flex flex-col gap-y-2 '>
+      <div className='boxshadow'>
+        <Card className='max-h-12 flex items-center justify-between font-semibold text-1xl rounded-3xl bg-gradient-to-r from-slate-600 to-gray-900 boxshadow '>
+          <p className='tracking-wide'>LOAN</p>
+          <div className='flex items-center'>
+            <div className='flex justify-center items-center rounded-full bg-white w-8 h-8 cursor-pointer shadow-2xl  hover:bg-gray-950 '>
+              <FaChevronDown className='text-black hover:text-white' />
+            </div>
           </div>
-        </div>
-      </Card>
-      <div className='flex h-[78%] gap-x-2'>
+        </Card>
+      </div>
+      <div className='flex gap-x-2'>
         <Card
           className=' bg-gradient-to-r from-gray-950 to-gray-900 boxshadow'
           decoration='bottom'

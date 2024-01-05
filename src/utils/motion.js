@@ -6,6 +6,7 @@ export const loaderVariants = {
     transition: { ease: 'easeInOut', duration: 1.5 },
   },
   exit: {
+    opacity: 0,
     y: '-100vh',
     transition: { ease: 'easeInOut', duration: 1.5 },
   },
@@ -30,10 +31,11 @@ export const navVarents = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '-100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 2,
+      duration: 1,
     },
   },
 }
@@ -53,10 +55,11 @@ export const navVarentsLogo = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '-100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 2,
+      duration: 1,
     },
   },
 }
@@ -81,10 +84,11 @@ export const firstGrdVariant = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     x: '-100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 1.5,
+      duration: 1,
     },
   },
 }
@@ -104,10 +108,11 @@ export const secondGrdVariant = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '-100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 1.5,
+      duration: 1,
     },
   },
 }
@@ -127,10 +132,11 @@ export const thirdGrdVariant = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '-100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 1.5,
+      duration: 1,
     },
   },
 }
@@ -150,10 +156,11 @@ export const forthGrdVariant = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 1.5,
+      duration: 1,
     },
   },
 }
@@ -173,10 +180,11 @@ export const fifthGrdVariant = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     x: '100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 1.5,
+      duration: 1,
     },
   },
 }
@@ -194,16 +202,16 @@ export const dokVariants = {
       stiffness: 60,
       delay: 1.8,
       ease: 'easeInOut',
-     
     },
     y: 0,
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '100vh',
     transition: {
       ease: 'easeInOut',
-      duration: 1.3,
+      duration: 1,
     },
   },
 }
@@ -223,6 +231,7 @@ export const dokBallVariants = {
     opacity: 1,
   },
   exit: {
+    opacity: 0,
     y: '100vh',
     transition: {
       ease: 'easeInOut',
@@ -261,9 +270,9 @@ export const babylonScrollvariants = {
   exit: {
     opacity: 0,
     scale: 0.8,
-    y: 200,
+    y: 50,
     transition: {
-      duration: 0.8,
+      duration: 0.5,
       ease: 'easeInOut',
     },
   },

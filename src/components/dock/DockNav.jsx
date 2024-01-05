@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import { contentDataDock } from '../../utils/data'
 import { icntapVar } from '../../utils/motion'
 
-
 function AppIcon({ mouseX, content }) {
   const ref = useRef(null)
 
@@ -16,7 +15,7 @@ function AppIcon({ mouseX, content }) {
     return val - bounds.x - bounds.width / 2
   })
 
-  const widthSync = useTransform(distance, [-150, 0, 150], [100, 200, 100])
+  const widthSync = useTransform(distance, [-150, 0, 150], [100, 180, 100])
   const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 })
 
   return (
@@ -42,8 +41,6 @@ AppIcon.propTypes = {
 function Dock() {
   const mouseX = useMotionValue(Infinity)
 
-  
-
   return (
     <motion.div
       variants={dokVariants}
@@ -52,7 +49,7 @@ function Dock() {
       exit='exit'
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className='flex bottom-4 fixed justify-between h-[120px] w-[65%] mt-5 gap-x-2 items-center rounded-2xl bg-slate-200 px-4 pb-3 nav'
+      className='flex fixed bottom-8  justify-between h-[80px] bg-transparent  mt-5 gap-x-6 items-center rounded-t-[25px] rounded-b-md px-4  '
     >
       {contentDataDock.map(({ key, imgSrc, alt, text, link }) => (
         <AppIcon
@@ -61,6 +58,10 @@ function Dock() {
           content={
             <motion.div
               whileTap='whileTap'
+              whileHover={{
+                y: -40,
+                transition: { duration: 0.2, ease: 'easeInOut' },
+              }}
               variants={icntapVar}
               exit='exit'
               className='font-semibold text-sm flex flex-col'
@@ -73,7 +74,12 @@ function Dock() {
               ) : (
                 <>
                   <img src={imgSrc} alt={alt} width={300} />
-                  <p className='flex justify-center'>{text}</p>
+                  <motion.p
+                    whileHover={{ scale: 1.5, y: -10 }}
+                    className='flex justify-center'
+                  >
+                    {text}
+                  </motion.p>
                 </>
               )}
             </motion.div>

@@ -16,57 +16,52 @@ import Savings from '../../components/grid/Savings'
 import './home.scss'
 
 const Home = () => {
+   const gridItems = [
+    {
+      component: House,
+      variants: firstGrdVariant,
+      className: 'text-white col-span-2 row-span-2',
+    },
+    {
+      component: Assets,
+      variants: secondGrdVariant,
+      className: 'text-white col-span-3',
+    },
+    {
+      component: RoundChart,
+      variants: thirdGrdVariant,
+      className: 'text-white col-span-3',
+    },
+    {
+      component: Loan,
+      variants: forthGrdVariant,
+      className: 'text-white col-span-3',
+    },
+    {
+      component: Savings,
+      variants: fifthGrdVariant,
+      className: 'text-white col-span-3',
+    },
+  ];
+
   return (
-    <div className='home h-screen'>
+    <div className='h-screen'>
       <Navbar />
-      <div className='w-[95%] h-[550px] grid grid-cols-8 grid-rows-2 gap-3 mx-auto'>
-        <motion.div
-          variants={firstGrdVariant}
-          initial='hidden'
-          animate='visible'
-          exit='exit'
-          className=' text-white col-span-2 row-span-2'
-        >
-          <House />
-        </motion.div>
-        <motion.div
-          variants={secondGrdVariant}
-          initial='hidden'
-          animate='visible'
-          exit='exit'
-          className=' text-white col-span-3 row-span-1'
-        >
-          <Assets />
-        </motion.div>
-        <motion.div
-          variants={thirdGrdVariant}
-          initial='hidden'
-          animate='visible'
-          exit='exit'
-          className=' text-white col-span-3 row-span-1'
-        >
-          <RoundChart />
-        </motion.div>
-        <motion.div
-          variants={forthGrdVariant}
-          initial='hidden'
-          animate='visible'
-          exit='exit'
-          className=' text-white col-span-3 row-span-1'
-        >
-          <Loan />
-        </motion.div>
-        <motion.div
-          variants={fifthGrdVariant}
-          initial='hidden'
-          animate='visible'
-          exit='exit'
-          className=' text-white col-span-3 row-span-1'
-        >
-          <Savings />
-        </motion.div>
+      <div className='grid sm:grid-cols-6 md:grid-cols-8 grid-cols-1 gap-3 ml-6 mr-6'>
+        {gridItems.map((item, index) => (
+          <motion.div
+            key={index}
+            variants={item.variants}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+            className={item.className}
+          >
+            <item.component />
+          </motion.div>
+        ))}
       </div>
-      <div className='flex justify-center'>
+      <div className='md:flex justify-center h-20 hidden'>
         <Dock />
       </div>
     </div>

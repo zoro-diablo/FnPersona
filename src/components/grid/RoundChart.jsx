@@ -7,7 +7,7 @@ const RoundChart = () => {
   const valueFormatter = (number) =>
     ` ${new Intl.NumberFormat('us').format(number).toString()}`
   return (
-    <>
+    <div className='boxshadow'>
       <Card
         className=' items-center grid grid-cols-2 justify-between bg-gradient-to-r from-gray-950 to-gray-900 boxshadow'
         decoration='bottom'
@@ -35,7 +35,7 @@ const RoundChart = () => {
           colors={['#969393', 'emerald', '#f2f0f0']}
         />
       </Card>
-    </>
+    </div>
   )
 }
 
