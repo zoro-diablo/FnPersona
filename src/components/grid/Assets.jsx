@@ -1,7 +1,6 @@
 import {  Card, Title,BarChart } from '@tremor/react'
 import './assets.scss'
 import { assetData } from '../../utils/data'
-// import {AreaChart} from '@tremor/react'
 
 
 const customTooltip = ({ payload, active }) => {
@@ -34,15 +33,6 @@ const customTooltip = ({ payload, active }) => {
         decorationColor='gray'
       >
         <Title className='text-white pb-4 my-auto'>Asset Performance</Title>
-        {/* <AreaChart
-          className='h-44'
-          data={assetData}
-          index='date'
-          categories={['Asset']}
-          colors={['gray']}
-          yAxisWidth={35}
-          customTooltip={customTooltip}
-        /> */}
         <BarChart
           className='h-44'
           data={assetData}

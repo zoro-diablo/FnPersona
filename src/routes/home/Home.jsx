@@ -1,7 +1,13 @@
 import Dock from '../../components/dock/DockNav'
 import Navbar from '../../components/navbar/Navbar'
 import { motion } from 'framer-motion'
-import { firstGrdVariant, secondGrdVariant, thirdGrdVariant, forthGrdVariant, fifthGrdVariant } from '../../utils/motion'
+import {
+  firstGrdVariant,
+  secondGrdVariant,
+  thirdGrdVariant,
+  forthGrdVariant,
+  fifthGrdVariant,
+} from '../../utils/motion'
 import House from '../../components/grid/House'
 import Assets from '../../components/grid/Assets'
 import RoundChart from '../../components/grid/RoundChart'
@@ -9,9 +15,7 @@ import Loan from '../../components/grid/Loan'
 import Savings from '../../components/grid/Savings'
 import './home.scss'
 
-
 const Home = () => {
-  
   return (
     <div className='home h-screen'>
       <Navbar />

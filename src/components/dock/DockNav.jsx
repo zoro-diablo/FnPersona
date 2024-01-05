@@ -4,12 +4,9 @@ import { useRef } from 'react'
 import { dokBallVariants, dokVariants } from '../../utils/motion'
 import './dock.scss'
 import { Link } from 'react-router-dom'
+import { contentDataDock } from '../../utils/data'
+import { icntapVar } from '../../utils/motion'
 
-const icntapVar = {
-  whileTap: {
-    scale: 0.5,
-  },
-}
 
 function AppIcon({ mouseX, content }) {
   const ref = useRef(null)
@@ -45,36 +42,7 @@ AppIcon.propTypes = {
 function Dock() {
   const mouseX = useMotionValue(Infinity)
 
-  const contents = [
-    {
-      key: 'retirement',
-      imgSrc: '/valult.webp',
-      alt: 'babylon',
-      text: 'Retirement',
-    },
-    { key: 'loan', imgSrc: '/erase.png', alt: 'loan', text: 'Loan' },
-    {
-      key: 'purchase',
-      imgSrc: '/perce.webp',
-      alt: 'purchase',
-      text: 'Purchase',
-    },
-    { key: 'Ramsy', imgSrc: '/folder.png', alt: 'Ramsy', text: 'Ramsy' },
-    {
-      key: 'kiyosaki',
-      imgSrc: '/wallets.webp',
-      alt: 'kiyosaki',
-      text: 'Kiyosaki',
-    },
-    { key: 'emi', imgSrc: '/card.png', alt: 'emi', text: 'EMI' },
-    {
-      key: 'babylon',
-      imgSrc: '/blkhouse.png',
-      alt: 'retirement',
-      text: 'Babylon',
-      link: '/babylon',
-    },
-  ]
+  
 
   return (
     <motion.div
@@ -86,7 +54,7 @@ function Dock() {
       onMouseLeave={() => mouseX.set(Infinity)}
       className='flex bottom-4 fixed justify-between h-[120px] w-[65%] mt-5 gap-x-2 items-center rounded-2xl bg-slate-200 px-4 pb-3 nav'
     >
-      {contents.map(({ key, imgSrc, alt, text, link }) => (
+      {contentDataDock.map(({ key, imgSrc, alt, text, link }) => (
         <AppIcon
           key={key}
           mouseX={mouseX}

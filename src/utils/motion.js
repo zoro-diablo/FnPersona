@@ -17,12 +17,12 @@ export const loaderVariants = {
 export const navVarents = {
   hidden: {
     opacity: 0,
-    y: '-200vh',
+    y: '100vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 40,
+      stiffness: 35,
       delay: 1.2,
       ease: 'easeInOut',
     },
@@ -40,12 +40,12 @@ export const navVarents = {
 export const navVarentsLogo = {
   hidden: {
     opacity: 0,
-    y: '-200vh',
+    y: '100vh',
   },
   visible: {
     transition: {
       type: 'spring',
-      stiffness: 40,
+      stiffness: 35,
       delay: 1.6,
       ease: 'easeInOut',
     },
@@ -194,6 +194,7 @@ export const dokVariants = {
       stiffness: 60,
       delay: 1.8,
       ease: 'easeInOut',
+     
     },
     y: 0,
     opacity: 1,
@@ -227,6 +228,12 @@ export const dokBallVariants = {
       ease: 'easeInOut',
       duration: 1,
     },
+  },
+}
+
+export const icntapVar = {
+  whileTap: {
+    scale: 0.5,
   },
 }
 

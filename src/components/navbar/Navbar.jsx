@@ -1,12 +1,11 @@
 import './navbar.scss'
 import { MdAccountCircle } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { navVarents, navVarentsLogo } from '../../utils/motion'
 
-
-
 const Navbar = () => {
+  const location = useLocation()
   return (
     <div>
       <div className='w-full h-[60px] flex justify-between items-center '>
@@ -46,7 +45,11 @@ const Navbar = () => {
               animate='visible'
               exit='exit'
             >
-              Dashboard
+              {location.pathname === '/'
+                ? 'Dashboard'
+                : location.pathname === '/babylon'
+                ? 'Babylon'
+                : 'Other Page'}
             </motion.p>
           </button>
           <div>

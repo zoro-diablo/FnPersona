@@ -107,7 +107,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 const House = () => {
- 
   const [value, setValue] = useState('')
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -207,7 +206,7 @@ const House = () => {
                 <SelectItem value='4'>Russia</SelectItem>
               </Select>
               <DatePicker className='max-w-sm mx-auto dark overflow-visible h-10' />
-             
+
               <FormControl className='flex flex-row'>
                 <FormLabel id='demo-row-radio-buttons-group-label '></FormLabel>
                 <RadioGroup
@@ -230,7 +229,7 @@ const House = () => {
                   />
                 </RadioGroup>
               </FormControl>
-             
+
               <FormControl className='flex flex-row'>
                 <FormLabel id='demo-row-radio-buttons-group-label '></FormLabel>
                 <RadioGroup
