@@ -21,7 +21,7 @@ const Savings = () => {
       </div>
       <div className='flex gap-x-2'>
         <Card
-          className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow'
+          className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow' 
           decoration='bottom'
           decorationColor='gray'
         >

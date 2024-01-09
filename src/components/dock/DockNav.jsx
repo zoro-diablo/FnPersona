@@ -49,7 +49,7 @@ function Dock() {
       exit='exit'
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className='flex fixed bottom-8  justify-between h-[80px] bg-transparent  mt-5 gap-x-6 items-center rounded-t-[25px] rounded-b-md px-4  '
+      className='flex fixed bottom-8  justify-between h-[80px]  gap-x-6 items-center rounded-t-[25px] rounded-b-md px-4  '
     >
       {contentDataDock.map(({ key, imgSrc, alt, text, link }) => (
         <AppIcon
@@ -64,7 +64,7 @@ function Dock() {
               }}
               variants={icntapVar}
               exit='exit'
-              className='font-semibold text-sm flex flex-col'
+              className='font-semibold text-sm flex flex-col '
             >
               {link ? (
                 <Link to={link}>

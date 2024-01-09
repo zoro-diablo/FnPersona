@@ -20,7 +20,6 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import Slide from '@mui/material/Slide'
-import './house.scss'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Radio from '@mui/material/Radio'
@@ -31,6 +30,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 import RadioGroup from '@mui/material/RadioGroup'
+import './house.scss'
 
 const houseCols = [
   { field: 'id', headerName: 'ID', width: 30, headerAlign: 'center' },
@@ -285,7 +285,7 @@ const House = () => {
 
       <div className='boxshadow'>
         <Card
-          className=' mx-auto bg-gradient-to-r from-black to-gray-900'
+          className=' mx-auto bg-gradient-to-r from-gray-950 to-gray-800'
           decoration='bottom'
           decorationColor='gray'
         >
