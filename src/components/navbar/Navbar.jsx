@@ -49,6 +49,8 @@ const Navbar = () => {
                 ? 'Dashboard'
                 : location.pathname === '/babylon'
                 ? 'Babylon'
+                : location.pathname === '/purchase'
+                ? 'Purchase'
                 : 'Other Page'}
             </motion.p>
           </button>

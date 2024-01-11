@@ -28,7 +28,7 @@ const components = [
 
 const Babylon = () => {
   return (
-    <div className=''>
+    <div className=' '>
       <Navbar />
       <div className='grid md:grid-cols-2 grid-cols-1 gap-6 ml-8 mr-8 mt-5 mb-5 '>
         {components.map((item, index) => (

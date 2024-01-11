@@ -154,6 +154,7 @@ export const contentDataDock = [
     imgSrc: '/perce.webp',
     alt: 'purchase',
     text: 'Purchase',
+    link: '/purchase',
   },
   { key: 'Ramsy', imgSrc: '/folder.png', alt: 'Ramsy', text: 'Ramsy' },
   {
@@ -369,6 +370,36 @@ export const weatherIndicatordata = [
   {
     type: 'Liabilities ',
     value: 'Autocalculated value',
+  },
+]
+export const totalPurchaseList = [
+  {
+    type: 'Home value after 10 years ',
+    value: 999999.8
+  },
+  {
+    type: 'Debt after 10 years ',
+    value: 8349999.8
+  },
+  {
+    type: 'Home Equity after 10 years ',
+    value: 199.8
+  },
+  {
+    type: 'Transaction costs of selling in year 10 ',
+    value: 3299.8
+  },
+  {
+    type: 'Net cash if home sold in 10 years ',
+    value: 87999.8
+  },
+  {
+    type: 'Savings after 10 years if renting ',
+    value: 0.598
+  },
+  {
+    type: 'Present value benefit of owning vs. renting for 10 years ',
+    value: 4599.8
   },
 ]
 

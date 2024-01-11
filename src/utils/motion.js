@@ -279,3 +279,25 @@ export const babylonScrollvariants = {
 }
 
 // <--------- Babylon --------->
+
+// <--------- Babylon --------->
+
+export const slideInVariants = {
+  hidden: { x: '-100vw', opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: 'spring', stiffness: 50, delay: 1.2 },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    y: 50,
+    transition: {
+      duration: 0.5,
+      ease: 'easeInOut',
+    },
+  },
+}
+
+// <--------- Babylon --------->
