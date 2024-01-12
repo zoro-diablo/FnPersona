@@ -18,7 +18,7 @@ const RetirementGraph = () => {
           />
         </div>
         <LineChart
-          className='h-72 mt-8'
+          className='h-[230px] mt-8'
           data={retirementData}
           index='date'
           categories={['2022', '2023']}
