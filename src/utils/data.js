@@ -114,10 +114,6 @@ export const roundPpl = [
     name: 'Singapore',
     sales: 1908,
   },
-  {
-    name: 'Zurich',
-    sales: 1398,
-  },
 ]
 
 export const houseRows = [

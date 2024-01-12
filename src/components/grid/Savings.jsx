@@ -21,7 +21,7 @@ const Savings = () => {
       </div>
       <div className='flex gap-x-2'>
         <Card
-          className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow' 
+          className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow'
           decoration='bottom'
           decorationColor='gray'
         >
@@ -40,15 +40,17 @@ const Savings = () => {
           decoration='bottom'
           decorationColor='gray'
         >
-          <DonutChart
-            className=''
-            data={cities}
-            category='sales'
-            index='name'
-            variant='pie'
-            valueFormatter={valueFormatter}
-            colors={['slate', '#111827', 'teal', '#f2f0f0', 'emerald']}
-          />
+          <div className='graphshadow rounded-full mx-[15px] my-[-10px] py-[16px] bg-gradient-to-r from-gray-950 to-slate-700  '>
+            <DonutChart
+              className=''
+              data={cities}
+              category='sales'
+              index='name'
+              variant='pie'
+              valueFormatter={valueFormatter}
+              colors={['slate', '#111827', 'emerald', '#f2f0f0', 'gray']}
+            />
+          </div>
         </Card>
       </div>
     </div>

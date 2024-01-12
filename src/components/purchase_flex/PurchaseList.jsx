@@ -5,7 +5,7 @@ const PurchaseList = () => {
   return (
     <div className='flex justify-end mr-10'>
         <Card
-          className='max-w-2xl dark bg-gradient-to-r from-gray-950 to-gray-800 box-shadow'
+          className='w-full dark bg-gradient-to-r from-gray-950 to-gray-800 box-shadow ml-10'
           decoration='right'
           decorationColor='gray'
         >
