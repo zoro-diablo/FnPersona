@@ -17,7 +17,7 @@ const components = [
   // { component: Location, className: 'boxshadow' },
   { component: SmartEmi, className: 'boxshadow col-span-3' },
   { component: IncomeSource, className: 'boxshadow col-span-2' },
-  { component: WeatherIndicator, className: 'col-span-2' },
+  { component: WeatherIndicator, className: 'col-span-2 ' },
   { component: AccordionData, className: 'boxshadow col-span-3' },
   { component: RetirementGraph, className: 'col-span-4' },
   // { component: FinancialAccordion, className: 'boxshadow' },
@@ -28,9 +28,9 @@ const components = [
 
 const Babylon = () => {
   return (
-    <div className='h-screen '>
+    <div className='h-full xl:h-screen'>
       <Navbar />
-      <div className='grid md:grid-cols-7  grid-cols-1 gap-6 ml-8 mr-8 mt-2 mb-5 '>
+      <div className=' grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 grid-cols-1 gap-6 mx-8 mt-2 '>
         {components.map((item, index) => (
           <motion.div
             key={index}

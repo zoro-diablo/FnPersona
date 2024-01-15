@@ -6,11 +6,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
 body {
- background: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to top, #414d5872, #ffffff);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to top, #2c3e5079, #ffffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #bdc3c7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #414d5872,
+    #ffffff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #2c3e5079,
+    #ffffff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
