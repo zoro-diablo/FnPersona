@@ -368,6 +368,7 @@ export const weatherIndicatordata = [
     value: 'Autocalculated value',
   },
 ]
+
 export const totalPurchaseList = [
   {
     type: 'Home value after 10 years ',

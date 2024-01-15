@@ -1,7 +1,8 @@
 import './savings.scss'
-import { Card, LineChart, DonutChart } from '@tremor/react'
+import { Card, LineChart } from '@tremor/react'
 import { FaChevronDown } from 'react-icons/fa'
-import { chartdata, cities } from '../../utils/data'
+import { chartdata } from '../../utils/data'
+import PieChartSavings from './PieChartSavings'
 
 const Savings = () => {
   const valueFormatter = (number) =>
@@ -36,11 +37,11 @@ const Savings = () => {
           />
         </Card>
         <Card
-          className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow '
+          className='bg-gradient-to-r from-gray-950 to-gray-900 boxshadow flex flex-col items-center '
           decoration='bottom'
           decorationColor='gray'
         >
-          <div className='graphshadow rounded-full mx-[15px] my-[-10px] py-[16px] bg-gradient-to-r from-gray-950 to-slate-700  '>
+          {/* <div className='graphshadow rounded-full mx-[15px] my-[-10px] py-[16px] bg-gradient-to-r from-gray-950 to-slate-700  '>
             <DonutChart
               className=''
               data={cities}
@@ -50,7 +51,8 @@ const Savings = () => {
               valueFormatter={valueFormatter}
               colors={['slate', '#111827', 'emerald', '#f2f0f0', 'gray']}
             />
-          </div>
+          </div> */}
+          <PieChartSavings />
         </Card>
       </div>
     </div>
