@@ -45,7 +45,7 @@ const Home = () => {
   ];
 
   return (
-    <div className='h-screen w-screen overflow-hidden'>
+    <div className='h-full sm:h-screen w-screen overflow-hidden'>
       <Navbar />
       <div className='grid sm:grid-cols-6 md:grid-cols-8 grid-cols-1 gap-3 ml-6 mr-6'>
         {gridItems.map((item, index) => (

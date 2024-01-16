@@ -25,7 +25,7 @@ const WeatherIndicato = () => {
         <TabList>
           <Tab className='hover:border-none' onClick={() => setIsClicked(0)}>
             <h2
-              className={`pb-2 ${
+              className={`pb-2 text-[12px] sm:text-[14px] ${
                 isClicked === 0
                   ? 'text-white border-gray-400 border-b-2 font-semibold '
                   : ' text-gray-400'
@@ -37,7 +37,7 @@ const WeatherIndicato = () => {
           <Tab className='hover:border-none' onClick={() => setIsClicked(1)}>
             {' '}
             <h2
-              className={`pb-2 ${
+              className={`pb-2 text-[12px] sm:text-[14px] ${
                 isClicked === 1
                   ? 'text-white border-gray-400 border-b-2 font-semibold '
                   : ' text-gray-400'

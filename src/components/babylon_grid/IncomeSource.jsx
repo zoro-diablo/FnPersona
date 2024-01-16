@@ -23,7 +23,7 @@ const IncomeSource = () => {
         <TabList className=''>
           <Tab className='hover:border-none ' onClick={() => setIsClicked(0)}>
             <h2
-              className={`pb-2 ${
+              className={`pb-2 text-[13px] sm:text-[14px] ${
                 isClicked === 0
                   ? 'text-white border-indigo-400 border-b-2 font-semibold '
                   : ' text-gray-400'
@@ -34,7 +34,7 @@ const IncomeSource = () => {
           </Tab>
           <Tab className='hover:border-none ' onClick={() => setIsClicked(1)}>
             <h2
-              className={`pb-2 ${
+              className={`pb-2 text-[13px] sm:text-[14px] ${
                 isClicked === 1
                   ? 'text-white border-indigo-400 border-b-2 font-semibold '
                   : ' text-gray-400'
@@ -46,7 +46,7 @@ const IncomeSource = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <div className='mt-6 flex  flex-row gap-y-6 gap-x-4 '>
+            <div className='mt-6 flex flex-col sm:flex-row gap-y-6 gap-x-4 '>
               <NumberInput
                 enableStepper={false}
                 placeholder='Income'
@@ -68,10 +68,9 @@ const IncomeSource = () => {
                 className='p-1 bg-gradient-to-r from-gray-100 from-90% to-gray-300 font-semibold text-black'
               />
             </div>
-            
           </TabPanel>
           <TabPanel>
-            <div className='mt-6 flex  flex-row gap-y-6 gap-x-4 pb-3'>
+            <div className='mt-6 flex flex-col sm:flex-row gap-y-6 gap-x-4 '>
               <TextInput
                 placeholder='Country...'
                 className='p-1  bg-gradient-to-r from-gray-100 from-90% to-gray-300 font-semibold text-black'

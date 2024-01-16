@@ -22,7 +22,7 @@ const SmartEmi = () => {
         <TabList>
           <Tab className='hover:border-none' onClick={() => setIsClicked(0)}>
             <h2
-              className={`pb-1 ${
+              className={`pb-1 text-[9px] sm:text-[14px] ${
                 isClicked === 0
                   ? 'text-white border-purple-400 border-b-2 font-semibold '
                   : ' text-gray-400'
@@ -33,7 +33,7 @@ const SmartEmi = () => {
           </Tab>
           <Tab className='hover:border-none' onClick={() => setIsClicked(1)}>
             <h2
-              className={`pb-1 ${
+              className={`pb-1 text-[9px] sm:text-[14px] ${
                 isClicked === 1
                   ? 'text-white border-purple-400 border-b-2 font-semibold '
                   : ' text-gray-400'
@@ -44,7 +44,7 @@ const SmartEmi = () => {
           </Tab>
           <Tab className='hover:border-none' onClick={() => setIsClicked(2)}>
             <h2
-              className={`pb-1 ${
+              className={`pb-1 text-[9px] sm:text-[14px] ${
                 isClicked === 2
                   ? 'text-white border-purple-400 border-b-2 font-semibold '
                   : ' text-gray-400'
