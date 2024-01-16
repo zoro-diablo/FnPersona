@@ -128,7 +128,7 @@ const House = () => {
           initial={{ opacity: 0 }}
           animate={{ x: 300, opacity: 1 }}
           title='Add New'
-          className='hover:rounded-full cursor-pointer outline-none z-10 sm:static  lg:fixed'
+          className='hover:rounded-full cursor-pointer outline-none z-10 absolute hidden xl:block left-0  '
           onClick={handleClickOpen}
         >
           <motion.svg

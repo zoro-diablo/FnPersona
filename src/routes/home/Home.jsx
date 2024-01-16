@@ -20,34 +20,34 @@ const Home = () => {
     {
       component: House,
       variants: firstGrdVariant,
-      className: 'text-white col-span-2 row-span-2',
+      className: 'text-white xl:col-span-2 xl:row-span-2 lg:col-span-2 lg:row-span-2',
     },
     {
       component: Assets,
       variants: secondGrdVariant,
-      className: 'text-white col-span-3',
+      className: 'text-white xl:col-span-3 lg:col-span-3',
     },
     {
       component: RoundChart,
       variants: thirdGrdVariant,
-      className: 'text-white col-span-3',
+      className: 'text-white xl:col-span-3 lg:col-span-3',
     },
     {
       component: Loan,
       variants: forthGrdVariant,
-      className: 'text-white col-span-3',
+      className: 'text-white xl:col-span-3 lg:col-span-5',
     },
     {
       component: Savings,
       variants: fifthGrdVariant,
-      className: 'text-white col-span-3',
+      className: 'text-white xl:col-span-3 lg:col-span-5',
     },
   ];
 
   return (
-    <div className='h-full sm:h-screen w-screen overflow-hidden'>
+    <div className='h-full xl:h-screen w-screen overflow-hidden'>
       <Navbar />
-      <div className='grid sm:grid-cols-6 md:grid-cols-8 grid-cols-1 gap-3 ml-6 mr-6'>
+      <div className='grid lg:grid-cols-5 lg:grid-rows-6 xl:grid-cols-8 grid-cols-1 gap-3 ml-6 mr-6'>
         {gridItems.map((item, index) => (
           <motion.div
             key={index}
