@@ -20,6 +20,7 @@ Highcharts.setOptions({
     }
   }),
 })
+
 const options = {
   chart: {
     spacing: [10, 10, 20, 20],
@@ -50,7 +51,6 @@ const options = {
   },
   legend: {
     layout: 'vertical',
-
     align: 'center',
     verticalAlign: 'left',
     x: -85,
