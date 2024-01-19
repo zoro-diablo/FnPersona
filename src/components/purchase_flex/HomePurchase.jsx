@@ -1,7 +1,6 @@
 import { Card, NumberInput, Button } from '@tremor/react'
 import '../../routes/purchase/purchase.scss'
 
-
 const inputFields = [
         'Purchase Price...',
         'Downpayment...',
@@ -22,7 +21,7 @@ const inputFields = [
 
 const HomePurchase = () => {
   return (
-    <div className='flex flex-col mx-10 mt-5 boxshadow'>
+    <div className='flex flex-col mx-10 mt-5 boxshadow '>
       <Card
         className='bg-gradient-to-r from-gray-950 to-gray-800 '
         decoration='top'
@@ -30,13 +29,13 @@ const HomePurchase = () => {
       >
         <h2 className='font-medium text-white '>Home Purchase Model</h2>
 
-        <div className='grid grid-cols-5 gap-y-4 gap-x-2 mt-5'>
+        <div className='grid grid-cols-2 gap-y-4  mt-5 mr-[-25px]'>
           {inputFields.map((placeholder, index) => (
             <NumberInput
               key={index}
               placeholder={placeholder}
-              className='p-1 bg-gradient-to-r  from-gray-100 from-90% to-gray-300 font-semibold text-black'
-              style={{ fontSize: '13px' }}
+              className='py-1 bg-gradient-to-r w-[90%]  from-gray-100 from-90% to-gray-300 font-semibold text-black'
+              style={{ fontSize: '12px' }}
             />
           ))}
         </div>
@@ -46,7 +45,7 @@ const HomePurchase = () => {
             size='xs'
             variant='secondary'
             color=''
-            className='p-2 px-[50px] hover:bg-black hover:text-white text-gray-200'
+            className='p-2 w-full hover:bg-black hover:text-white text-gray-200'
           >
             Analyze
           </Button>

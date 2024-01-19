@@ -5,6 +5,8 @@ import PurchaseTable from '../../components/purchase_flex/PurchaseTable'
 import { motion } from 'framer-motion'
 import { slideInVariants } from '../../utils/motion'
 import './purchase.scss'
+import WorldMap from '../../components/purchase_flex/WorldMap'
+
 
 
 
@@ -18,7 +20,12 @@ const Purchase = () => {
       className=' w-full flex flex-col gap-y-2 mb-5'
     >
       <Navbar />
-      <HomePurchase />
+      <div className='flex'>
+        <HomePurchase />
+        <div className='flex-1 '>
+          <WorldMap />
+        </div>
+      </div>
       <PurchaseTable />
       <PurchaseList />
     </motion.div>
