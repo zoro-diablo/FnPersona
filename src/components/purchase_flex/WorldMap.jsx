@@ -1,7 +1,5 @@
 import { useEffect } from 'react'
 
-
-
 const WorldMap = () => {
   useEffect(() => {
     if (window.simplemaps_usmap) {

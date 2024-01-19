@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import { dokBallVariants, dokVariants } from '../../utils/motion'
-import './dock.scss'
+import { dokBallVariants, icntapVar, dokVariants } from '../../utils/motion'
 import { Link } from 'react-router-dom'
 import { contentDataDock } from '../../utils/data'
-import { icntapVar } from '../../utils/motion'
+import { MdClose } from 'react-icons/md'
 
 function AppIcon({ mouseX, content }) {
   const ref = useRef(null)
@@ -16,7 +15,11 @@ function AppIcon({ mouseX, content }) {
   })
 
   const widthSync = useTransform(distance, [-150, 0, 150], [100, 180, 100])
-  const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 })
+  const width = useSpring(widthSync, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  })
 
   return (
     <motion.div
@@ -38,7 +41,7 @@ AppIcon.propTypes = {
   content: PropTypes.node.isRequired,
 }
 
-function Dock() {
+function Dock({ isMobile, onToggle }) {
   const mouseX = useMotionValue(Infinity)
 
   return (
@@ -47,10 +50,19 @@ function Dock() {
       initial='hidden'
       animate='visible'
       exit='exit'
+      className={`md:flex md:fixed md:bottom-12 justify-between md:h-[80px] h-[80px] md:gap-x-6 items-center rounded-t-[25px] rounded-b-md px-4 ${
+        isMobile ? 'md:hidden' : ''
+      }`}
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
-      className='flex fixed bottom-8  justify-between h-[80px]  gap-x-6 items-center rounded-t-[25px] rounded-b-md px-4  '
     >
+      {!isMobile && (
+        <MdClose
+          size={32}
+          className={`cursor-pointer absolute top-4 right-4 md:hidden hidden`}
+          onClick={onToggle}
+        />
+      )}
       {contentDataDock.map(({ key, imgSrc, alt, text, link }) => (
         <AppIcon
           key={key}
@@ -64,19 +76,27 @@ function Dock() {
               }}
               variants={icntapVar}
               exit='exit'
-              className='font-semibold text-sm flex flex-col '
+              className='font-semibold md:text-sm text-3xl flex flex-col '
             >
               {link ? (
                 <Link to={link}>
-                  <img src={imgSrc} alt={alt} width={300} />
-                  <p className='flex justify-center'>{text}</p>
+                  <img
+                    src={imgSrc}
+                    alt={alt}
+                    className={`md:w-[300px] ${isMobile ? 'hidden' : ''}`}
+                  />
+                  <p className='flex justify-center '>{text}</p>
                 </Link>
               ) : (
                 <>
-                  <img src={imgSrc} alt={alt} width={300} />
+                  <img
+                    src={imgSrc}
+                    alt={alt}
+                    className={`md:w-[300px] ${isMobile ? 'hidden' : ''}`}
+                  />
                   <motion.p
                     whileHover={{ scale: 1.5, y: -10 }}
-                    className='flex justify-center'
+                    className='flex justify-center '
                   >
                     {text}
                   </motion.p>
@@ -86,8 +106,20 @@ function Dock() {
           }
         />
       ))}
+      {isMobile && (
+        <MdClose
+          size={32}
+          className={`cursor-pointer absolute top-4 right-4 md:hidden md:block`}
+          onClick={onToggle}
+        />
+      )}
     </motion.div>
   )
+}
+
+Dock.propTypes = {
+  isMobile: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
 }
 
 export default Dock
