@@ -1,26 +1,23 @@
-var simplemaps_usmap_mapdata={
+var simplemaps_countrymap_mapdata={
   main_settings: {
    //General settings
-    width: "responsive", //'700' or 'responsive'
-    background_color: "#318cda",
+    width:'responsive', //'700' or 'responsive'
+    background_color: "#FFFFFF",
     background_transparent: "yes",
     border_color: "#ffffff",
-    popups: "detect",
     
     //State defaults
-    state_description: "State Description",
+    state_description: "State description",
     state_color: "#000000",
-    state_hover_color: "#d3d5d8",
+    state_hover_color: "#bcbfc2",
     state_url: "",
     border_size: 1.5,
     all_states_inactive: "no",
     all_states_zoomable: "yes",
-
-    
     
     //Location defaults
-    location_description: "Add location markers using latitude and longitude!",
-    location_color: "#2041D4",
+    location_description: "Location description",
+    location_color: "#FF0067",
     location_opacity: 0.8,
     location_hover_opacity: 1,
     location_url: "",
@@ -35,15 +32,17 @@ var simplemaps_usmap_mapdata={
     
     //Label defaults
     label_color: "#ffffff",
-    label_hover_color: "#000000",
-    label_size: 22,
+    label_hover_color: "#d5ddec",
+    label_size: "12",
     label_font: "Arial",
     hide_labels: "no",
     hide_eastern_labels: "no",
-    manual_zoom: "no",
+   
+    //Zoom settings
+    zoom: "yes",
     back_image: "no",
     initial_back: "no",
-    initial_zoom: -1,
+    initial_zoom: "-1",
     initial_zoom_solo: "no",
     region_opacity: 1,
     region_hover_opacity: 0.6,
@@ -62,555 +61,351 @@ var simplemaps_usmap_mapdata={
     //Advanced settings
     div: "map",
     auto_load: "yes",
-    url_new_tab: "yes",
-    images_directory: "/static/lib/simplemaps/map_images/",
+    url_new_tab: "no",
+    images_directory: "default",
     fade_time: 0.1,
-    import_labels: "no",
     link_text: "View Website",
+    popups: "detect",
     state_image_url: "",
     state_image_position: "",
     location_image_url: ""
   },
   state_specific: {
-    HI: {
-      name: "Hawaii",
-      description: " "
+    "1": {
+      name: "Andaman And Nicobar"
     },
-    AK: {
-      name: "Alaska",
-      description: " "
+    "2": {
+      name: "Andhra Pradesh"
     },
-    FL: {
-      name: "Florida",
-      description: " "
+    "3": {
+      name: "Arunachal Pradesh"
     },
-    NH: {
-      name: "New Hampshire",
-      description: " "
+    "4": {
+      name: "Assam"
     },
-    VT: {
-      name: "Vermont",
-      description: " "
+    "5": {
+      name: "Bihar"
     },
-    ME: {
-      name: "Maine",
-      description: " "
+    "6": {
+      name: "Chandigarh"
     },
-    RI: {
-      name: "Rhode Island",
-      description: " "
+    "7": {
+      name: "Chhattisgarh"
     },
-    NY: {
-      name: "New York",
-      description: " "
+    "8": {
+      name: "Dadra And Nagar Haveli"
     },
-    PA: {
-      name: "Pennsylvania",
-      description: " "
+    "9": {
+      name: "Daman And Diu"
     },
-    NJ: {
-      name: "New Jersey",
-      description: " "
+    "10": {
+      name: "Delhi"
     },
-    DE: {
-      name: "Delaware",
-      description: " "
+    "11": {
+      name: "Goa"
     },
-    MD: {
-      name: "Maryland",
-      description: " "
+    "12": {
+      name: "Gujarat"
     },
-    VA: {
-      name: "Virginia",
-      description: " "
+    "13": {
+      name: "Haryana"
     },
-    WV: {
-      name: "West Virginia",
-      description: " "
+    "14": {
+      name: "Himachal Pradesh"
     },
-    OH: {
-      name: "Ohio",
-      description: " "
+    "16": {
+      name: "Jharkhand"
     },
-    IN: {
-      name: "Indiana",
-      description: " "
+    "17": {
+      name: "Karnataka"
     },
-    IL: {
-      name: "Illinois",
-      description: " "
+    "18": {
+      name: "Kerala"
     },
-    CT: {
-      name: "Connecticut",
-      description: " "
+    "19": {
+      name: "Lakshadweep"
     },
-    WI: {
-      name: "Wisconsin",
-      description: " "
+    "20": {
+      name: "Madhya Pradesh"
     },
-    NC: {
-      name: "North Carolina",
-      description: " "
+    "21": {
+      name: "Maharashtra"
     },
-    DC: {
-      name: "District of Columbia",
-      description: " "
+    "22": {
+      name: "Manipur"
     },
-    MA: {
-      name: "Massachusetts",
-      description: " "
+    "23": {
+      name: "Meghalaya"
     },
-    TN: {
-      name: "Tennessee",
-      description: " "
+    "24": {
+      name: "Mizoram"
     },
-    AR: {
-      name: "Arkansas",
-      description: " "
+    "25": {
+      name: "Nagaland"
     },
-    MO: {
-      name: "Missouri",
-      description: " "
+    "26": {
+      name: "Orissa"
     },
-    GA: {
-      name: "Georgia",
-      description: " "
+    "27": {
+      name: "Puducherry"
     },
-    SC: {
-      name: "South Carolina",
-      description: " "
+    "28": {
+      name: "Punjab"
     },
-    KY: {
-      name: "Kentucky",
-      description: " "
+    "29": {
+      name: "Rajasthan"
     },
-    AL: {
-      name: "Alabama",
-      description: " "
+    "30": {
+      name: "Sikkim"
     },
-    LA: {
-      name: "Louisiana",
-      description: " "
+    "31": {
+      name: "Tamil Nadu"
     },
-    MS: {
-      name: "Mississippi",
-      description: " "
+    "32": {
+      name: "Tripura"
     },
-    IA: {
-      name: "Iowa",
-      description: " "
+    "33": {
+      name: "Uttar Pradesh"
     },
-    MN: {
-      name: "Minnesota",
-      description: " "
+    "34": {
+      name: "Uttaranchal"
     },
-    OK: {
-      name: "Oklahoma",
-      description: " "
+    "35": {
+      name: "West Bengal"
     },
-    TX: {
-      name: "Texas",
-      description: " "
+    "36": {
+      name: "Jammu And Kashmir"
     },
-    NM: {
-      name: "New Mexico",
-      description: " "
+    "37": {
+      name: "Telangana"
     },
-    KS: {
-      name: "Kansas",
-      description: " "
-    },
-    NE: {
-      name: "Nebraska",
-      description: " "
-    },
-    SD: {
-      name: "South Dakota",
-      description: " "
-    },
-    ND: {
-      name: "North Dakota",
-      description: " "
-    },
-    WY: {
-      name: "Wyoming",
-      description: " "
-    },
-    MT: {
-      name: "Montana",
-      description: " "
-    },
-    CO: {
-      name: "Colorado",
-      description: " "
-    },
-    UT: {
-      name: "Utah",
-      description: " "
-    },
-    AZ: {
-      name: "Arizona",
-      description: " "
-    },
-    NV: {
-      name: "Nevada",
-      description: " "
-    },
-    OR: {
-      name: "Oregon",
-      description: " "
-    },
-    WA: {
-      name: "Washington",
-      description: " "
-    },
-    CA: {
-      name: "California",
-      description: " "
-    },
-    MI: {
-      name: "Michigan",
-      description: " "
-    },
-    ID: {
-      name: "Idaho",
-      description: " "
-    },
-    GU: {
-      hide: "yes",
-      name: "Guam",
-      description: " "
-    },
-    VI: {
-      hide: "yes",
-      name: "Virgin Islands",
-      description: " "
-    },
-    PR: {
-      hide: "yes",
-      name: "Puerto Rico",
-      description: " "
-    },
-    MP: {
-      hide: "yes",
-      name: "Northern Mariana Islands",
-      description: " "
-    },
-    AS: {
-      hide: "yes",
-      name: "American Samoa",
-      description: " "
+    "38": {
+      name: "Ladakh"
     }
   },
   locations: {},
   labels: {
-    NH: {
-      parent_id: "NH",
-      x: "932",
-      y: "183",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "0": {
+      name: "Andaman And Nicobar",
+      x: 843.4,
+      y: 929.2,
+      parent_id: "1"
     },
-    VT: {
-      parent_id: "VT",
-      x: "883",
-      y: "243",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "1": {
+      name: "Andhra Pradesh",
+      x: 364.5,
+      y: 853.8,
+      parent_id: "2"
     },
-    RI: {
-      parent_id: "RI",
-      x: "932",
-      y: "273",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "2": {
+      name: "Arunachal Pradesh",
+      x: 907.8,
+      y: 351.9,
+      parent_id: "3"
     },
-    NJ: {
-      parent_id: "NJ",
-      x: "883",
-      y: "273",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "3": {
+      name: "Assam",
+      x: 849.1,
+      y: 437.1,
+      parent_id: "4"
     },
-    DE: {
-      parent_id: "DE",
-      x: "883",
-      y: "303",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "4": {
+      name: "Bihar",
+      x: 612.7,
+      y: 457.9,
+      parent_id: "5"
     },
-    MD: {
-      parent_id: "MD",
-      x: "932",
-      y: "303",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "5": {
+      name: "Chandigarh",
+      x: 293.9,
+      y: 262.3,
+      parent_id: "6"
     },
-    DC: {
-      parent_id: "DC",
-      x: "884",
-      y: "332",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "6": {
+      name: "Chhattisgarh",
+      x: 491.2,
+      y: 591.9,
+      parent_id: "7"
     },
-    MA: {
-      parent_id: "MA",
-      x: "932",
-      y: "213",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "7": {
+      name: "Dadra And Nagar Haveli",
+      x: 166,
+      y: 660.3,
+      parent_id: "8"
     },
-    CT: {
-      parent_id: "CT",
-      x: "932",
-      y: "243",
-      pill: "yes",
-      width: 45,
-      display: "all"
+    "8": {
+      name: "Daman And Diu",
+      x: 88.9,
+      y: 639.4,
+      parent_id: "9"
     },
-    HI: {
-      parent_id: "HI",
-      x: 305,
-      y: 565,
-      pill: "yes"
+    "9": {
+      name: "Delhi",
+      x: 305.4,
+      y: 343.6,
+      parent_id: "10"
     },
-    AK: {
-      parent_id: "AK",
-      x: "113",
-      y: "495"
+    "10": {
+      name: "Goa",
+      x: 202.7,
+      y: 833.8,
+      parent_id: "11"
     },
-    FL: {
-      parent_id: "FL",
-      x: "773",
-      y: "510"
+    "11": {
+      name: "Gujarat",
+      x: 123.1,
+      y: 544.6,
+      parent_id: "12"
     },
-    ME: {
-      parent_id: "ME",
-      x: "893",
-      y: "85"
+    "12": {
+      name: "Haryana",
+      x: 277.1,
+      y: 326.3,
+      parent_id: "13"
     },
-    NY: {
-      parent_id: "NY",
-      x: "815",
-      y: "158"
+    "13": {
+      name: "Himachal Pradesh",
+      x: 311.6,
+      y: 214.3,
+      parent_id: "14"
     },
-    PA: {
-      parent_id: "PA",
-      x: "786",
-      y: "210"
+    "14": {
+      name: "Jharkhand",
+      x: 574.1,
+      y: 537.3,
+      parent_id: "16"
     },
-    VA: {
-      parent_id: "VA",
-      x: "790",
-      y: "282"
+    "15": {
+      name: "Karnataka",
+      x: 257.1,
+      y: 823.4,
+      parent_id: "17"
     },
-    WV: {
-      parent_id: "WV",
-      x: "744",
-      y: "270"
+    "16": {
+      name: "Kerala",
+      x: 296.6,
+      y: 1047.3,
+      parent_id: "18"
     },
-    OH: {
-      parent_id: "OH",
-      x: "700",
-      y: "240"
+    "17": {
+      name: "Lakshadweep",
+      x: 167.6,
+      y: 1082.3,
+      parent_id: "19"
     },
-    IN: {
-      parent_id: "IN",
-      x: "650",
-      y: "250"
+    "18": {
+      name: "Madhya Pradesh",
+      x: 395.4,
+      y: 556.3,
+      parent_id: "20"
     },
-    IL: {
-      parent_id: "IL",
-      x: "600",
-      y: "250"
+    "19": {
+      name: "Maharashtra",
+      x: 245.5,
+      y: 691.9,
+      parent_id: "21"
     },
-    WI: {
-      parent_id: "WI",
-      x: "575",
-      y: "155"
+    "20": {
+      name: "Manipur",
+      x: 875.2,
+      y: 498,
+      parent_id: "22"
     },
-    NC: {
-      parent_id: "NC",
-      x: "784",
-      y: "326"
+    "21": {
+      name: "Meghalaya",
+      x: 761.6,
+      y: 463.4,
+      parent_id: "23"
     },
-    TN: {
-      parent_id: "TN",
-      x: "655",
-      y: "340"
+    "22": {
+      name: "Mizoram",
+      x: 844,
+      y: 536.5,
+      parent_id: "24"
     },
-    AR: {
-      parent_id: "AR",
-      x: "548",
-      y: "368"
+    "23": {
+      name: "Nagaland",
+      x: 903,
+      y: 441.4,
+      parent_id: "25"
     },
-    MO: {
-      parent_id: "MO",
-      x: "548",
-      y: "293"
+    "24": {
+      name: "Orissa",
+      x: 564.7,
+      y: 640.5,
+      parent_id: "26"
     },
-    GA: {
-      parent_id: "GA",
-      x: "718",
-      y: "405"
+    "25": {
+      name: "Puducherry",
+      x: 397.5,
+      y: 990.5,
+      parent_id: "27"
     },
-    SC: {
-      parent_id: "SC",
-      x: "760",
-      y: "371"
+    "26": {
+      name: "Punjab",
+      x: 251.8,
+      y: 263,
+      parent_id: "28"
     },
-    KY: {
-      parent_id: "KY",
-      x: "680",
-      y: "300"
+    "27": {
+      name: "Rajasthan",
+      x: 196.1,
+      y: 412,
+      parent_id: "29"
     },
-    AL: {
-      parent_id: "AL",
-      x: "655",
-      y: "405"
+    "28": {
+      name: "Sikkim",
+      x: 692.2,
+      y: 389,
+      parent_id: "30"
     },
-    LA: {
-      parent_id: "LA",
-      x: "550",
-      y: "435"
+    "29": {
+      name: "Tamil Nadu",
+      x: 346.4,
+      y: 990.1,
+      parent_id: "31"
     },
-    MS: {
-      parent_id: "MS",
-      x: "600",
-      y: "405"
+    "30": {
+      name: "Tripura",
+      x: 799.9,
+      y: 534.9,
+      parent_id: "32"
     },
-    IA: {
-      parent_id: "IA",
-      x: "525",
-      y: "210"
+    "31": {
+      name: "Uttar Pradesh",
+      x: 429.5,
+      y: 415.4,
+      parent_id: "33"
     },
-    MN: {
-      parent_id: "MN",
-      x: "506",
-      y: "124"
+    "32": {
+      name: "Uttaranchal",
+      x: 384.1,
+      y: 285.5,
+      parent_id: "34"
     },
-    OK: {
-      parent_id: "OK",
-      x: "460",
-      y: "360"
+    "33": {
+      name: "West Bengal",
+      x: 670.9,
+      y: 551.3,
+      parent_id: "35"
     },
-    TX: {
-      parent_id: "TX",
-      x: "425",
-      y: "435"
+    "34": {
+      name: "Jammu And Kashmir",
+      x: 221.8,
+      y: 142.4,
+      parent_id: "36"
     },
-    NM: {
-      parent_id: "NM",
-      x: "305",
-      y: "365"
+    "35": {
+      name: "Telangana",
+      x: 370.7,
+      y: 747,
+      parent_id: "37"
     },
-    KS: {
-      parent_id: "KS",
-      x: "445",
-      y: "290"
-    },
-    NE: {
-      parent_id: "NE",
-      x: "420",
-      y: "225"
-    },
-    SD: {
-      parent_id: "SD",
-      x: "413",
-      y: "160"
-    },
-    ND: {
-      parent_id: "ND",
-      x: "416",
-      y: "96"
-    },
-    WY: {
-      parent_id: "WY",
-      x: "300",
-      y: "180"
-    },
-    MT: {
-      parent_id: "MT",
-      x: "280",
-      y: "95"
-    },
-    CO: {
-      parent_id: "CO",
-      x: "320",
-      y: "275"
-    },
-    UT: {
-      parent_id: "UT",
-      x: "223",
-      y: "260"
-    },
-    AZ: {
-      parent_id: "AZ",
-      x: "205",
-      y: "360"
-    },
-    NV: {
-      parent_id: "NV",
-      x: "140",
-      y: "235"
-    },
-    OR: {
-      parent_id: "OR",
-      x: "100",
-      y: "120"
-    },
-    WA: {
-      parent_id: "WA",
-      x: "130",
-      y: "55"
-    },
-    ID: {
-      parent_id: "ID",
-      x: "200",
-      y: "150"
-    },
-    CA: {
-      parent_id: "CA",
-      x: "79",
-      y: "285"
-    },
-    MI: {
-      parent_id: "MI",
-      x: "663",
-      y: "185"
-    },
-    PR: {
-      parent_id: "PR",
-      x: "620",
-      y: "545"
-    },
-    GU: {
-      parent_id: "GU",
-      x: "550",
-      y: "540"
-    },
-    VI: {
-      parent_id: "VI",
-      x: "680",
-      y: "519"
-    },
-    MP: {
-      parent_id: "MP",
-      x: "570",
-      y: "575"
-    },
-    AS: {
-      parent_id: "AS",
-      x: "665",
-      y: "580"
+    "36": {
+      name: "Ladakh",
+      x: 320.9,
+      y: 117.2,
+      parent_id: "38"
     }
   },
   legend: {

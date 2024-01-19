@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 const WorldMap = () => {
   useEffect(() => {
-    if (window.simplemaps_usmap) {
-      window.simplemaps_usmap.load()
+    if (window.simplemaps_countrymap) {
+      window.simplemaps_countrymap.load()
     }
   }, [])
 

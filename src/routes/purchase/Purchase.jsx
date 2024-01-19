@@ -22,7 +22,7 @@ const Purchase = () => {
       <Navbar />
       <div className='flex'>
         <HomePurchase />
-        <div className='flex-1 mr-5'>
+        <div className='flex-1 h-[650px] overflow-x-auto'>
           <WorldMap />
         </div>
       </div>

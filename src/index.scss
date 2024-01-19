@@ -21,4 +21,31 @@ body {
     #2c3e5079,
     #ffffff
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  //  &::-webkit-scrollbar {
+  //   width: 7px;
+  //   opacity: 0;
+  //   transition: opacity 0.2s;
+  // }
+
+  
+
+  // &:hover::-webkit-scrollbar,
+  // &:active::-webkit-scrollbar,
+  // &.nav::-webkit-scrollbar-thumb {
+  //   opacity: 1;
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //   background: #a6adad;
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: rgba(0, 0, 0, 0.882);
+  //   border-radius: 0 0 5px 5px;
+  // }
+
+  // &::-webkit-scrollbar-thumb:hover {
+  //   background: #1badd1;
+  // }
 }
