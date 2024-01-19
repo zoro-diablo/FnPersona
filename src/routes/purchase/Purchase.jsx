@@ -22,7 +22,7 @@ const Purchase = () => {
       <Navbar />
       <div className='flex'>
         <HomePurchase />
-        <div className='flex-1 '>
+        <div className='flex-1 mr-5'>
           <WorldMap />
         </div>
       </div>
