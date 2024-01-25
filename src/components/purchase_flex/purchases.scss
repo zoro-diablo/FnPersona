@@ -1,0 +1,28 @@
+// .table-bar{
+//     /* styles.css */
+
+//  &::-webkit-scrollbar {
+//         width: 7px;
+//         opacity: 0;
+//         transition: opacity 0.2s;
+//       }
+
+//       &:hover::-webkit-scrollbar,
+//       &:active::-webkit-scrollbar,
+//       &.nav::-webkit-scrollbar-thumb {
+//         opacity: 1;
+//       }
+
+//       &::-webkit-scrollbar-track {
+//         background: #7e7d7d;
+//       }
+
+//       &::-webkit-scrollbar-thumb {
+//         background: rgba(30, 30, 30, 0.882);
+//         border-radius: 0 0 5px 5px;
+//       }
+
+//       &::-webkit-scrollbar-thumb:hover {
+//         background: #555;
+//       }
+// }
