@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import './worldmap.css';
+import './purchases.scss';
 
 const WorldMap = () => {
   let chartConfig = {

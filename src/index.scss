@@ -9,6 +9,27 @@
   
 }
 
+/* This will affect the entire page */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(30, 30, 30, 0.7) transparent;
+}
+
+/* For Chrome, Safari, and Opera */
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: rgba(24, 24, 24, 0.7);
+  border-radius: 20px;
+  border: transparent;
+}
+
 body {
   background: #bdc3c7; /* fallback for old browsers */
   background: -webkit-linear-gradient(

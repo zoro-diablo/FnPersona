@@ -152,7 +152,7 @@ export const contentDataDock = [
     text: 'Purchase',
     link: '/purchase',
   },
-  { key: 'Ramsy', imgSrc: '/folder.png', alt: 'Ramsy', text: 'Ramsy' },
+  { key: 'Ramsy', imgSrc: '/folder.png', alt: 'Ramsy', text: 'Ramsy',  link: '/ramsy' },
   {
     key: 'kiyosaki',
     imgSrc: '/wallets.webp',
