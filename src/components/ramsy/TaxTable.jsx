@@ -252,8 +252,15 @@ const TaxTable = () => {
                     {rows[0].oldDeduction}
                   </TableCell>
                 </TableRow>
-                {rows.slice(1).map((row) => (
-                  <TableRow key={row.label}>
+                {rows.slice(1).map((row, index, slicedRows) => (
+                  <TableRow
+                    key={row.label}
+                    style={
+                      index === slicedRows.length - 1
+                        ? { backgroundColor: 'lightgray'}
+                        : null
+                    }
+                  >
                     <TableCell>{row.label}</TableCell>
                     <TableCell
                       style={{
