@@ -1,11 +1,11 @@
-import './loan.scss'
-import { Card , Flex,ProgressBar,Text,AreaChart } from '@tremor/react'
-import { FaChevronDown } from 'react-icons/fa'
+import './loan.scss';
+import { Card, Flex, ProgressBar, Text, AreaChart } from '@tremor/react';
+import { FaChevronDown } from 'react-icons/fa';
 
-import { assetData } from '../../utils/data'
+import { assetData } from '../../utils/data';
 
 const customTooltip = ({ payload, active }) => {
-  if (!active || !payload) return null
+  if (!active || !payload) return null;
   return (
     <div className='w-56 rounded-tremor-default text-tremor-default bg-tremor-background p-2 shadow-tremor-dropdown border border-tremor-border'>
       {payload.map((category, idx) => (
@@ -22,8 +22,8 @@ const customTooltip = ({ payload, active }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const Loan = () => {
   return (
@@ -48,7 +48,7 @@ const Loan = () => {
             className='h-44'
             data={assetData}
             index='date'
-            categories={['Asset']}
+            categories={['Amount']}
             colors={['gray']}
             yAxisWidth={25}
             customTooltip={customTooltip}
@@ -65,14 +65,17 @@ const Loan = () => {
           <div className='flex flex-col gap-y-6'>
             <div>
               <Flex>
-                <Text>$ 8,012 &bull; 25%</Text>
+                <Text>Housing Loan </Text>
                 <Text>$ 50,000</Text>
               </Flex>
               <ProgressBar value={25} color='teal' className='mt-3' />
             </div>
             <div>
               <Flex>
-                <Text>$ 9,012 &bull; 45%</Text>
+                <div className='text-[13px] font-medium  text-gray-500'>
+                  Personal Loan /<br />
+                  Credit Card
+                </div>
                 <Text>$ 20,000</Text>
               </Flex>
               <ProgressBar value={45} color='gray' className='mt-3' />
@@ -81,7 +84,7 @@ const Loan = () => {
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Loan
+export default Loan;

@@ -1,41 +1,41 @@
 export const assetData = [
   {
     date: 'Jan 23',
-    Asset: 167,
+    Amount: 167,
   },
   {
     date: 'Feb 23',
-    Asset: 125,
+    Amount: 125,
   },
   {
     date: 'Mar 23',
-    Asset: 156,
+    Amount: 156,
   },
   {
     date: 'Apr 23',
-    Asset: 165,
+    Amount: 165,
   },
   {
     date: 'May 23',
-    Asset: 153,
+    Amount: 153,
   },
   {
     date: 'Jun 23',
-    Asset: 124,
+    Amount: 124,
   },
   {
     date: 'Jul 23',
-    Asset: 164,
+    Amount: 164,
   },
   {
     date: 'Aug 23',
-    Asset: 123,
+    Amount: 123,
   },
   {
     date: 'Sep 23',
-    Asset: 132,
+    Amount: 132,
   },
-]
+];
 
 export const roundPeople = [
   {
@@ -54,7 +54,7 @@ export const roundPeople = [
     name: 'Total Teams',
     numbers: 1398,
   },
-]
+];
 
 export const roundPpl = [
   {
@@ -69,34 +69,28 @@ export const roundPpl = [
     work: 'Cloudy',
     tockens: 4,
   },
-]
+];
 
- export const chartdata = [
+export const chartdata = [
   {
     year: 1970,
-    'Export Rate': 2.04,
-    'Import Rate': 1.53,
+    savingsAmount: 500,
   },
   {
     year: 1971,
-    'Export Rate': 1.96,
-    'Import Rate': 1.58,
+    savingsAmount: 550,
   },
-
   {
     year: 1973,
-    'Export Rate': 1.93,
-    'Import Rate': 1.61,
+    savingsAmount: 400,
   },
   {
     year: 1974,
-    'Export Rate': 1.88,
-    'Import Rate': 1.67,
+    savingsAmount: 220,
   },
-  //...
-]
+];
 
- export const cities = [
+export const cities = [
   {
     name: 'New York',
     sales: 9800,
@@ -109,12 +103,12 @@ export const roundPpl = [
     name: 'Hong Kong',
     sales: 3908,
   },
-  
+
   {
     name: 'Singapore',
     sales: 1908,
   },
-]
+];
 
 export const houseRows = [
   {
@@ -135,7 +129,7 @@ export const houseRows = [
     purchaseyear: 2010,
     country: 'India',
   },
-]
+];
 
 export const contentDataDock = [
   {
@@ -152,7 +146,13 @@ export const contentDataDock = [
     text: 'Purchase',
     link: '/purchase',
   },
-  { key: 'Ramsy', imgSrc: '/folder.png', alt: 'Ramsy', text: 'Ramsy',  link: '/ramsy' },
+  {
+    key: 'Ramsy',
+    imgSrc: '/folder.png',
+    alt: 'Ramsy',
+    text: 'Ramsy',
+    link: '/ramsy',
+  },
   {
     key: 'kiyosaki',
     imgSrc: '/wallets.webp',
@@ -167,16 +167,15 @@ export const contentDataDock = [
     text: 'Babylon',
     link: '/babylon',
   },
-]
+];
 
-import { FaMoneyCheckAlt } from 'react-icons/fa'
-import { GiReceiveMoney } from 'react-icons/gi'
-import { BiBarChartAlt2 } from 'react-icons/bi'
-import { MdOutlineSecurity } from 'react-icons/md'
-import { FaHome } from 'react-icons/fa'
-import { SiHomeassistant } from 'react-icons/si'
-import { GiTakeMyMoney } from 'react-icons/gi'
-
+import { FaMoneyCheckAlt } from 'react-icons/fa';
+import { GiReceiveMoney } from 'react-icons/gi';
+import { BiBarChartAlt2 } from 'react-icons/bi';
+import { MdOutlineSecurity } from 'react-icons/md';
+import { FaHome } from 'react-icons/fa';
+import { SiHomeassistant } from 'react-icons/si';
+import { GiTakeMyMoney } from 'react-icons/gi';
 
 export const accordionItems = [
   {
@@ -242,7 +241,7 @@ export const accordionItems = [
     calloutamount: `${90008} $`,
     callouticon: GiTakeMyMoney,
   },
-]
+];
 export const financialaccordion = [
   {
     id: 'one',
@@ -289,7 +288,7 @@ export const financialaccordion = [
     calloutamount: `${98} $`,
     callouticon: FaHome,
   },
-]
+];
 
 export const retirementData = [
   {
@@ -352,7 +351,7 @@ export const retirementData = [
     2022: 71,
     2023: null,
   },
-]
+];
 
 export const weatherIndicatordata = [
   {
@@ -367,38 +366,38 @@ export const weatherIndicatordata = [
     type: 'Liabilities ',
     value: 'Autocalculated value',
   },
-]
+];
 
 export const totalPurchaseList = [
   {
     type: 'Home value after 10 years ',
-    value: 999999.8
+    value: 999999.8,
   },
   {
     type: 'Debt after 10 years ',
-    value: 8349999.8
+    value: 8349999.8,
   },
   {
     type: 'Home Equity after 10 years ',
-    value: 199.8
+    value: 199.8,
   },
   {
     type: 'Transaction costs of selling in year 10 ',
-    value: 3299.8
+    value: 3299.8,
   },
   {
     type: 'Net cash if home sold in 10 years ',
-    value: 87999.8
+    value: 87999.8,
   },
   {
     type: 'Savings after 10 years if renting ',
-    value: 0.598
+    value: 0.598,
   },
   {
     type: 'Present value benefit of owning vs. renting for 10 years ',
-    value: 4599.8
+    value: 4599.8,
   },
-]
+];
 
 export const cashflowdata = [
   {
@@ -417,4 +416,4 @@ export const cashflowdata = [
     type: 'Assets  ',
     value: 'Autocalculated value',
   },
-]
+];

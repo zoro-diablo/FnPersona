@@ -37,7 +37,7 @@ const customTooltip = ({ payload, active }) => {
           className='h-44'
           data={assetData}
           index='date'
-          categories={['Asset']}
+          categories={['Amount']}
           colors={['gray']}
           yAxisWidth={35}
           customTooltip={customTooltip}

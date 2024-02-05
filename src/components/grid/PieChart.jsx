@@ -1,9 +1,9 @@
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
-import AccessibilityModule from 'highcharts/modules/accessibility'
-import './roundchart.scss'
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import AccessibilityModule from 'highcharts/modules/accessibility';
+import './roundchart.scss';
 
-AccessibilityModule(Highcharts)
+AccessibilityModule(Highcharts);
 
 Highcharts.setOptions({
   colors: ['#1defc1', '#c9d2f4', '#3c3c38'].map(function (color) {
@@ -17,9 +17,9 @@ Highcharts.setOptions({
         [0, color],
         [1, Highcharts.color(color).brighten(-0.4).get('rgb')],
       ],
-    }
+    };
   }),
-})
+});
 
 const options = {
   chart: {
@@ -105,23 +105,23 @@ const options = {
   series: [
     {
       type: 'pie',
-      name: 'Share',
+      name: 'Amount',
       data: [
-        { name: 'Petrol', y: 938899, selected: true, sliced: true },
-        { name: 'Electricity', y: 325251 },
-        { name: 'Other', y: 238751 },
+        { name: 'Gold', y: 60, selected: true, sliced: true },
+        { name: 'Land & Building', y: 20 },
+        { name: 'Shares', y: 20 },
       ],
     },
   ],
-}
+};
 
 const PieChart = () => (
   <div className='relative'>
     <p className='absolute font-medium text-[17px] '>Assets</p>
-    <div className='relative mt-[-10px]'>
+    <div className='relative mt-[-10px] mr-[-20px]'>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   </div>
-)
+);
 
-export default PieChart
+export default PieChart;

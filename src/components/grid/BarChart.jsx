@@ -1,9 +1,9 @@
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
-import AccessibilityModule from 'highcharts/modules/accessibility'
-import './roundchart.scss'
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import AccessibilityModule from 'highcharts/modules/accessibility';
+import './roundchart.scss';
 
-AccessibilityModule(Highcharts)
+AccessibilityModule(Highcharts);
 
 const options = {
   colors: ['#f0f2f3', '#1defc1', '#3c3c38'].map(function (color) {
@@ -17,7 +17,7 @@ const options = {
         [0, color],
         [1, Highcharts.color(color).brighten(-0.4).get('rgb')],
       ],
-    }
+    };
   }),
   chart: {
     spacing: [10, 10, 20, 20],
@@ -102,13 +102,13 @@ const options = {
       type: 'pie',
       name: 'Total',
       data: [
-        { name: 'All', y: 938899, selected: true, sliced: true },
-        { name: 'Maximum', y: 325251 },
-        { name: 'Minimum', y: 238751 },
+        { name: 'All', y: 50, selected: true, sliced: true },
+        { name: 'Maximum', y: 30 },
+        { name: 'Minimum', y: 20 },
       ],
     },
   ],
-}
+};
 
 const BarChart = () => (
   <div className='relative'>
@@ -117,6 +117,6 @@ const BarChart = () => (
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   </div>
-)
+);
 
-export default BarChart
+export default BarChart;

@@ -1,12 +1,12 @@
-import './savings.scss'
-import { Card, LineChart } from '@tremor/react'
-import { FaChevronDown } from 'react-icons/fa'
-import { chartdata } from '../../utils/data'
-import PieChartSavings from './PieChartSavings'
+import './savings.scss';
+import { Card, LineChart } from '@tremor/react';
+import { FaChevronDown } from 'react-icons/fa';
+import { chartdata } from '../../utils/data';
+import PieChartSavings from './PieChartSavings';
 
 const Savings = () => {
   const valueFormatter = (number) =>
-    ` ${new Intl.NumberFormat('us').format(number).toString()}`
+    ` ${new Intl.NumberFormat('us').format(number).toString()}`;
 
   return (
     <div className='flex flex-col gap-y-2'>
@@ -30,7 +30,7 @@ const Savings = () => {
             className='h-44'
             data={chartdata}
             index='year'
-            categories={['Export Rate', 'Import Rate']}
+            categories={['savingsAmount']}
             colors={['emerald', '#969393']}
             valueFormatter={valueFormatter}
             yAxisWidth={30}
@@ -41,22 +41,11 @@ const Savings = () => {
           decoration='bottom'
           decorationColor='gray'
         >
-          {/* <div className='graphshadow rounded-full mx-[15px] my-[-10px] py-[16px] bg-gradient-to-r from-gray-950 to-slate-700  '>
-            <DonutChart
-              className=''
-              data={cities}
-              category='sales'
-              index='name'
-              variant='pie'
-              valueFormatter={valueFormatter}
-              colors={['slate', '#111827', 'emerald', '#f2f0f0', 'gray']}
-            />
-          </div> */}
           <PieChartSavings />
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Savings
+export default Savings;
