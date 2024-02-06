@@ -118,7 +118,7 @@ const options = {
 const PieChart = () => (
   <div className='relative'>
     <p className='absolute font-medium text-[17px] '>Assets</p>
-    <div className='relative mt-[-10px] mr-[-20px]'>
+    <div className='relative mt-[-22px] mr-[-20px]'>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   </div>

@@ -1,10 +1,9 @@
-import {  Card, Title,BarChart } from '@tremor/react'
-import './assets.scss'
-import { assetData } from '../../utils/data'
-
+import { Card, Title, BarChart } from '@tremor/react';
+import './assets.scss';
+import { assetData } from '../../utils/data';
 
 const customTooltip = ({ payload, active }) => {
-  if (!active || !payload) return null
+  if (!active || !payload) return null;
   return (
     <div className='w-56 rounded-tremor-default text-tremor-default bg-tremor-background p-2 shadow-tremor-dropdown border border-tremor-border'>
       {payload.map((category, idx) => (
@@ -21,10 +20,10 @@ const customTooltip = ({ payload, active }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
- const Assets = () => {
+const Assets = () => {
   return (
     <div className='boxshadow'>
       <Card
@@ -34,17 +33,17 @@ const customTooltip = ({ payload, active }) => {
       >
         <Title className='text-white pb-4 my-auto'>Asset Performance</Title>
         <BarChart
-          className='h-44'
+          className='h-[165px]'
           data={assetData}
           index='date'
           categories={['Amount']}
           colors={['gray']}
-          yAxisWidth={35}
+          yAxisWidth={30}
           customTooltip={customTooltip}
         />
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Assets
+export default Assets;

@@ -27,7 +27,7 @@ const customTooltip = ({ payload, active }) => {
 
 const Loan = () => {
   return (
-    <div className='flex flex-col gap-y-2 '>
+    <div className='flex flex-col gap-y-2  mt-[-10px]'>
       <div className='boxshadow'>
         <Card className='max-h-12 flex items-center justify-between font-semibold text-1xl rounded-3xl bg-gradient-to-r from-slate-600 to-gray-900 boxshadow '>
           <p className='tracking-wide'>LOAN</p>

@@ -1,24 +1,26 @@
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
-import AccessibilityModule from 'highcharts/modules/accessibility'
-import './roundchart.scss'
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import AccessibilityModule from 'highcharts/modules/accessibility';
+import './roundchart.scss';
 
-AccessibilityModule(Highcharts)
+AccessibilityModule(Highcharts);
 
 const options = {
-colors: ['#292727', '#899397', '#87f2d6','#c1dff6', '#ffffff'].map(function (color) {
+  colors: ['#292727', '#899397', '#87f2d6', '#c1dff6', '#ffffff'].map(function (
+    color
+  ) {
     return {
-        radialGradient: {
-            cx: 0.5,
-            cy: 0.3,
-            r: 0.7,
-        },
-        stops: [
-            [0, color],
-            [1, Highcharts.color(color).brighten(-0.4).get('rgb')],
-        ],
-    }
-}),
+      radialGradient: {
+        cx: 0.5,
+        cy: 0.3,
+        r: 0.7,
+      },
+      stops: [
+        [0, color],
+        [1, Highcharts.color(color).brighten(-0.4).get('rgb')],
+      ],
+    };
+  }),
   chart: {
     // spacing: [10, 10, 20, 20],
     plotBackgroundColor: null,
@@ -78,15 +80,15 @@ colors: ['#292727', '#899397', '#87f2d6','#c1dff6', '#ffffff'].map(function (col
       ],
     },
   ],
-}
+};
 
 const PieChartSavings = () => (
   <div className='relative'>
-    <p className='absolute font-medium text-[17px] left-[185px]'>Max</p>
+    <p className='absolute font-medium text-[17px] left-[185px]'>List</p>
     <div className=''>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   </div>
-)
+);
 
-export default PieChartSavings
+export default PieChartSavings;

@@ -1,26 +1,27 @@
-import Dock from '../../components/dock/DockNav'
-import Navbar from '../../components/navbar/Navbar'
-import { motion } from 'framer-motion'
+import Dock from '../../components/dock/DockNav';
+import Navbar from '../../components/navbar/Navbar';
+import { motion } from 'framer-motion';
 import {
   firstGrdVariant,
   secondGrdVariant,
   thirdGrdVariant,
   forthGrdVariant,
   fifthGrdVariant,
-} from '../../utils/motion'
-import House from '../../components/grid/House'
-import Assets from '../../components/grid/Assets'
-import RoundChart from '../../components/grid/RoundChart'
-import Loan from '../../components/grid/Loan'
-import Savings from '../../components/grid/Savings'
-import './home.scss'
+} from '../../utils/motion';
+import House from '../../components/grid/House';
+import Assets from '../../components/grid/Assets';
+import RoundChart from '../../components/grid/RoundChart';
+import Loan from '../../components/grid/Loan';
+import Savings from '../../components/grid/Savings';
+import './home.scss';
 
 const Home = () => {
-   const gridItems = [
+  const gridItems = [
     {
       component: House,
       variants: firstGrdVariant,
-      className: 'text-white xl:col-span-2 xl:row-span-2 lg:col-span-2 lg:row-span-2',
+      className:
+        'text-white xl:col-span-2 xl:row-span-2 lg:col-span-2 lg:row-span-2',
     },
     {
       component: Assets,
@@ -47,7 +48,7 @@ const Home = () => {
   return (
     <div className='h-full xl:h-screen w-screen overflow-hidden'>
       <Navbar />
-      <div className='grid lg:grid-cols-5 lg:grid-rows-6 xl:grid-cols-8 grid-cols-1 gap-3 ml-6 mr-6'>
+      <div className=' grid lg:grid-cols-5 lg:grid-rows-6 xl:grid-cols-8 grid-cols-1 gap-2 ml-6 mr-6 '>
         {gridItems.map((item, index) => (
           <motion.div
             key={index}
@@ -61,11 +62,11 @@ const Home = () => {
           </motion.div>
         ))}
       </div>
-      <div className='md:flex justify-center h-20 hidden'>
+      <div className='md:flex justify-center h-20 hidden '>
         <Dock />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

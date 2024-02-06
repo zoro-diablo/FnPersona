@@ -113,7 +113,7 @@ const options = {
 const BarChart = () => (
   <div className='relative'>
     <p className='absolute font-medium text-[17px] '>Rate</p>
-    <div className='relative mt-[-10px]'>
+    <div className='relative mt-[-22px]'>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   </div>

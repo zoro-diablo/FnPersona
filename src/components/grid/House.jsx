@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { useRef, useState } from 'react'
-import { DataGrid } from '@mui/x-data-grid'
-import { motion } from 'framer-motion'
+import * as React from 'react';
+import { useRef, useState } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { motion } from 'framer-motion';
 import {
   Card,
   Flex,
@@ -12,25 +12,25 @@ import {
   Select,
   SelectItem,
   DatePicker,
-} from '@tremor/react'
-import { FaChevronDown } from 'react-icons/fa'
-import Button from '@mui/material/Button'
-import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogTitle from '@mui/material/DialogTitle'
-import Slide from '@mui/material/Slide'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import Radio from '@mui/material/Radio'
-import { houseRows } from '../../utils/data'
-import { FaEdit } from 'react-icons/fa'
-import { MdDelete } from 'react-icons/md'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
-import RadioGroup from '@mui/material/RadioGroup'
-import './house.scss'
+} from '@tremor/react';
+import { FaChevronDown } from 'react-icons/fa';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Radio from '@mui/material/Radio';
+import { houseRows } from '../../utils/data';
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import './house.scss';
 
 const houseCols = [
   { field: 'id', headerName: 'ID', width: 30, headerAlign: 'center' },
@@ -74,14 +74,14 @@ const houseCols = [
     disableClickEventBubbling: true,
     renderCell: (params) => {
       const onClickDelete = () => {
-        const id = params.row.id
-        console.log(`Delete button clicked for row with id: ${id}`)
-      }
+        const id = params.row.id;
+        console.log(`Delete button clicked for row with id: ${id}`);
+      };
 
       const onClickEdit = () => {
-        const id = params.row.id
-        console.log(`Edit button clicked for row with id: ${id}`)
-      }
+        const id = params.row.id;
+        console.log(`Edit button clicked for row with id: ${id}`);
+      };
 
       return (
         <div className='flex gap-x-2'>
@@ -97,29 +97,41 @@ const houseCols = [
             className='cursor-pointer hover:text-white'
           />
         </div>
-      )
+      );
     },
   },
-]
+];
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='up' ref={ref} {...props} />
-})
+  return <Slide direction='up' ref={ref} {...props} />;
+});
 
 const House = () => {
-  const [value, setValue] = useState('')
-  const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const [value, setValue] = useState('');
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const handleClickOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
+
+  const [paymentMode, setPaymentMode] = useState('cash');
+
+  const handlePaymentModeChange = (event) => {
+    setPaymentMode(event.target.value);
+  };
+
+  const [ownership, setOwnership] = useState('self');
+
+  const handleOwnershipChange = (event) => {
+    setOwnership(event.target.value);
+  };
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
-  const constraintsRef = useRef(null)
+  const constraintsRef = useRef(null);
 
   return (
     <div className=''>
@@ -184,15 +196,15 @@ const House = () => {
           <DialogTitle className='text-white' sx={{ fontSize: 18 }}>
             {'Add / Update Units'}
           </DialogTitle>
-          <DialogContent sx={{ width: 950, height: 500, overflow: 'visible' }}>
-            <div className='text-white grid grid-cols-2 gap-3  p-5 dark justify-center items-center'>
+          <DialogContent sx={{ width: 950, height: 520, overflow: 'visible' }}>
+            <div className='text-white grid grid-cols-2  dark justify-center items-center'>
               <TextInput
                 placeholder='Name...'
-                className=' h-10 mb-5 max-w-[385px]'
+                className=' h-10 mb-3 max-w-[385px]'
               />
               <NumberInput
                 placeholder='Total Value...'
-                className=' h-10 mb-5 max-w-[385px] ml-5'
+                className=' h-10 mb-3 max-w-[385px] ml-8'
               />
               <Select
                 value={value}
@@ -211,49 +223,105 @@ const House = () => {
                 <FormLabel id='demo-row-radio-buttons-group-label '></FormLabel>
                 <RadioGroup
                   row
-                  aria-labelledby='demo-row-radio-buttons-group-label'
+                  aria-labelledby='demo-row-radio-buttons-group-label '
                   name='row-radio-buttons-group flex items-center my-auto '
+                  className='my-2'
                 >
-                  <p className='text-gray-400 flex items-center mr-5'>
-                    Property Status:
+                  <p className='text-gray-400 flex items-center mr-5 indent-3'>
+                    Ownership:
                   </p>
                   <FormControlLabel
                     value='self'
-                    control={<Radio />}
+                    control={
+                      <Radio
+                        checked={ownership === 'self'}
+                        onChange={handleOwnershipChange}
+                      />
+                    }
                     label='Self'
                   />
                   <FormControlLabel
                     value='rented'
-                    control={<Radio />}
+                    control={
+                      <Radio
+                        checked={ownership === 'rented'}
+                        onChange={handleOwnershipChange}
+                      />
+                    }
                     label='Rented'
                   />
+                  {ownership === 'rented' && (
+                    <div>
+                      <div className='  mt-4'>
+                        <NumberInput
+                          placeholder='Monthly Rent...'
+                          className=' h-10  max-w-[390px]'
+                        />
+                        <NumberInput
+                          placeholder='Municipal Tax Paid...'
+                          className='mt-4  h-10 w-[390px]'
+                        />
+                      </div>
+                    </div>
+                  )}
                 </RadioGroup>
               </FormControl>
 
-              <FormControl className='flex flex-row'>
+              <FormControl className='flex flex-row '>
                 <FormLabel id='demo-row-radio-buttons-group-label '></FormLabel>
                 <RadioGroup
                   row
                   aria-labelledby='demo-row-radio-buttons-group-label'
                   name='row-radio-buttons-group flex item my-auto'
+                
                 >
-                  <p className='text-gray-400 flex items-center mr-5 indent-6'>
+                  <p className='text-gray-400 flex items-center mr-5 indent-12'>
                     Payment Mode:
                   </p>
                   <FormControlLabel
                     value='cash'
-                    control={<Radio />}
+                    control={
+                      <Radio
+                        checked={paymentMode === 'cash'}
+                        onChange={handlePaymentModeChange}
+                      />
+                    }
                     label='cash'
                   />
                   <FormControlLabel
                     value='loan'
-                    control={<Radio />}
+                    control={
+                      <Radio
+                        checked={paymentMode === 'loan'}
+                        onChange={handlePaymentModeChange}
+                      />
+                    }
                     label='loan'
                   />
+                  {paymentMode === 'loan' && (
+                    <div className='ml-8'>
+                      <div className='flex gap-5 mt-4 '>
+                        <NumberInput
+                          placeholder='Amount...'
+                          className=' h-10 max-w-[385px]'
+                        />
+                        <NumberInput
+                          placeholder='Duration...'
+                          className=' h-10 max-w-[385px] mr-8'
+                        />
+                      </div>
+                      <div className='flex mt-4'>
+                        <NumberInput
+                          placeholder='Rate of Interest...'
+                          className=' h-10  max-w-[385px]'
+                        />
+                      </div>
+                    </div>
+                  )}
                 </RadioGroup>
               </FormControl>
             </div>
-            <div style={{ height: 250, width: '100%' }}>
+            <div style={{ height: 250, width: '100%' }} className='mt-2'>
               <DataGrid
                 rows={houseRows}
                 columns={houseCols}
@@ -315,7 +383,7 @@ const House = () => {
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default House
+export default House;
