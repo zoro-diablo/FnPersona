@@ -133,10 +133,11 @@ export const houseRows = [
 
 export const contentDataDock = [
   {
-    key: 'retirement',
+    key: 'partnership',
     imgSrc: '/valult.webp',
     alt: 'babylon',
-    text: 'Retirement',
+    text: 'Partnership',
+    link: '/partnership',
   },
   { key: 'loan', imgSrc: '/erase.png', alt: 'loan', text: 'Loan' },
   {

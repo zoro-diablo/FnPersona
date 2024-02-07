@@ -1,11 +1,11 @@
-import './navbar.scss'
-import { MdAccountCircle } from 'react-icons/md'
-import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { navVarents, navVarentsLogo } from '../../utils/motion'
+import './navbar.scss';
+import { MdAccountCircle } from 'react-icons/md';
+import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { navVarents, navVarentsLogo } from '../../utils/motion';
 
 const Navbar = () => {
-  const location = useLocation()
+  const location = useLocation();
   return (
     <div>
       <div className='w-full h-[60px] flex justify-between items-center '>
@@ -48,7 +48,9 @@ const Navbar = () => {
               {location.pathname === '/'
                 ? 'Dashboard'
                 : location.pathname === '/babylon'
-                ? 'Babylon'
+                ? 'Partnership'
+                : location.pathname === '/partnership'
+                ? 'Partnership'
                 : location.pathname === '/purchase'
                 ? 'Purchase'
                 : location.pathname === '/ramsy'
@@ -65,7 +67,7 @@ const Navbar = () => {
         </motion.div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

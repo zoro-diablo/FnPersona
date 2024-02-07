@@ -47,5 +47,5 @@ const Savings = () => {
     </div>
   );
 };
-
+ 
 export default Savings;

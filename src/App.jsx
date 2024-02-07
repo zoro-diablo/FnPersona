@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import Babylon from './routes/babylon/Babylon';
 import Purchase from './routes/purchase/Purchase';
 import Tax from './routes/ramsy/Tax';
+import Partnership from './routes/partnership/Partnership';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path='/babylon' element={<Babylon />} />
             <Route path='/purchase' element={<Purchase />} />
             <Route path='/ramsy' element={<Tax />} />
+            <Route path='/partnership' element={<Partnership />} />
           </Routes>
         </AnimatePresence>
       )}
