@@ -56,6 +56,10 @@ const options = {
     backgroundColor: 'rgba(255, 255, 255, 0.886)',
   },
   legend: {
+    itemWidth: 39, // limit the width of each legend item
+    width: 250, // limit the overall width of the legend
+    useHTML: true,
+
     layout: 'horizontal',
     align: 'center',
     verticalAlign: 'left',
@@ -125,9 +129,11 @@ const options = {
 };
 
 const PiePercentage = () => (
-  <div className='relative'>
-    <p className='absolute font-medium text-[17px] text-white'>Percentage</p>
-    <HighchartsReact highcharts={Highcharts} options={options} />
+  <div className='relative max-w-md'>
+    <p className='absolute font-medium text-[17px] text-white '>Percentage</p>
+    <div className='py-4'>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
   </div>
 );
 
