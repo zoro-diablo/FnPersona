@@ -7,7 +7,8 @@ import Babylon from './routes/babylon/Babylon';
 import Purchase from './routes/purchase/Purchase';
 import Tax from './routes/ramsy/Tax';
 import Partnership from './routes/partnership/Partnership';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const location = useLocation();
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
       {!loading && (
         <AnimatePresence>

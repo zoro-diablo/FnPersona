@@ -56,8 +56,8 @@ const options = {
     backgroundColor: 'rgba(255, 255, 255, 0.886)',
   },
   legend: {
-    itemWidth: 39, // limit the width of each legend item
-    width: 250, // limit the overall width of the legend
+    itemWidth: 41, 
+    width: 260, 
     useHTML: true,
 
     layout: 'horizontal',
