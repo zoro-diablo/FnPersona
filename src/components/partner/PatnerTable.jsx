@@ -14,8 +14,14 @@ import {
 } from '@tremor/react';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { FiMinusCircle } from 'react-icons/fi';
-import { setTotal, selectTotal } from '../../redux/features/tableSlice';
-import { addRow, removeRow, updateRow, selectRows } from '../../redux/features/partnerTableSlice ';
+import {
+  addRow,
+  removeRow,
+  updateRow,
+  selectRows,
+  setTotal,
+  selectTotal,
+} from '../../redux/features/combinedSlice';
 
 const PartnerTable = () => {
   const inputRefs = useRef([]);
@@ -72,7 +78,7 @@ const PartnerTable = () => {
               <TableHeaderCell className='text-white'>
                 Amt in AED
               </TableHeaderCell>
-              <TableHeaderCell className='text-white'></TableHeaderCell>
+              <TableHeaderCell className='text-white'>Action</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -83,7 +89,9 @@ const PartnerTable = () => {
                     ref={(el) => (inputRefs.current[index] = el)}
                     type='text'
                     value={row.chargeHead}
-                    onChange={(e) => dispatch(updateRow({ index, chargeHead: e.target.value }))}
+                    onChange={(e) =>
+                      dispatch(updateRow({ index, chargeHead: e.target.value }))
+                    }
                     className='outline-none border-none bg-transparent py-2'
                     placeholder='Type of Charge'
                   />
@@ -98,7 +106,7 @@ const PartnerTable = () => {
                   />
                 </TableCell>
                 <TableCell>
-                  <div className='text-red-500 cursor-pointer hover:text-red-300 '>
+                  <div className='text-red-500 cursor-pointer hover:text-red-300 flex justify-center'>
                     <FiMinusCircle
                       size={30}
                       onClick={() => handleRemoveRow(index)}

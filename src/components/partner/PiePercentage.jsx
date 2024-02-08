@@ -1,8 +1,9 @@
+import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import AccessibilityModule from 'highcharts/modules/accessibility';
 import { useSelector } from 'react-redux';
-import { selectPartners } from '../../redux/features/tableSlice';
+import { selectPartners } from '../../redux/features/combinedSlice';
 
 AccessibilityModule(Highcharts);
 
@@ -30,15 +31,14 @@ Highcharts.setOptions({
 });
 
 const PiePercentage = () => {
-    const partners = useSelector(selectPartners);
+  const partners = useSelector(selectPartners);
 
-
-    const seriesData = partners.map((partner, index) => ({
-      name: partner.name,
-      y: Number(partner.income) || 0, 
-      selected: index === 0 ? true : false,
-      sliced: index === 0 ? true : false,
-    }));
+  const seriesData = partners.map((partner, index) => ({
+    name: partner.name,
+    y: Number(partner.income) || 0,
+    selected: index === 0 ? true : false,
+    sliced: index === 0 ? true : false,
+  }));
 
   const options = {
     chart: {
