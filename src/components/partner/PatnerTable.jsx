@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
@@ -15,11 +15,12 @@ import {
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { FiMinusCircle } from 'react-icons/fi';
 import { setTotal, selectTotal } from '../../redux/features/tableSlice';
+import { addRow, removeRow, updateRow, selectRows } from '../../redux/features/partnerTableSlice ';
 
 const PartnerTable = () => {
-  const [rows, setRows] = useState([{ chargeHead: '', amount: '' }]);
   const inputRefs = useRef([]);
   const dispatch = useDispatch();
+  const rows = useSelector(selectRows);
   const total = useSelector(selectTotal);
 
   useEffect(() => {
@@ -42,17 +43,15 @@ const PartnerTable = () => {
   }, [rows.length]);
 
   const handleAddRow = () => {
-    setRows((prevRows) => [...prevRows, { chargeHead: '', amount: '' }]);
+    dispatch(addRow());
   };
 
   const handleAmountChange = (value, index) => {
-    const newRows = [...rows];
-    newRows[index].amount = value;
-    setRows(newRows);
+    dispatch(updateRow({ index, amount: value }));
   };
 
   const handleRemoveRow = (index) => {
-    setRows((prevRows) => prevRows.filter((row, i) => i !== index));
+    dispatch(removeRow(index));
   };
 
   return (
@@ -84,11 +83,7 @@ const PartnerTable = () => {
                     ref={(el) => (inputRefs.current[index] = el)}
                     type='text'
                     value={row.chargeHead}
-                    onChange={(e) => {
-                      const newRows = [...rows];
-                      newRows[index].chargeHead = e.target.value;
-                      setRows(newRows);
-                    }}
+                    onChange={(e) => dispatch(updateRow({ index, chargeHead: e.target.value }))}
                     className='outline-none border-none bg-transparent py-2'
                     placeholder='Type of Charge'
                   />
