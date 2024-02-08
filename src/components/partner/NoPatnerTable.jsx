@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectTotal } from '../../redux/features/tableSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectTotal,
+  addPartner,
+  removePartner,
+  updatePartner,
+  selectPartners
+} from '../../redux/features/tableSlice';
+import { toast } from 'react-toastify';
 import {
   Card,
   Table,
@@ -11,63 +18,49 @@ import {
   TableHeaderCell,
   Title,
   NumberInput,
-  Metric,
+  Metric
 } from '@tremor/react';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { FiMinusCircle } from 'react-icons/fi';
-import { toast } from 'react-toastify';
 
-const NoPatnerTable = () => {
+const NoPartnerTable = () => {
   const total = useSelector(selectTotal);
-  const [partners, setPartners] = useState([]);
+  const partners = useSelector(selectPartners);
+  const dispatch = useDispatch();
   const [error, setError] = useState('');
 
   const handleAddPartner = () => {
     if (error) setError('');
-    setPartners([...partners, { name: '', income: '' }]);
+    dispatch(addPartner({ name: '', income: '' }));
   };
 
   const handleRemovePartner = (index) => {
     if (error) setError('');
-    const newPartners = partners.filter((_, i) => i !== index);
-    setPartners(newPartners);
+    dispatch(removePartner(index));
   };
 
   const handleIncomeChange = (value, index) => {
-    const newTotal = partners.reduce(
-      (acc, curr, currIndex) =>
-        acc +
-        (currIndex === index ? Number(value || 0) : Number(curr.income || 0)),
-      0
-    );
-    if (newTotal > total) {
-      toast.error(
-        'Total contributions exceed available assets. Adjust the amounts.',
-        {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme:"dark"
+    if (error) setError('');
 
-        }
-      );
+    const newTotal = partners.reduce((acc, curr, currIndex) => acc + (currIndex === index ? Number(value || 0) : Number(curr.income || 0)), 0);
+    if (newTotal > total) {
+      toast.error('Total contributions exceed available assets. Adjust the amounts.', {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+      });
       return;
     }
 
-    const newPartners = partners.map((partner, i) =>
-      i === index ? { ...partner, income: value } : partner
-    );
-    setPartners(newPartners);
+    dispatch(updatePartner({ index, partner: { ...partners[index], income: value } }));
   };
 
-  const totalContributions = partners.reduce(
-    (acc, curr) => acc + Number(curr.income || 0),
-    0
-  );
+  const totalContributions = partners.reduce((acc, curr) => acc + Number(curr.income || 0), 0);
   const remainingAssets = total - totalContributions;
 
   return (
@@ -75,10 +68,7 @@ const NoPatnerTable = () => {
       <Card className='bg-gradient-to-r from-gray-950 to-gray-800'>
         <div className='flex justify-between items-center'>
           <Title className='text-white ml-3'>Add Partners</Title>
-          <div
-            className='text-green-500 cursor-pointer hover:text-green-300'
-            onClick={handleAddPartner}
-          >
+          <div className='text-green-500 cursor-pointer hover:text-green-300' onClick={handleAddPartner}>
             <IoAddCircleOutline size={40} />
           </div>
         </div>
@@ -88,6 +78,7 @@ const NoPatnerTable = () => {
             <TableRow>
               <TableHeaderCell className='text-white'>Name</TableHeaderCell>
               <TableHeaderCell className='text-white'>Income</TableHeaderCell>
+              <TableHeaderCell className='text-white'>Action</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -98,10 +89,7 @@ const NoPatnerTable = () => {
                     type='text'
                     value={partner.name}
                     onChange={(e) => {
-                      if (error) setError(''); // Reset error message on edit
-                      const newPartners = [...partners];
-                      newPartners[index].name = e.target.value;
-                      setPartners(newPartners);
+                      dispatch(updatePartner({ index, partner: { ...partner, name: e.target.value } }));
                     }}
                     className='outline-none border-none bg-transparent py-2'
                     placeholder='Insert Name'
@@ -130,18 +118,12 @@ const NoPatnerTable = () => {
           </TableBody>
         </Table>
       </Card>
-      <Card
-        className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
-        decoration='bottom'
-        decorationColor='green'
-      >
+      <Card className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center' decoration='bottom' decorationColor='green'>
         <Title className='text-gray-400'>Assets Remaining</Title>
-        <Metric className='text-gray-400'>
-          $ {remainingAssets.toFixed(2)}
-        </Metric>
+        <Metric className='text-gray-400'>$ {remainingAssets.toFixed(2)}</Metric>
       </Card>
     </div>
   );
 };
 
-export default NoPatnerTable;
+export default NoPartnerTable;
