@@ -1,13 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectTotal,
-  addPartner,
-  removePartner,
-  updatePartner,
-  selectPartners,
-} from '../../redux/features/combinedSlice';
-import { toast } from 'react-toastify';
 import {
   Card,
   Table,
@@ -22,6 +14,15 @@ import {
 } from '@tremor/react';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { FiMinusCircle } from 'react-icons/fi';
+import {
+  addPartner,
+  removePartner,
+  updatePartner,
+  selectTotal,
+  selectPartners,
+  setRemainingValueError,
+} from '../../redux/features/combinedSlice';
+import { toast } from 'react-toastify';
 
 const NoPartnerTable = () => {
   const total = useSelector(selectTotal);
@@ -37,7 +38,43 @@ const NoPartnerTable = () => {
   const handleRemovePartner = (index) => {
     if (error) setError('');
     dispatch(removePartner(index));
-  };
+    const totalContributions = partners.reduce(
+      (acc, curr) => acc + Number(curr.income || 0),
+      0
+    );
+    const remainingAssets = total - totalContributions;
+    if (remainingAssets < 0) {
+      // Clear all rows in the NoPartnerTable
+      dispatch(setRemainingValueError(true));
+      dispatch(updatePartner({ index: 0, partner: { name: '', income: '' } }));
+      toast.error('Remaining value cannot be negative! All rows cleared.', {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+    }
+};
+
+  useEffect(() => {
+    if (total < 0) {
+      toast.error('Remaining value cannot be negative!', {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
+      dispatch(setRemainingValueError(false));
+    }
+  }, [total, dispatch]);
 
   const handleIncomeChange = (value, index) => {
     if (error) setError('');
@@ -93,7 +130,7 @@ const NoPartnerTable = () => {
           <TableHead>
             <TableRow>
               <TableHeaderCell className='text-white'>Name</TableHeaderCell>
-              <TableHeaderCell className='text-white'>Income</TableHeaderCell>
+              <TableHeaderCell className='text-white'>Contribution</TableHeaderCell>
               <TableHeaderCell className='text-white'>Action</TableHeaderCell>
             </TableRow>
           </TableHead>
@@ -121,7 +158,7 @@ const NoPartnerTable = () => {
                     value={partner.income}
                     onValueChange={(value) => handleIncomeChange(value, index)}
                     enableStepper={false}
-                    placeholder='Income'
+                    placeholder='Contribution'
                     max={remainingAssets + Number(partner.income)}
                     className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
                   />
