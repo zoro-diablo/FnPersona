@@ -42,7 +42,7 @@ export const combinedSlice = createSlice({
       state.assetDetails.total = action.payload;
     },
     addPartner: (state, action) => {
-      state.table.partners.push(action.payload);
+      state.table.partners.push({ ...action.payload, date: '' }); // Add date property
     },
     removePartner: (state, action) => {
       state.table.partners = state.table.partners.filter(
@@ -51,11 +51,16 @@ export const combinedSlice = createSlice({
     },
     updatePartner: (state, action) => {
       const { index, partner } = action.payload;
-      state.table.partners[index] = partner;
+      state.table.partners[index] = { ...state.table.partners[index], ...partner };
     },
     setRemainingValueError: (state, action) => {
       state.remainingValueError = action.payload;
     },
+    updatePartnerDate: (state, action) => { // New reducer to update the date
+      const { index, date } = action.payload;
+      state.table.partners[index].date = date;
+    },
+    
   },
 });
 
@@ -69,6 +74,7 @@ export const {
   removePartner,
   updatePartner,
   setRemainingValueError,
+  updatePartnerDate
 } = combinedSlice.actions;
 
 export const selectRows = (state) => state.partnerAssets.assetDetails.asset;

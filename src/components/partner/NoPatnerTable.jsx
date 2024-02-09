@@ -21,14 +21,50 @@ import {
   selectTotal,
   selectPartners,
   setRemainingValueError,
+  updatePartnerDate,
 } from '../../redux/features/combinedSlice';
 import { toast } from 'react-toastify';
+import { MdDateRange } from 'react-icons/md';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import { FaCalendarCheck } from 'react-icons/fa';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='up' ref={ref} {...props} />;
+});
 
 const NoPartnerTable = () => {
   const total = useSelector(selectTotal);
   const partners = useSelector(selectPartners);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+
+  const [openRowIndex, setOpenRowIndex] = React.useState(null);
+
+  const handleClickOpen = (index) => {
+    setOpenRowIndex(index);
+  };
+
+  const handleClose = () => {
+    setOpenRowIndex(null);
+  };
+
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
 
   const handleAddPartner = () => {
     if (error) setError('');
@@ -44,7 +80,6 @@ const NoPartnerTable = () => {
     );
     const remainingAssets = total - totalContributions;
     if (remainingAssets < 0) {
-      // Clear all rows in the NoPartnerTable
       dispatch(setRemainingValueError(true));
       dispatch(updatePartner({ index: 0, partner: { name: '', income: '' } }));
       toast.error('Remaining value cannot be negative! All rows cleared.', {
@@ -122,7 +157,11 @@ const NoPartnerTable = () => {
             className='text-green-500 cursor-pointer hover:text-green-300'
             onClick={handleAddPartner}
           >
-            <IoAddCircleOutline size={40} />
+            <BootstrapTooltip title='Add' placement='top' arrow>
+              <button>
+                <IoAddCircleOutline size={40} />
+              </button>
+            </BootstrapTooltip>
           </div>
         </div>
         {error && <div className='text-red-500 text-center mt-2'>{error}</div>}
@@ -133,7 +172,9 @@ const NoPartnerTable = () => {
               <TableHeaderCell className='text-white'>
                 Contribution
               </TableHeaderCell>
-              <TableHeaderCell className='text-white'>Action</TableHeaderCell>
+              <TableHeaderCell className='text-white text-center'>
+                Action
+              </TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -151,7 +192,7 @@ const NoPartnerTable = () => {
                         })
                       );
                     }}
-                    className='outline-none border-none bg-transparent py-2'
+                    className='outline-none border-none bg-transparent py-2 w-[120px]'
                     placeholder='Insert Name'
                   />
                 </TableCell>
@@ -162,17 +203,82 @@ const NoPartnerTable = () => {
                     enableStepper={false}
                     placeholder='Contribution'
                     max={remainingAssets + Number(partner.income)}
-                    className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
+                    className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black '
                   />
                 </TableCell>
-                <TableCell>
+                <TableCell className='flex gap-3 items-center justify-center p-0 mt-5'>
+                  <div className='text-blue-500 cursor-pointer hover:text-blue-300 flex justify-center'>
+                    <BootstrapTooltip
+                      title={partner.date ? ` ${partner.date}` : 'Add Date'}
+                      placement='top'
+                      arrow
+                    >
+                      <button onClick={() => handleClickOpen(index)}>
+                        {partner.date ? (
+                          <FaCalendarCheck size={25} />
+                        ) : (
+                          <MdDateRange size={30} />
+                        )}
+                      </button>
+                    </BootstrapTooltip>
+                  </div>
                   <div
                     className='text-red-500 cursor-pointer hover:text-red-300 flex justify-center'
                     onClick={() => handleRemovePartner(index)}
                   >
-                    <FiMinusCircle size={30} />
+                    <BootstrapTooltip title='Remove' placement='top' arrow>
+                      <button>
+                        <FiMinusCircle size={30} />
+                      </button>
+                    </BootstrapTooltip>
                   </div>
                 </TableCell>
+
+                <Dialog
+                  open={openRowIndex === index}
+                  TransitionComponent={Transition}
+                  keepMounted
+                  onClose={handleClose}
+                  aria-describedby='alert-dialog-slide-description'
+                  style={{ borderRadius: '20px' }}
+                >
+                  <Card
+                    className='bg-gradient-to-r from-gray-950 to-gray-800 rounded-none '
+                    decorationColor='blue'
+                    decoration='top'
+                  >
+                    <DialogTitle>
+                      {
+                        <Title className='font-semibold text-gray-400'>
+                          Add Date
+                        </Title>
+                      }
+                    </DialogTitle>
+                    <DialogContent className=' max-w-[500px]'>
+                      <div id='alert-dialog-slide-description'>
+                        <input
+                          type='date'
+                          value={partner.date}
+                          onChange={(e) => {
+                            dispatch(
+                              updatePartnerDate({
+                                index,
+                                date: e.target.value,
+                              })
+                            );
+                          }}
+                          className='outline-none border-none  p-1 px-2 rounded-sm bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black cursor-pointer'
+                        />
+                      </div>
+                    </DialogContent>
+                    <DialogActions>
+                      <Button color='error' onClick={handleClose}>
+                        Close
+                      </Button>
+                      <Button onClick={handleClose}>Add</Button>
+                    </DialogActions>
+                  </Card>
+                </Dialog>
               </TableRow>
             ))}
           </TableBody>
