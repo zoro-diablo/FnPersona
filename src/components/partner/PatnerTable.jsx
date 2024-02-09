@@ -49,6 +49,7 @@ const PartnerTable = () => {
   const rows = useSelector(selectRows);
   const total = useSelector(selectTotal);
   const partners = useSelector(selectPartners);
+  
 
   const [openRowIndex, setOpenRowIndex] = React.useState(null);
 
@@ -226,7 +227,7 @@ const PartnerTable = () => {
                       }
                     </DialogTitle>
                     <DialogContent>
-                      <DialogContentText id='alert-dialog-slide-description'>
+                      <div id='alert-dialog-slide-description'>
                         <TextInput
                           placeholder='Remark...'
                           value={rows[openRowIndex]?.remarks || ''}
@@ -235,7 +236,7 @@ const PartnerTable = () => {
                           }
                           className='p-1 mt-1 max-w-[300px]  bg-gradient-to-r from-gray-100 from-90% to-gray-300 font-semibold text-black'
                         />
-                      </DialogContentText>
+                      </div>
                     </DialogContent>
                     <DialogActions>
                       <Button color='error' onClick={handleClose}>

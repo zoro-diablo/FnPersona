@@ -58,7 +58,7 @@ const NoPartnerTable = () => {
         theme: 'dark',
       });
     }
-};
+  };
 
   useEffect(() => {
     if (total < 0) {
@@ -130,7 +130,9 @@ const NoPartnerTable = () => {
           <TableHead>
             <TableRow>
               <TableHeaderCell className='text-white'>Name</TableHeaderCell>
-              <TableHeaderCell className='text-white'>Contribution</TableHeaderCell>
+              <TableHeaderCell className='text-white'>
+                Contribution
+              </TableHeaderCell>
               <TableHeaderCell className='text-white'>Action</TableHeaderCell>
             </TableRow>
           </TableHead>
@@ -176,16 +178,18 @@ const NoPartnerTable = () => {
           </TableBody>
         </Table>
       </Card>
-      <Card
-        className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
-        decoration='bottom'
-        decorationColor='green'
-      >
-        <Title className='text-gray-400'>Assets Remaining</Title>
-        <Metric className='text-gray-400'>
-          $ {remainingAssets.toFixed(2)}
-        </Metric>
-      </Card>
+      {remainingAssets > 0 && (
+        <Card
+          className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
+          decoration='bottom'
+          decorationColor='green'
+        >
+          <Title className='text-gray-400'>Assets Remaining</Title>
+          <Metric className='text-gray-400'>
+            $ {remainingAssets.toFixed(2)}
+          </Metric>
+        </Card>
+      )}
     </div>
   );
 };
