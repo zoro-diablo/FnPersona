@@ -48,7 +48,6 @@ const PartnerTable = () => {
   const rows = useSelector(selectRows);
   const total = useSelector(selectTotal);
   const partners = useSelector(selectPartners);
-  
 
   const [openRowIndex, setOpenRowIndex] = React.useState(null);
 
@@ -130,6 +129,7 @@ const PartnerTable = () => {
       <Card className='bg-gradient-to-r from-gray-950 to-gray-800'>
         <div className='flex justify-between items-center'>
           <Title className='text-white ml-3'>Add Details</Title>
+
           <div className='text-green-500 cursor-pointer hover:text-green-300'>
             <BootstrapTooltip title='Add' placement='top' arrow>
               <button>
@@ -138,7 +138,8 @@ const PartnerTable = () => {
             </BootstrapTooltip>
           </div>
         </div>
-        <Table className='mt-5'>
+        <div className='mt-1 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
+        <Table className='mt-3'>
           <TableHead>
             <TableRow>
               <TableHeaderCell className='text-white '>

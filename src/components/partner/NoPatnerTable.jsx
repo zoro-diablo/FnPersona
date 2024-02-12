@@ -164,8 +164,9 @@ const NoPartnerTable = () => {
             </BootstrapTooltip>
           </div>
         </div>
+        <div className='mt-1 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
         {error && <div className='text-red-500 text-center mt-2'>{error}</div>}
-        <Table className='mt-5'>
+        <Table className='mt-3'>
           <TableHead>
             <TableRow>
               <TableHeaderCell className='text-white'>Name</TableHeaderCell>

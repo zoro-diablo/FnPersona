@@ -3,7 +3,10 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import AccessibilityModule from 'highcharts/modules/accessibility';
 import { useSelector } from 'react-redux';
-import { selectPartners,selectTotal  } from '../../redux/features/combinedSlice';
+import {
+  selectPartners,
+  selectTotal,
+} from '../../redux/features/combinedSlice';
 
 AccessibilityModule(Highcharts);
 
@@ -34,19 +37,22 @@ const PiePercentage = () => {
   const partners = useSelector(selectPartners);
   const total = useSelector(selectTotal);
 
-  const totalAllocated = partners.reduce((acc, partner) => acc + Number(partner.income), 0);
-  const unallocated = total - totalAllocated; 
+  const totalAllocated = partners.reduce(
+    (acc, partner) => acc + Number(partner.income),
+    0
+  );
+  const unallocated = total - totalAllocated;
 
   const seriesData = partners.map((partner) => ({
     name: partner.name,
-    y: (Number(partner.income) / total) * 100, 
+    y: (Number(partner.income) / total) * 100,
   }));
 
   if (unallocated > 0) {
     seriesData.push({
       name: 'Unallocated',
-      y: (unallocated / total) * 100, 
-      color: '#1c1c1c', 
+      y: (unallocated / total) * 100,
+      color: '#1c1c1c',
     });
   }
 
