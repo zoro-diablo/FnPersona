@@ -17,11 +17,24 @@ import { editData, deleteRow, addRow } from '../../redux/features/partnerSlice';
 import '../../routes/partnership/partner.scss';
 import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { IoAddCircleOutline } from 'react-icons/io5';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 
 const MonthPartnerTable = () => {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
   const dispatch = useDispatch();
   const tableData = useSelector((state) => state.partner.tableData);
+
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
 
   const calculateTotal = (monthData) => {
     return monthData.reduce((total, item) => total + item.amount, 0);
@@ -60,8 +73,16 @@ const MonthPartnerTable = () => {
     <Card className='bg-gradient-to-r from-gray-800 to-gray-950 rounded-md'>
       <Title className='text-blue-400 text-center relative items-center flex justify-center'>
         <span>Income Breakdown Table</span>
+
         <div className='absolute right-5 cursor-pointer'>
-          <IoAddCircleOutline size={40} className='text-green-500' />
+          <BootstrapTooltip title='Add Month' placement='top' arrow>
+            <button>
+              <IoAddCircleOutline
+                size={38}
+                className='text-green-500 hover:text-green-300'
+              />
+            </button>
+          </BootstrapTooltip>
         </div>
       </Title>
       <div className='mt-4 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
@@ -112,11 +133,17 @@ const MonthPartnerTable = () => {
                 />
               </TableCell>
               <TableCell className='text-center'>
-                <IoMdRemoveCircleOutline
-                  onClick={() => handleDeleteRow(currentMonthIndex, rowData.id)}
-                  className='text-red-500 cursor-pointer'
-                  size={30}
-                />
+                <BootstrapTooltip title='Remove' placement='top' arrow>
+                  <button>
+                    <IoMdRemoveCircleOutline
+                      onClick={() =>
+                        handleDeleteRow(currentMonthIndex, rowData.id)
+                      }
+                      className='text-red-500 cursor-pointer hover:text-red-300'
+                      size={30}
+                    />
+                  </button>
+                </BootstrapTooltip>
               </TableCell>
             </TableRow>
           ))}
@@ -126,7 +153,7 @@ const MonthPartnerTable = () => {
               Total
             </TableCell>
             <TableCell></TableCell>
-            <TableCell className='font-medium text-blue-300 text-center'>
+            <TableCell className='font-medium text-blue-300 text-center text-xl'>
               {calculateTotal(tableData[currentMonthIndex]?.data || [])}
             </TableCell>
             <TableCell></TableCell>
