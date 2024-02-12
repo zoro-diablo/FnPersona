@@ -205,7 +205,7 @@ const MonthPartnerTable = () => {
             </TableCell>
             <TableCell>
               <BootstrapTooltip title='Add row' placement='top' arrow>
-                <button>
+                <div>
                   <Button
                     variant='outlined'
                     className='flex items-center justify-between gap-2'
@@ -213,7 +213,7 @@ const MonthPartnerTable = () => {
                   >
                     <FaPlus className='my-2' />
                   </Button>
-                </button>
+                </div>
               </BootstrapTooltip>
             </TableCell>
           </TableRow>
