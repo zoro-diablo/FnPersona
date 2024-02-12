@@ -204,17 +204,17 @@ const MonthPartnerTable = () => {
               {calculateTotal(tableData[currentMonthIndex]?.data || [])}
             </TableCell>
             <TableCell>
-              <Button
-                variant='outlined'
-                className='flex items-center justify-between gap-2'
-                onClick={handleAddRow}
-              >
-                <BootstrapTooltip title='Add row' placement='top' arrow>
-                  <button>
+              <BootstrapTooltip title='Add row' placement='top' arrow>
+                <button>
+                  <Button
+                    variant='outlined'
+                    className='flex items-center justify-between gap-2'
+                    onClick={handleAddRow}
+                  >
                     <FaPlus className='my-2' />
-                  </button>
-                </BootstrapTooltip>
-              </Button>
+                  </Button>
+                </button>
+              </BootstrapTooltip>
             </TableCell>
           </TableRow>
           <Dialog
