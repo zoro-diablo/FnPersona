@@ -30,6 +30,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { FaPlus } from 'react-icons/fa';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -127,10 +128,26 @@ const MonthPartnerTable = () => {
               Names
             </TableCell>
             <TableCell
-              className='font-semibold text-gray-200'
+              className='font-semibold text-gray-200 flex items-center gap-3'
               colSpan={tableData[currentMonthIndex]?.data.length + 1 || 1}
             >
+              <Button
+                variant='outlined'
+                className='flex items-center justify-between gap-2'
+                onClick={moveToPreviousMonth}
+                disabled={currentMonthIndex === 0}
+              >
+                <IoMdArrowBack className='text-2xl text-gray-200' />
+              </Button>
               <div>{tableData[currentMonthIndex]?.month}</div>
+              <Button
+                variant='outlined'
+                className='flex items-center justify-between gap-2'
+                onClick={moveToNextMonth}
+                disabled={currentMonthIndex === tableData.length - 1}
+              >
+                <IoMdArrowForward className='text-2xl text-gray-200' />
+              </Button>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -186,7 +203,19 @@ const MonthPartnerTable = () => {
             <TableCell className='font-medium text-blue-300 text-center text-xl'>
               {calculateTotal(tableData[currentMonthIndex]?.data || [])}
             </TableCell>
-            <TableCell></TableCell>
+            <TableCell>
+              <Button
+                variant='outlined'
+                className='flex items-center justify-between gap-2'
+                onClick={handleAddRow}
+              >
+                <BootstrapTooltip title='Add row' placement='top' arrow>
+                  <button>
+                    <FaPlus className='my-2' />
+                  </button>
+                </BootstrapTooltip>
+              </Button>
+            </TableCell>
           </TableRow>
           <Dialog
             open={open}
@@ -238,36 +267,6 @@ const MonthPartnerTable = () => {
           </Dialog>
         </TableBody>
       </Table>
-      <div className='flex gap-4 mt-2 justify-between'>
-        <Button
-          variant='outlined'
-          className='flex items-center justify-between gap-2'
-          onClick={handleAddRow}
-        >
-          Add Row
-        </Button>
-
-        <div className='flex justify-end'>
-          <Button
-            variant='outlined'
-            className='flex items-center justify-between gap-2'
-            onClick={moveToPreviousMonth}
-            disabled={currentMonthIndex === 0}
-          >
-            <IoMdArrowBack className='text-2xl text-gray-200' />
-            <span className='button-text'>Previous Month</span>
-          </Button>
-          <Button
-            variant='outlined'
-            className='flex items-center justify-between gap-2'
-            onClick={moveToNextMonth}
-            disabled={currentMonthIndex === tableData.length - 1}
-          >
-            <span className='button-text'>Next Month</span>
-            <IoMdArrowForward className='text-2xl text-gray-200' />
-          </Button>
-        </div>
-      </div>
     </Card>
   );
 };
