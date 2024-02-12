@@ -26,7 +26,7 @@ const Partnership = () => {
         <div className='col-span-2'>
           <PplChart />
         </div>
-        <div className='col-span-3'>
+        <div className='col-span-4'>
           <MonthPartnerTable />
         </div>
       </div>
