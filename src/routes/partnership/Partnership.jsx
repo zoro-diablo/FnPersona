@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { slideInVariants } from '../../utils/motion';
 import PatnerTable from '../../components/partner/PatnerTable';
 import NoPatnerTable from '../../components/partner/NoPatnerTable';
+import MonthPartnerTable from '../../components/partner/MonthPartnerTable';
 
 const Partnership = () => {
   return (
@@ -12,7 +13,7 @@ const Partnership = () => {
       initial='hidden'
       animate='visible'
       exit='exit'
-      className='h-screen'
+      className='h-full'
     >
       <Navbar />
       <div className='grid grid-cols-8 m-10 gap-5'>
@@ -24,6 +25,9 @@ const Partnership = () => {
         </div>
         <div className='col-span-2'>
           <PplChart />
+        </div>
+        <div className='col-span-3'>
+          <MonthPartnerTable />
         </div>
       </div>
     </motion.div>
