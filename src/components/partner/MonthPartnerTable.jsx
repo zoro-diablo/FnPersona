@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import {
@@ -13,17 +14,43 @@ import {
   Title,
 } from '@tremor/react';
 import { IoMdArrowBack, IoMdArrowForward } from 'react-icons/io';
-import { editData, deleteRow, addRow } from '../../redux/features/partnerSlice';
+import {
+  editData,
+  deleteRow,
+  addRow,
+  addMonth,
+} from '../../redux/features/partnerSlice';
 import '../../routes/partnership/partner.scss';
 import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='up' ref={ref} {...props} />;
+});
 
 const MonthPartnerTable = () => {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
   const dispatch = useDispatch();
   const tableData = useSelector((state) => state.partner.tableData);
+
+  const [newMonthName, setNewMonthName] = useState('');
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -71,10 +98,13 @@ const MonthPartnerTable = () => {
 
   return (
     <Card className='bg-gradient-to-r from-gray-800 to-gray-950 rounded-md'>
-      <Title className='text-blue-400 text-center relative items-center flex justify-center'>
-        <span>Income Breakdown Table</span>
+      <div className=' text-blue-400 text-center relative items-center flex justify-center'>
+        <Title className='text-blue-400'>Income Breakdown Table</Title>
 
-        <div className='absolute right-5 cursor-pointer'>
+        <div
+          className='absolute right-5 cursor-pointer '
+          onClick={handleClickOpen}
+        >
           <BootstrapTooltip title='Add Month' placement='top' arrow>
             <button>
               <IoAddCircleOutline
@@ -84,7 +114,7 @@ const MonthPartnerTable = () => {
             </button>
           </BootstrapTooltip>
         </div>
-      </Title>
+      </div>
       <div className='mt-4 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
 
       <Table>
@@ -158,6 +188,54 @@ const MonthPartnerTable = () => {
             </TableCell>
             <TableCell></TableCell>
           </TableRow>
+          <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby='alert-dialog-slide-description'
+            style={{ borderRadius: '20px' }}
+          >
+            <Card
+              className='bg-gradient-to-r from-gray-950 to-gray-800 rounded-none '
+              decorationColor='blue'
+              decoration='top'
+            >
+              <DialogTitle>
+                {
+                  <Title className='font-semibold text-gray-400'>
+                    Month Name
+                  </Title>
+                }
+              </DialogTitle>
+              <DialogContent>
+                <div id='alert-dialog-slide-description'>
+                  <TextInput
+                    placeholder='Month...'
+                    className='p-1 mt-1 max-w-[300px] bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
+                    value={newMonthName}
+                    onChange={(e) => setNewMonthName(e.target.value)}
+                  />
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button color='error' onClick={handleClose}>
+                  Close
+                </Button>
+                <Button
+                  onClick={() => {
+                    if (newMonthName.trim() !== '') {
+                      dispatch(addMonth({ monthName: newMonthName }));
+                      setNewMonthName('');
+                      handleClose();
+                    }
+                  }}
+                >
+                  Add
+                </Button>
+              </DialogActions>
+            </Card>
+          </Dialog>
         </TableBody>
       </Table>
       <div className='flex gap-4 mt-2 justify-between'>
