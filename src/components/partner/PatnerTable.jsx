@@ -128,15 +128,15 @@ const PartnerTable = () => {
     <div className='max-w-[600px]'>
       <Card className='bg-gradient-to-r from-gray-950 to-gray-800'>
         <div className='flex justify-between items-center'>
-          <Title className='text-white ml-3'>Add Details</Title>
+          <Title className='text-white ml-3 my-2'>Add Details</Title>
 
-          <div className='text-green-500 cursor-pointer hover:text-green-300'>
+          {/* <div className='text-green-500 cursor-pointer hover:text-green-300'>
             <BootstrapTooltip title='Add' placement='top' arrow>
               <button>
                 <IoAddCircleOutline size={40} onClick={handleAddRow} />
               </button>
             </BootstrapTooltip>
-          </div>
+          </div> */}
         </div>
         <div className='mt-1 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
         <Table className='mt-3'>
@@ -157,14 +157,14 @@ const PartnerTable = () => {
             {rows.map((row, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <input
+                  <TextInput
                     ref={(el) => (inputRefs.current[index] = el)}
                     type='text'
                     value={row.chargeHead}
                     onChange={(e) =>
                       dispatch(updateRow({ index, chargeHead: e.target.value }))
                     }
-                    className='outline-none border-none bg-transparent py-2 w-[110px]'
+                    className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
                     placeholder='Type of Charge'
                   />
                 </TableCell>
@@ -181,7 +181,7 @@ const PartnerTable = () => {
                     />
                   </div>
                 </TableCell>
-                <TableCell className='flex gap-2 mt-[22px] p-0'>
+                <TableCell className='flex gap-2 mt-[22px] p-0 justify-center pt-1'>
                   <div className='text-blue-500 cursor-pointer hover:text-blue-300 flex justify-center items-center '>
                     <BootstrapTooltip
                       title={`${row.remarks || 'Add Remark'}`}
@@ -190,9 +190,9 @@ const PartnerTable = () => {
                     >
                       <button onClick={() => handleClickOpen(index)}>
                         {row.remarks ? (
-                          <IoMdInformationCircleOutline size={35} />
+                          <IoMdInformationCircleOutline size={25} />
                         ) : (
-                          <MdOutlinePlaylistAdd size={35} />
+                          <MdOutlinePlaylistAdd size={30} />
                         )}
                       </button>
                     </BootstrapTooltip>
@@ -200,10 +200,19 @@ const PartnerTable = () => {
                   <div className='text-red-500 cursor-pointer hover:text-red-300 flex justify-center items-center'>
                     <BootstrapTooltip title='Remove' placement='top' arrow>
                       <button onClick={() => handleRemoveRow(index)}>
-                        <FiMinusCircle size={30} />
+                        <FiMinusCircle size={20} />
                       </button>
                     </BootstrapTooltip>
                   </div>
+                  {index === rows.length - 1 && (
+                    <div className='text-green-500 cursor-pointer hover:text-green-300 flex justify-center items-center'>
+                      <BootstrapTooltip title='Add' placement='top' arrow>
+                        <button onClick={handleAddRow}>
+                          <IoAddCircleOutline size={25} />
+                        </button>
+                      </BootstrapTooltip>
+                    </div>
+                  )}
                 </TableCell>
 
                 <Dialog

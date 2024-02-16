@@ -6,7 +6,7 @@ const initialState = {
     total: 0,
   },
   table: {
-    partners: [],
+    partners: [{ name: '', income: ''}],
   },
   remainingValueError: false,
 };
@@ -42,7 +42,7 @@ export const combinedSlice = createSlice({
       state.assetDetails.total = action.payload;
     },
     addPartner: (state, action) => {
-      state.table.partners.push({ ...action.payload, date: '' }); // Add date property
+      state.table.partners.push({ ...action.payload, date: '' }); 
     },
     removePartner: (state, action) => {
       state.table.partners = state.table.partners.filter(
@@ -56,7 +56,7 @@ export const combinedSlice = createSlice({
     setRemainingValueError: (state, action) => {
       state.remainingValueError = action.payload;
     },
-    updatePartnerDate: (state, action) => { // New reducer to update the date
+    updatePartnerDate: (state, action) => { 
       const { index, date } = action.payload;
       state.table.partners[index].date = date;
     },

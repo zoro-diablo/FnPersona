@@ -11,6 +11,7 @@ import {
   Title,
   NumberInput,
   Metric,
+  TextInput,
 } from '@tremor/react';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { FiMinusCircle } from 'react-icons/fi';
@@ -152,8 +153,8 @@ const NoPartnerTable = () => {
     <div className='max-w-[600px]'>
       <Card className='bg-gradient-to-r from-gray-950 to-gray-800'>
         <div className='flex justify-between items-center'>
-          <Title className='text-white ml-3'>Add Partners</Title>
-          <div
+          <Title className='text-white ml-3 my-2'>Add Partners</Title>
+          {/* <div
             className='text-green-500 cursor-pointer hover:text-green-300'
             onClick={handleAddPartner}
           >
@@ -162,7 +163,7 @@ const NoPartnerTable = () => {
                 <IoAddCircleOutline size={40} />
               </button>
             </BootstrapTooltip>
-          </div>
+          </div> */}
         </div>
         <div className='mt-1 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
         {error && <div className='text-red-500 text-center mt-2'>{error}</div>}
@@ -182,7 +183,7 @@ const NoPartnerTable = () => {
             {partners.map((partner, index) => (
               <TableRow key={index}>
                 <TableCell>
-                  <input
+                  <TextInput
                     type='text'
                     value={partner.name}
                     onChange={(e) => {
@@ -193,7 +194,7 @@ const NoPartnerTable = () => {
                         })
                       );
                     }}
-                    className='outline-none border-none bg-transparent py-2 w-[120px]'
+                    className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
                     placeholder='Insert Name'
                   />
                 </TableCell>
@@ -207,7 +208,7 @@ const NoPartnerTable = () => {
                     className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black '
                   />
                 </TableCell>
-                <TableCell className='flex gap-3 items-center justify-center p-0 mt-5'>
+                <TableCell className='flex gap-2 items-center justify-center p-0 mt-6'>
                   <div className='text-blue-500 cursor-pointer hover:text-blue-300 flex justify-center'>
                     <BootstrapTooltip
                       title={partner.date ? ` ${partner.date}` : 'Add Date'}
@@ -216,9 +217,9 @@ const NoPartnerTable = () => {
                     >
                       <button onClick={() => handleClickOpen(index)}>
                         {partner.date ? (
-                          <FaCalendarCheck size={25} />
+                          <FaCalendarCheck size={18} />
                         ) : (
-                          <MdDateRange size={30} />
+                          <MdDateRange size={22} />
                         )}
                       </button>
                     </BootstrapTooltip>
@@ -229,10 +230,22 @@ const NoPartnerTable = () => {
                   >
                     <BootstrapTooltip title='Remove' placement='top' arrow>
                       <button>
-                        <FiMinusCircle size={30} />
+                        <FiMinusCircle size={20} />
                       </button>
                     </BootstrapTooltip>
                   </div>
+                  {index === partners.length - 1 && (
+                    <div
+                      className='text-green-500 cursor-pointer hover:text-green-300 flex justify-center'
+                      onClick={handleAddPartner}
+                    >
+                      <BootstrapTooltip title='Add' placement='top' arrow>
+                        <button className=''>
+                          <IoAddCircleOutline size={25} />
+                        </button>
+                      </BootstrapTooltip>
+                    </div>
+                  )}
                 </TableCell>
 
                 <Dialog

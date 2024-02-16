@@ -121,14 +121,12 @@ const MonthPartnerTable = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell className='text-center font-semibold text-gray-200'>
-              #
-            </TableCell>
+            <TableCell className='text-center font-semibold text-gray-200'></TableCell>
             <TableCell className='font-semibold text-gray-200 '>
               Names
             </TableCell>
             <TableCell
-              className='font-semibold text-gray-200 flex items-center gap-3'
+              className='font-semibold text-gray-200 flex items-center gap-3 justify-center'
               colSpan={tableData[currentMonthIndex]?.data.length + 1 || 1}
             >
               <Button
@@ -155,9 +153,9 @@ const MonthPartnerTable = () => {
           {tableData[currentMonthIndex]?.data.map((rowData, index) => (
             <TableRow key={rowData.id}>
               <TableCell className='text-center'>{index + 1}</TableCell>
-              <TableCell className='text-center'>
+              <TableCell className='text-center '>
                 <TextInput
-                  className='text-gray-300 bg-gradient-to-r from-gray-100 to-gray-300 max-w-[200px] font-medium'
+                  className='text-gray-300 bg-gradient-to-r from-gray-100 to-gray-300  font-semibold p-1'
                   type='text'
                   value={rowData.name}
                   onChange={(e) =>
@@ -169,7 +167,7 @@ const MonthPartnerTable = () => {
               </TableCell>
               <TableCell className='text-center'>
                 <NumberInput
-                  className='text-gray-300 bg-gradient-to-r from-gray-100 to-gray-300 max-w-[200px] font-medium'
+                  className='text-gray-300 bg-gradient-to-r from-gray-100 to-gray-300  font-semibold p-1'
                   type='number'
                   value={rowData.amount}
                   onChange={(e) =>
@@ -179,7 +177,7 @@ const MonthPartnerTable = () => {
                   }
                 />
               </TableCell>
-              <TableCell className='text-center'>
+              <TableCell className='text-center flex gap-4 mt-2 '>
                 <BootstrapTooltip title='Remove' placement='top' arrow>
                   <button>
                     <IoMdRemoveCircleOutline
@@ -187,35 +185,41 @@ const MonthPartnerTable = () => {
                         handleDeleteRow(currentMonthIndex, rowData.id)
                       }
                       className='text-red-500 cursor-pointer hover:text-red-300'
-                      size={30}
+                      size={25}
                     />
                   </button>
                 </BootstrapTooltip>
+                {index === tableData[currentMonthIndex]?.data.length - 1 && (
+                  <BootstrapTooltip title='Add row' placement='top' arrow>
+                    <div>
+                      <button
+                        className='flex items-center '
+                        onClick={handleAddRow}
+                      >
+                        <FaPlus
+                          className='my-2 text-blue-500 hover:text-blue-200'
+                          size={20}
+                        />
+                      </button>
+                    </div>
+                  </BootstrapTooltip>
+                )}
               </TableCell>
             </TableRow>
           ))}
 
           <TableRow>
-            <TableCell className='font-medium text-blue-300 text-center'>
-              Total
+            <TableCell></TableCell>
+            <TableCell className='font-medium text-center text-lg mr-8 pb-1 '>
+              Total Income
+            </TableCell>
+            <TableCell className='font-medium flex justify-center gap-x-2 mt-2 mr-8 items-center text-xl'>
+              $
+              <p className=' text-blue-300'>
+                {calculateTotal(tableData[currentMonthIndex]?.data || [])}
+              </p>
             </TableCell>
             <TableCell></TableCell>
-            <TableCell className='font-medium text-blue-300 text-center text-xl'>
-              {calculateTotal(tableData[currentMonthIndex]?.data || [])}
-            </TableCell>
-            <TableCell>
-              <BootstrapTooltip title='Add row' placement='top' arrow>
-                <div>
-                  <Button
-                    variant='outlined'
-                    className='flex items-center justify-between gap-2'
-                    onClick={handleAddRow}
-                  >
-                    <FaPlus className='my-2' />
-                  </Button>
-                </div>
-              </BootstrapTooltip>
-            </TableCell>
           </TableRow>
           <Dialog
             open={open}
