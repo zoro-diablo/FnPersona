@@ -1,47 +1,19 @@
-import { useState } from 'react';
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
-import {
-  Card,
-  NumberInput,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TextInput,
-  Title,
-} from '@tremor/react';
-import { IoMdArrowBack, IoMdArrowForward } from 'react-icons/io';
-import {
-  editData,
-  deleteRow,
-  addRow,
-  addMonth,
-} from '../../redux/features/partnerSlice';
+import { Card, Metric, Title } from '@tremor/react';
 import '../../routes/partnership/partner.scss';
-import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { FaPlus } from 'react-icons/fa';
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='up' ref={ref} {...props} />;
-});
+import IncomeTable from './IncomeTable';
+import ExpenseTable from './ExpenseTable';
+import { useSelector } from 'react-redux';
 
 const MonthPartnerTable = () => {
-  const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
-  const dispatch = useDispatch();
+  const currentMonthIndex = useSelector(
+    (state) => state.currentMonth.currentMonthIndex
+  );
+  const tableDataEx = useSelector((state) => state.expense.tableDataEx);
   const tableData = useSelector((state) => state.partner.tableData);
-
-  const [newMonthName, setNewMonthName] = useState('');
 
   const [open, setOpen] = React.useState(false);
 
@@ -63,215 +35,48 @@ const MonthPartnerTable = () => {
       backgroundColor: theme.palette.common.black,
     },
   }));
+  const total1 = tableData[currentMonthIndex]?.total;
+  const total2 = tableDataEx[currentMonthIndex]?.total;
 
-  const calculateTotal = (monthData) => {
-    return monthData.reduce((total, item) => total + item.amount, 0);
-  };
-
-  const moveToPreviousMonth = () => {
-    if (currentMonthIndex > 0) {
-      setCurrentMonthIndex(currentMonthIndex - 1);
-    }
-  };
-
-  const moveToNextMonth = () => {
-    if (currentMonthIndex < tableData.length - 1) {
-      setCurrentMonthIndex(currentMonthIndex + 1);
-    }
-  };
-
-  const handleEditData = (monthIndex, dataIndex, newData) => {
-    dispatch(editData({ monthIndex, dataIndex, newData }));
-  };
-
-  const handleDeleteRow = (monthIndex, rowId) => {
-    dispatch(deleteRow({ monthIndex, rowId }));
-  };
-
-  const handleAddRow = () => {
-    const newRow = {
-      id: Date.now(),
-      name: '',
-      amount: 0,
-    };
-    dispatch(addRow({ monthIndex: currentMonthIndex, newRow }));
-  };
+  const result = total1 - total2;
 
   return (
-    <Card className='bg-gradient-to-r from-gray-800 to-gray-950 rounded-md'>
-      <div className=' text-blue-400 text-center relative items-center flex justify-center'>
-        <Title className='text-blue-400'>Income Breakdown Table</Title>
-
-        <div
-          className='absolute right-5 cursor-pointer '
-          onClick={handleClickOpen}
-        >
-          <BootstrapTooltip title='Add Month' placement='top' arrow>
-            <button>
-              <IoAddCircleOutline
-                size={38}
-                className='text-green-500 hover:text-green-300'
-              />
-            </button>
-          </BootstrapTooltip>
-        </div>
-      </div>
-      <div className='mt-4 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
-
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell className='text-center font-semibold text-gray-200'></TableCell>
-            <TableCell className='font-semibold text-gray-200 '>
-              Names
-            </TableCell>
-            <TableCell
-              className='font-semibold text-gray-200 flex items-center gap-3 justify-center'
-              colSpan={tableData[currentMonthIndex]?.data.length + 1 || 1}
-            >
-              <Button
-                variant='outlined'
-                className='flex items-center justify-between gap-2'
-                onClick={moveToPreviousMonth}
-                disabled={currentMonthIndex === 0}
-              >
-                <IoMdArrowBack className='text-2xl text-gray-200' />
-              </Button>
-              <div>{tableData[currentMonthIndex]?.month}</div>
-              <Button
-                variant='outlined'
-                className='flex items-center justify-between gap-2'
-                onClick={moveToNextMonth}
-                disabled={currentMonthIndex === tableData.length - 1}
-              >
-                <IoMdArrowForward className='text-2xl text-gray-200' />
-              </Button>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody className='text-gray-400'>
-          {tableData[currentMonthIndex]?.data.map((rowData, index) => (
-            <TableRow key={rowData.id}>
-              <TableCell className='text-center'>{index + 1}</TableCell>
-              <TableCell className='text-center '>
-                <TextInput
-                  className='text-gray-300 bg-gradient-to-r from-gray-100 to-gray-300  font-semibold p-1'
-                  type='text'
-                  value={rowData.name}
-                  onChange={(e) =>
-                    handleEditData(currentMonthIndex, rowData.id, {
-                      name: e.target.value,
-                    })
-                  }
-                />
-              </TableCell>
-              <TableCell className='text-center'>
-                <NumberInput
-                  className='text-gray-300 bg-gradient-to-r from-gray-100 to-gray-300  font-semibold p-1'
-                  type='number'
-                  value={rowData.amount}
-                  onChange={(e) =>
-                    handleEditData(currentMonthIndex, rowData.id, {
-                      amount: parseInt(e.target.value, 10) || 0,
-                    })
-                  }
-                />
-              </TableCell>
-              <TableCell className='text-center flex gap-4 mt-2 '>
-                <BootstrapTooltip title='Remove' placement='top' arrow>
-                  <button>
-                    <IoMdRemoveCircleOutline
-                      onClick={() =>
-                        handleDeleteRow(currentMonthIndex, rowData.id)
-                      }
-                      className='text-red-500 cursor-pointer hover:text-red-300'
-                      size={25}
-                    />
-                  </button>
-                </BootstrapTooltip>
-                {index === tableData[currentMonthIndex]?.data.length - 1 && (
-                  <BootstrapTooltip title='Add row' placement='top' arrow>
-                    <div>
-                      <button
-                        className='flex items-center '
-                        onClick={handleAddRow}
-                      >
-                        <FaPlus
-                          className='my-2 text-blue-500 hover:text-blue-200'
-                          size={20}
-                        />
-                      </button>
-                    </div>
-                  </BootstrapTooltip>
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
-
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell className='font-medium text-center text-lg mr-8 pb-1 '>
-              Total Income
-            </TableCell>
-            <TableCell className='font-medium flex justify-center gap-x-2 mt-2 mr-8 items-center text-xl'>
-              $
-              <p className=' text-blue-300'>
-                {calculateTotal(tableData[currentMonthIndex]?.data || [])}
-              </p>
-            </TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-          <Dialog
-            open={open}
-            TransitionComponent={Transition}
-            keepMounted
-            onClose={handleClose}
-            aria-describedby='alert-dialog-slide-description'
-            style={{ borderRadius: '20px' }}
+    <div>
+      <Card className='bg-gradient-to-r from-gray-800 to-gray-950 rounded-md'>
+        <div className=' text-blue-400 text-center relative items-center flex justify-center'>
+          <Title className='text-blue-400'>Income Breakdown Table</Title>
+          <div
+            className='absolute right-5 cursor-pointer '
+            onClick={handleClickOpen}
           >
-            <Card
-              className='bg-gradient-to-r from-gray-950 to-gray-800 rounded-none '
-              decorationColor='blue'
-              decoration='top'
-            >
-              <DialogTitle>
-                {
-                  <Title className='font-semibold text-gray-400'>
-                    Month Name
-                  </Title>
-                }
-              </DialogTitle>
-              <DialogContent>
-                <div id='alert-dialog-slide-description'>
-                  <TextInput
-                    placeholder='Month...'
-                    className='p-1 mt-1 max-w-[300px] bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
-                    value={newMonthName}
-                    onChange={(e) => setNewMonthName(e.target.value)}
-                  />
-                </div>
-              </DialogContent>
-              <DialogActions>
-                <Button color='error' onClick={handleClose}>
-                  Close
-                </Button>
-                <Button
-                  onClick={() => {
-                    if (newMonthName.trim() !== '') {
-                      dispatch(addMonth({ monthName: newMonthName }));
-                      setNewMonthName('');
-                      handleClose();
-                    }
-                  }}
-                >
-                  Add
-                </Button>
-              </DialogActions>
-            </Card>
-          </Dialog>
-        </TableBody>
-      </Table>
-    </Card>
+            <BootstrapTooltip title='Add Month' placement='top' arrow>
+              <button>
+                <IoAddCircleOutline
+                  size={38}
+                  className='text-green-500 hover:text-green-300'
+                />
+              </button>
+            </BootstrapTooltip>
+          </div>
+        </div>
+        <div className='my-3 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
+        <IncomeTable
+          open={open}
+          handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+        />
+        <div className='mt-4 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
+        <ExpenseTable />
+      </Card>
+      <Card
+        className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
+        decoration='bottom'
+        decorationColor='green'
+      >
+        <div className='text-gray-400 font-medium text-2xl'>Profit</div>
+        <Metric className='text-gray-400'>$ {result}</Metric>
+      </Card>
+    </div>
   );
 };
 
