@@ -11,11 +11,7 @@ import {
   styled,
 } from '@mui/material';
 import { TextInput, NumberInput } from '@tremor/react';
-import {
-  IoMdArrowBack,
-  IoMdArrowForward,
-  IoMdRemoveCircleOutline,
-} from 'react-icons/io';
+import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { FaPlus } from 'react-icons/fa';
 import { tooltipClasses } from '@mui/material/Tooltip';
 import {
@@ -24,8 +20,6 @@ import {
   editDataEx,
 } from '../../redux/features/expenseSlice';
 import '../../routes/partnership/partner.scss';
-import { setCurrentMonthIndex, incrementMonthIndex, decrementMonthIndex } from '../../redux/features/currentMonthSlice';
-
 
 const BootstrapTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
@@ -39,7 +33,9 @@ const BootstrapTooltip = styled(({ className, ...props }) => (
 }));
 
 const ExpenseTable = () => {
-    const currentMonthIndex = useSelector((state) => state.currentMonth.currentMonthIndex);
+  const currentMonthIndex = useSelector(
+    (state) => state.currentMonth.currentMonthIndex
+  );
 
   const dispatch = useDispatch();
   const tableDataEx = useSelector((state) => state.expense.tableDataEx);
@@ -64,27 +60,16 @@ const ExpenseTable = () => {
     );
   };
 
-  const moveToPreviousMonth = () => {
-    dispatch(decrementMonthIndex());
-  };
-
-  const moveToNextMonth = () => {
-    dispatch(incrementMonthIndex());
-  };
-
   return (
     <Table>
       <TableHead>
-        <TableRow>
-          <TableCell className='text-center font-semibold text-gray-200'></TableCell>
-          <TableCell>
-            <p className='font-semibold text-gray-200 '>Expenses</p>
-          </TableCell>
-          <TableCell
-         
-          >
-           
-          </TableCell>
+        <TableRow className='relative'>
+          <div className='text-center font-semibold text-gray-200'></div>
+          <div className='outline-none border-none my-16'>
+            <p className='font-semibold text-gray-200 text-[14px] absolute left-[60px] top-[25px]'>
+              Expenses
+            </p>
+          </div>
         </TableRow>
       </TableHead>
       <TableBody className='text-gray-400'>

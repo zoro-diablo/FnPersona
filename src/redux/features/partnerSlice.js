@@ -82,14 +82,19 @@ export const partnerSlice = createSlice({
     },
     addMonth: (state, action) => {
       const { monthName } = action.payload;
+      const lastMonthData = state.tableData[state.tableData.length - 1].data.map(item => ({
+        ...item,
+        id: Date.now() + Math.random(), 
+      }));
       const newMonth = {
         month: monthName,
-        data: [],
-        total: 0,
+        data: [...lastMonthData], 
+        total: lastMonthData.reduce((total, item) => total + item.income, 0),
       };
       state.tableData.push(newMonth);
     },
   },
+
 });
 
 export const { editData, deleteRow, addRow, addMonth } = partnerSlice.actions;

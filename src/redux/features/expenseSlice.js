@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addMonth } from './partnerSlice';
 
 const initialState = {
   tableDataEx: [
@@ -44,27 +45,6 @@ const initialState = {
       ],
       total: 4700,
     },
-    {
-      month: 'Jan-23',
-      data: [
-        {
-          id: 1,
-          expenseType: 'Empower bill',
-          expense: 400,
-        },
-        {
-          id: 2,       
-          expenseType: 'Maintenance',
-          expense: 500,
-        },
-        {
-          id: 3,    
-          expenseType: 'Gas Bill',
-          expense: 2000,
-        },
-      ],
-      total: 2900,
-    },
   ],
 };
 
@@ -75,7 +55,7 @@ export const expenseSlice = createSlice({
     addRowEx: (state, action) => {
       const { monthIndex, newRow } = action.payload;
       state.tableDataEx[monthIndex].data.push(newRow);
-      // Update to calculate the sum of expenses
+
       state.tableDataEx[monthIndex].total = state.tableDataEx[
         monthIndex
       ].data.reduce((total, item) => total + item.expense, 0);
@@ -102,6 +82,20 @@ export const expenseSlice = createSlice({
         0
       );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(addMonth, (state, action) => {
+      const lastMonthDataEx = state.tableDataEx[state.tableDataEx.length - 1].data.map(item => ({
+        ...item,
+        id: Date.now() + Math.random(),
+      }));
+      const newMonth = {
+        month: action.payload.monthName,
+        data: [...lastMonthDataEx], 
+        total: lastMonthDataEx.reduce((total, item) => total + item.expense, 0),
+      };
+      state.tableDataEx.push(newMonth);
+    });
   },
 });
 
