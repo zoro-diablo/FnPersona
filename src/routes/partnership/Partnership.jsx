@@ -5,6 +5,7 @@ import { slideInVariants } from '../../utils/motion';
 import PatnerTable from '../../components/partner/PatnerTable';
 import NoPatnerTable from '../../components/partner/NoPatnerTable';
 import MonthPartnerTable from '../../components/partner/MonthPartnerTable';
+import ProfitTable from '../../components/partner/ProfitTable';
 
 const Partnership = () => {
   return (
@@ -28,6 +29,9 @@ const Partnership = () => {
         </div>
         <div className='col-span-4'>
           <MonthPartnerTable />
+        </div>
+        <div className='col-span-4'>
+          <ProfitTable />
         </div>
       </div>
     </motion.div>

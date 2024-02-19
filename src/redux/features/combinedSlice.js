@@ -6,9 +6,14 @@ const initialState = {
     total: 0,
   },
   table: {
-    partners: [{ name: '', income: ''}],
+    partners: [{ name: '', income: '' }],
   },
   remainingValueError: false,
+  profit: {
+    result: 0,
+    total: 0,
+    partners: [{ name: '', income: '', profitValue: '' }],
+  },
 };
 
 export const combinedSlice = createSlice({
@@ -40,27 +45,74 @@ export const combinedSlice = createSlice({
     },
     setTotal: (state, action) => {
       state.assetDetails.total = action.payload;
+      state.profit.total = action.payload;
     },
     addPartner: (state, action) => {
-      state.table.partners.push({ ...action.payload, date: '' }); 
+      const newPartner = { ...action.payload, date: '' };
+      const totalIncome = state.assetDetails.total;
+      const profitShare =
+        state.profit.result * ((newPartner.income / totalIncome) * 100);
+
+      state.table.partners.push(newPartner);
+
+      const partnerWithProfit = {
+        ...newPartner,
+        profitValue: profitShare,
+      };
+
+      state.profit.partners.push(partnerWithProfit);
     },
+
     removePartner: (state, action) => {
       state.table.partners = state.table.partners.filter(
         (_, index) => index !== action.payload
       );
+      state.profit.partners = state.profit.partners.filter(
+        (_, index) => index !== action.payload
+      );
     },
+
     updatePartner: (state, action) => {
       const { index, partner } = action.payload;
-      state.table.partners[index] = { ...state.table.partners[index], ...partner };
+      state.table.partners[index] = {
+        ...state.table.partners[index],
+        ...partner,
+      };
+
+      const updatedPartner = {
+        ...state.profit.partners[index],
+        ...partner,
+      };
+
+      const totalIncome = state.assetDetails.total;
+      const profitShare =
+        state.profit.result * ((updatedPartner.income / totalIncome) * 100);
+
+      updatedPartner.profitValue = profitShare;
+
+      state.profit.partners[index] = updatedPartner;
     },
+
     setRemainingValueError: (state, action) => {
       state.remainingValueError = action.payload;
     },
-    updatePartnerDate: (state, action) => { 
+    updatePartnerDate: (state, action) => {
       const { index, date } = action.payload;
       state.table.partners[index].date = date;
     },
-    
+
+    calculateAndUpdateProfits: (state, action) => {
+      const { result } = action.payload;
+      state.profit.result = result;
+      const totalIncome = state.assetDetails.total;
+      state.profit.partners = state.profit.partners.map((partner) => {
+        const profitShare = result * ((partner.income / totalIncome) * 100);
+        return {
+          ...partner,
+          profitValue: profitShare,
+        };
+      });
+    },
   },
 });
 
@@ -74,7 +126,8 @@ export const {
   removePartner,
   updatePartner,
   setRemainingValueError,
-  updatePartnerDate
+  updatePartnerDate,
+  calculateAndUpdateProfits,
 } = combinedSlice.actions;
 
 export const selectRows = (state) => state.partnerAssets.assetDetails.asset;
@@ -82,5 +135,6 @@ export const selectTotal = (state) => state.partnerAssets.assetDetails.total;
 export const selectPartners = (state) => state.partnerAssets.table.partners;
 export const selectRemainingValueError = (state) =>
   state.partnerAssets.remainingValueError;
+export const selectProfitDetails = (state) => state.partnerAssets.profit;
 
 export default combinedSlice.reducer;

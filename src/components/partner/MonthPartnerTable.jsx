@@ -6,9 +6,14 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 import IncomeTable from './IncomeTable';
 import ExpenseTable from './ExpenseTable';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { calculateAndUpdateProfits } from '../../redux/features/combinedSlice';
+
 
 const MonthPartnerTable = () => {
+
+
+  const dispatch = useDispatch();
   const currentMonthIndex = useSelector(
     (state) => state.currentMonth.currentMonthIndex
   );
@@ -39,6 +44,12 @@ const MonthPartnerTable = () => {
   const total2 = tableDataEx[currentMonthIndex]?.total;
 
   const result = total1 - total2;
+
+
+  React.useEffect(() => {
+    dispatch(calculateAndUpdateProfits({ result }));
+  }, [total1, total2, dispatch]);
+
 
   return (
     <div>

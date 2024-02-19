@@ -55,7 +55,6 @@ export const expenseSlice = createSlice({
     addRowEx: (state, action) => {
       const { monthIndex, newRow } = action.payload;
       state.tableDataEx[monthIndex].data.push(newRow);
-
       state.tableDataEx[monthIndex].total = state.tableDataEx[
         monthIndex
       ].data.reduce((total, item) => total + item.expense, 0);
@@ -85,13 +84,15 @@ export const expenseSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addMonth, (state, action) => {
-      const lastMonthDataEx = state.tableDataEx[state.tableDataEx.length - 1].data.map(item => ({
+      const lastMonthDataEx = state.tableDataEx[
+        state.tableDataEx.length - 1
+      ].data.map((item) => ({
         ...item,
         id: Date.now() + Math.random(),
       }));
       const newMonth = {
         month: action.payload.monthName,
-        data: [...lastMonthDataEx], 
+        data: [...lastMonthDataEx],
         total: lastMonthDataEx.reduce((total, item) => total + item.expense, 0),
       };
       state.tableDataEx.push(newMonth);

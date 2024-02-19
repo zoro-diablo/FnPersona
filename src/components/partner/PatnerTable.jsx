@@ -24,6 +24,7 @@ import {
   selectTotal,
   setRemainingValueError,
   selectPartners,
+  calculateAndUpdateProfits,
 } from '../../redux/features/combinedSlice';
 import { toast } from 'react-toastify';
 import { MdOutlinePlaylistAdd } from 'react-icons/md';
@@ -80,6 +81,7 @@ const PartnerTable = () => {
       0
     );
     dispatch(setTotal(newTotal));
+    // dispatch(calculateAndUpdateProfits(newTotal))
   }, [rows, dispatch]);
 
   useEffect(() => {
