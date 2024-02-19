@@ -35,22 +35,24 @@ const ProfitTable = () => {
         <TableBody className='text-gray-400'>
           {partners &&
             partners.map((partner, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  <Card
-                    className=' bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
-                    decoration='bottom'
-                    decorationColor='green'
-                  >
-                    <div className='text-gray-400 font-medium text-[18px]'>
-                      {partner.name}
-                    </div>
-                    <Title className='text-gray-400'>
-                      $ {partner.profitValue}
-                    </Title>
-                  </Card>
-                </TableCell>
-              </TableRow>
+              (partner.name && partner.profitValue) ? (
+                <TableRow key={index}>
+                  <TableCell>
+                    <Card
+                      className=' bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
+                      decoration='bottom'
+                      decorationColor='green'
+                    >
+                      <div className='text-gray-400 font-medium text-[18px]'>
+                        {partner.name}
+                      </div>
+                      <Title className='text-gray-400'>
+                        $ {partner.profitValue}
+                      </Title>
+                    </Card>
+                  </TableCell>
+                </TableRow>
+              ) : null
             ))}
         </TableBody>
       </Table>
