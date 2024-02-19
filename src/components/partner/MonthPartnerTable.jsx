@@ -9,10 +9,7 @@ import ExpenseTable from './ExpenseTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateAndUpdateProfits } from '../../redux/features/combinedSlice';
 
-
 const MonthPartnerTable = () => {
-
-
   const dispatch = useDispatch();
   const currentMonthIndex = useSelector(
     (state) => state.currentMonth.currentMonthIndex
@@ -45,15 +42,14 @@ const MonthPartnerTable = () => {
 
   const result = total1 - total2;
 
-
   React.useEffect(() => {
     dispatch(calculateAndUpdateProfits({ result }));
   }, [total1, total2, dispatch]);
 
-
   return (
     <div>
-      <Card className='bg-gradient-to-r from-gray-800 to-gray-950 rounded-md'>
+      <Card className='bg-gradient-to-r from-gray-800 to-gray-950 rounded-md' decoration='top'
+      decorationColor='gray'>
         <div className=' text-blue-400 text-center relative items-center flex justify-center'>
           <Title className='text-blue-400'>Income Breakdown Table</Title>
           <div
@@ -80,9 +76,11 @@ const MonthPartnerTable = () => {
         <ExpenseTable />
       </Card>
       <Card
-        className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
+        className={`mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center ${
+          result < 0 ? 'border-red-500' : 'border-green-500'
+        }`}
         decoration='bottom'
-        decorationColor='green'
+        decorationColor={result < 0 ? 'red' : 'green'}
       >
         <div className='text-gray-400 font-medium text-2xl'>Profit</div>
         <Metric className='text-gray-400'>$ {result}</Metric>

@@ -81,7 +81,6 @@ const PartnerTable = () => {
       0
     );
     dispatch(setTotal(newTotal));
-    // dispatch(calculateAndUpdateProfits(newTotal))
   }, [rows, dispatch]);
 
   useEffect(() => {
@@ -128,17 +127,13 @@ const PartnerTable = () => {
 
   return (
     <div className='max-w-[600px]'>
-      <Card className='bg-gradient-to-r from-gray-950 to-gray-800'>
+      <Card className='bg-gradient-to-r from-gray-950 to-gray-800' 
+      decoration='top'
+      decorationColor='gray'>
         <div className='flex justify-between items-center'>
           <Title className='text-white ml-3 my-2'>Add Details</Title>
 
-          {/* <div className='text-green-500 cursor-pointer hover:text-green-300'>
-            <BootstrapTooltip title='Add' placement='top' arrow>
-              <button>
-                <IoAddCircleOutline size={40} onClick={handleAddRow} />
-              </button>
-            </BootstrapTooltip>
-          </div> */}
+         
         </div>
         <div className='mt-1 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
         <Table className='mt-3'>
