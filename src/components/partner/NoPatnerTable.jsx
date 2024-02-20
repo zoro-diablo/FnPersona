@@ -24,6 +24,7 @@ import {
   setRemainingValueError,
   updatePartnerDate,
   clearPartners,
+  setLoanAmount ,
 } from '../../redux/features/combinedSlice';
 import { toast } from 'react-toastify';
 import { MdDateRange } from 'react-icons/md';
@@ -37,6 +38,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { FaCalendarCheck } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -152,9 +154,27 @@ const NoPartnerTable = () => {
   const remainingAssets = total - totalContributions;
 
   const handleClearAll = () => {
+    // Dispatch the clearPartners action to reset global state
     dispatch(clearPartners());
+    
+    // Reset the local loanAmount state to 0 to clear the input field
+    setLocalLoanAmount('');
+
+    // Close any open dialog or modal
     handleClose();
-  };
+};
+
+
+  const [loanAmount, setLocalLoanAmount] = useState('');
+
+const handleLoanAmountChange = (value) => {
+  setLocalLoanAmount(value);
+};
+
+const commitLoanAmount = () => {
+  dispatch(setLoanAmount(Number(loanAmount)));
+};
+
 
   return (
     <div className='max-w-[600px]'>
@@ -319,7 +339,9 @@ const NoPartnerTable = () => {
               </TableCell>
               <TableCell>
                 <NumberInput
-                  type='text'
+                  value={loanAmount}
+                  onValueChange={handleLoanAmountChange}
+                  onBlur={commitLoanAmount} 
                   className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
                   placeholder='Amount'
                 />

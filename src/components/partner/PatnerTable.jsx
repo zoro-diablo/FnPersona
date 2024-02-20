@@ -125,6 +125,11 @@ const PartnerTable = () => {
     }
   }, [total, dispatch]);
 
+  const loan = useSelector((state) => state.partnerAssets.loanAmount);
+
+  const allTotal = total + loan;
+
+
   return (
     <div className='max-w-[600px]'>
       <Card
@@ -266,7 +271,7 @@ const PartnerTable = () => {
         decorationColor='green'
       >
         <Title className='text-gray-400'>Total Assets</Title>
-        <Metric className='text-gray-400'>$ {total.toFixed(2)}</Metric>
+        <Metric className='text-gray-400'>$ {allTotal.toFixed(2)}</Metric>
       </Card>
     </div>
   );

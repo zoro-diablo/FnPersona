@@ -14,6 +14,7 @@ const initialState = {
     total: 0,
     partners: [{ name: '', income: '', profitValue: '' }],
   },
+  loanAmount: 0,
 };
 
 export const combinedSlice = createSlice({
@@ -94,6 +95,29 @@ export const combinedSlice = createSlice({
     },
     clearPartners: (state) => {
       state.table.partners = [{ name: '', income: '' }];
+
+      state.assetDetails.total += state.loanAmount;
+
+      state.loanAmount = 0;
+
+      state.profit.partners = [];
+    },
+
+    setLoanAmount: (state, action) => {
+      state.loanAmount = action.payload;
+
+      state.assetDetails.total -= action.payload;
+
+      const totalIncome = state.assetDetails.total;
+      const result = state.profit.result;
+
+      state.profit.partners = state.profit.partners.map((partner) => {
+        const profitShare = result * (partner.income / totalIncome);
+        return {
+          ...partner,
+          profitValue: profitShare,
+        };
+      });
     },
 
     setRemainingValueError: (state, action) => {
@@ -131,7 +155,8 @@ export const {
   setRemainingValueError,
   updatePartnerDate,
   calculateAndUpdateProfits,
-  clearPartners
+  clearPartners,
+  setLoanAmount,
 } = combinedSlice.actions;
 
 export const selectRows = (state) => state.partnerAssets.assetDetails.asset;
