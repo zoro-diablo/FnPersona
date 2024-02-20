@@ -25,6 +25,8 @@ import {
   setRemainingValueError,
   selectPartners,
   calculateAndUpdateProfits,
+  selectTotalAssets,
+  selectTotalAssetAmount,
 } from '../../redux/features/combinedSlice';
 import { toast } from 'react-toastify';
 import { MdOutlinePlaylistAdd } from 'react-icons/md';
@@ -49,6 +51,7 @@ const PartnerTable = () => {
   const rows = useSelector(selectRows);
   const total = useSelector(selectTotal);
   const partners = useSelector(selectPartners);
+  const totalAssets = useSelector(selectTotalAssets);
 
   const [openRowIndex, setOpenRowIndex] = React.useState(null);
 
@@ -127,7 +130,7 @@ const PartnerTable = () => {
 
   const loan = useSelector((state) => state.partnerAssets.loanAmount);
 
-  const allTotal = total + loan;
+  const totalAssetAmount = useSelector(selectTotalAssetAmount);
 
 
   return (
@@ -271,7 +274,9 @@ const PartnerTable = () => {
         decorationColor='green'
       >
         <Title className='text-gray-400'>Total Assets</Title>
-        <Metric className='text-gray-400'>$ {allTotal.toFixed(2)}</Metric>
+        <Metric className='text-gray-400'>
+          $ {totalAssetAmount.toFixed(2)}
+        </Metric>
       </Card>
     </div>
   );

@@ -104,15 +104,19 @@ export const combinedSlice = createSlice({
     },
 
     setLoanAmount: (state, action) => {
-      state.loanAmount = action.payload;
+      const currentLoanAmount = Number(state.loanAmount) || 0;
+      const newLoanAmount = Number(action.payload) || 0;
+      const currentTotal = Number(state.assetDetails.total) || 0;
 
-      state.assetDetails.total -= action.payload;
+      const adjustedTotal = currentTotal + currentLoanAmount - newLoanAmount;
 
-      const totalIncome = state.assetDetails.total;
-      const result = state.profit.result;
+      state.loanAmount = newLoanAmount;
+      state.assetDetails.total = adjustedTotal;
 
+      const totalIncome = adjustedTotal;
       state.profit.partners = state.profit.partners.map((partner) => {
-        const profitShare = result * (partner.income / totalIncome);
+        const profitShare =
+          state.profit.result * (partner.income / totalIncome);
         return {
           ...partner,
           profitValue: profitShare,
@@ -165,5 +169,42 @@ export const selectPartners = (state) => state.partnerAssets.table.partners;
 export const selectRemainingValueError = (state) =>
   state.partnerAssets.remainingValueError;
 export const selectProfitDetails = (state) => state.partnerAssets.profit;
+export const selectTotalAssets = (state) => {
+  return state.partnerAssets.assetDetails.total;
+};
+
+export const selectRemainingAssets = (state) => {
+  const totalAssetAmount = selectTotalAssetAmount(state);
+
+  const totalContributions = state.partnerAssets.table.partners.reduce(
+    (acc, curr) => acc + Number(curr.income || 0),
+    0
+  );
+
+  const loanAmount = Number(state.partnerAssets.loanAmount) || 0;
+
+  const remainingAssets = totalAssetAmount - (totalContributions + loanAmount);
+
+  return remainingAssets;
+};
+
+export const selectTotalContributions = (state) =>
+  state.partnerAssets.table.partners.reduce(
+    (acc, curr) => acc + Number(curr.income || 0),
+    0
+  );
+
+export const selectAdjustedTotalAssets = (state) => {
+  return (
+    state.partnerAssets.assetDetails.total - state.partnerAssets.loanAmount
+  );
+};
+
+export const selectTotalAssetAmount = (state) => {
+  return state.partnerAssets.assetDetails.asset.reduce((total, asset) => {
+    const amount = Number(asset.amount) || 0;
+    return total + amount;
+  }, 0);
+};
 
 export default combinedSlice.reducer;

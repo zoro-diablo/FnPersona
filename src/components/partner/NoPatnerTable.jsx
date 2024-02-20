@@ -24,7 +24,10 @@ import {
   setRemainingValueError,
   updatePartnerDate,
   clearPartners,
-  setLoanAmount ,
+  setLoanAmount,
+  selectRemainingAssets,
+  selectTotalContributions,
+  selectAdjustedTotalAssets,
 } from '../../redux/features/combinedSlice';
 import { toast } from 'react-toastify';
 import { MdDateRange } from 'react-icons/md';
@@ -39,7 +42,6 @@ import Slide from '@mui/material/Slide';
 import { FaCalendarCheck } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
 
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
 });
@@ -49,6 +51,9 @@ const NoPartnerTable = () => {
   const partners = useSelector(selectPartners);
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+
+  const remainingAssets = useSelector(selectRemainingAssets);
+  const totalContributions = useSelector(selectTotalContributions);
 
   const [openRowIndex, setOpenRowIndex] = React.useState(null);
 
@@ -147,34 +152,29 @@ const NoPartnerTable = () => {
     );
   };
 
-  const totalContributions = partners.reduce(
-    (acc, curr) => acc + Number(curr.income || 0),
-    0
-  );
-  const remainingAssets = total - totalContributions;
-
   const handleClearAll = () => {
     // Dispatch the clearPartners action to reset global state
     dispatch(clearPartners());
-    
+
     // Reset the local loanAmount state to 0 to clear the input field
     setLocalLoanAmount('');
 
     // Close any open dialog or modal
     handleClose();
-};
-
+  };
 
   const [loanAmount, setLocalLoanAmount] = useState('');
 
-const handleLoanAmountChange = (value) => {
-  setLocalLoanAmount(value);
-};
+  const handleLoanAmountChange = (value) => {
+    setLocalLoanAmount(value);
+  };
 
-const commitLoanAmount = () => {
-  dispatch(setLoanAmount(Number(loanAmount)));
-};
+  const commitLoanAmount = () => {
+    // Ensure value is a number and dispatch the updated loan amount
+    dispatch(setLoanAmount(Number(loanAmount)));
+  };
 
+  const adjustedTotalAssets = useSelector(selectAdjustedTotalAssets);
 
   return (
     <div className='max-w-[600px]'>
@@ -341,7 +341,7 @@ const commitLoanAmount = () => {
                 <NumberInput
                   value={loanAmount}
                   onValueChange={handleLoanAmountChange}
-                  onBlur={commitLoanAmount} 
+                  onBlur={commitLoanAmount}
                   className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
                   placeholder='Amount'
                 />
@@ -371,6 +371,7 @@ const commitLoanAmount = () => {
           </Metric>
         </Card>
       )}
+     
     </div>
   );
 };
