@@ -100,6 +100,7 @@ const ExpenseTable = () => {
             </TableCell>
             <TableCell>
               <div className='text-center flex gap-4 mt-2'>
+                {tableDataEx[currentMonthIndex]?.data.length > 1 && (
                 <BootstrapTooltip title='Remove' placement='top' arrow>
                   <button onClick={() => handleDeleteRow(rowData.id)}>
                     <IoMdRemoveCircleOutline
@@ -108,6 +109,7 @@ const ExpenseTable = () => {
                     />
                   </button>
                 </BootstrapTooltip>
+                )}
                 {index === tableDataEx[currentMonthIndex]?.data.length - 1 && (
                   <BootstrapTooltip title='Add row' placement='top' arrow>
                     <button

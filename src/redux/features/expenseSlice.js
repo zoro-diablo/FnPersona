@@ -45,6 +45,27 @@ const initialState = {
       ],
       total: 4700,
     },
+    {
+      month: 'Jan-23',
+      data: [
+        {
+          id: 1,
+          expenseType: 'bank loan installment',
+          expense: 1200,
+        },
+        {
+          id: 2,
+          expenseType: 'Du internet bill',
+          expense: 1200,
+        },
+        {
+          id: 3,
+          expenseType: 'Dewa bill',
+          expense: 2000,
+        },
+      ],
+      total: 4400,
+    },
   ],
 };
 

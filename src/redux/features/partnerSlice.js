@@ -28,21 +28,42 @@ const initialState = {
       data: [
         {
           id: 1,
-          name: 'John',
+          name: 'Macron',
           income: 1800,
         },
         {
           id: 2,
-          name: 'Alice',
+          name: 'Jimmy',
           income: 1200,
         },
         {
           id: 3,
-          name: 'Bob',
+          name: 'Lokeo',
           income: 1500,
         },
       ],
       total: 4500,
+    },
+    {
+      month: 'Jan-23',
+      data: [
+        {
+          id: 1,
+          name: 'Macron',
+          income: 1200,
+        },
+        {
+          id: 2,
+          name: 'Jimmy',
+          income: 160,
+        },
+        {
+          id: 3,
+          name: 'Lokeo',
+          income: 1000,
+        },
+      ],
+      total: 2360,
     },
   ],
 };

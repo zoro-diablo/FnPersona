@@ -58,13 +58,13 @@ const PiePercentage = () => {
 
   const options = {
     chart: {
-      spacing: [10, 10, 20, 20],
+      spacing: [20, 20, 70, 20],
       plotBackgroundColor: null,
       plotBorderWidth: null,
       plotShadow: true,
       type: 'pie',
       backgroundColor: null,
-      height: 232,
+      height: 300,
       animation: {
         type: 'easeOut',
         duration: 500,
@@ -85,23 +85,26 @@ const PiePercentage = () => {
       backgroundColor: 'rgba(255, 255, 255, 0.886)',
     },
     legend: {
-      itemWidth: 41,
-      width: 260,
-      useHTML: true,
+      layout: 'vertical',
 
-      layout: 'horizontal',
-      align: 'center',
-      verticalAlign: 'left',
-      x: 0,
-      y: 199,
+      align: 'right',
+      verticalAlign: 'middle',
+      x: 15,
+      y: 130,
+      navigation: {
+        enabled: true,
+        animation: true,
+      },
       itemStyle: {
         color: '#ffffffb0',
         fontWeight: 'normal',
         fontFamily: 'Poppins',
         fontSize: '12px',
-        padding: '0px 0px 0px 0px',
+        padding: '10px',
+        innerWidth: 50,
       },
       floating: true,
+      scrollable: true,
     },
     plotOptions: {
       series: {

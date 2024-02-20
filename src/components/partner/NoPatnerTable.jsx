@@ -23,6 +23,7 @@ import {
   selectPartners,
   setRemainingValueError,
   updatePartnerDate,
+  clearPartners,
 } from '../../redux/features/combinedSlice';
 import { toast } from 'react-toastify';
 import { MdDateRange } from 'react-icons/md';
@@ -35,6 +36,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { FaCalendarCheck } from 'react-icons/fa';
+import { MdClear } from 'react-icons/md';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -149,13 +151,20 @@ const NoPartnerTable = () => {
   );
   const remainingAssets = total - totalContributions;
 
+  const handleClearAll = () => {
+    dispatch(clearPartners());
+    handleClose();
+  };
+
   return (
     <div className='max-w-[600px]'>
-      <Card className='bg-gradient-to-r from-gray-950 to-gray-800' decoration='top'
-      decorationColor='gray'>
+      <Card
+        className='bg-gradient-to-r from-gray-950 to-gray-800'
+        decoration='top'
+        decorationColor='gray'
+      >
         <div className='flex justify-between items-center'>
           <Title className='text-white ml-3 my-2'>Add Partners</Title>
-          
         </div>
         <div className='mt-1 inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-500 to-transparent opacity-75'></div>
         {error && <div className='text-red-500 text-center mt-2'>{error}</div>}
@@ -216,16 +225,18 @@ const NoPartnerTable = () => {
                       </button>
                     </BootstrapTooltip>
                   </div>
-                  <div
-                    className='text-red-500 cursor-pointer hover:text-red-300 flex justify-center'
-                    onClick={() => handleRemovePartner(index)}
-                  >
-                    <BootstrapTooltip title='Remove' placement='top' arrow>
-                      <button>
-                        <FiMinusCircle size={20} />
-                      </button>
-                    </BootstrapTooltip>
-                  </div>
+                  {partners.length > 1 && (
+                    <div
+                      className='text-red-500 cursor-pointer hover:text-red-300 flex justify-center'
+                      onClick={() => handleRemovePartner(index)}
+                    >
+                      <BootstrapTooltip title='Remove' placement='top' arrow>
+                        <button>
+                          <FiMinusCircle size={20} />
+                        </button>
+                      </BootstrapTooltip>
+                    </div>
+                  )}
                   {index === partners.length - 1 && (
                     <div
                       className='text-green-500 cursor-pointer hover:text-green-300 flex justify-center'
@@ -287,6 +298,42 @@ const NoPartnerTable = () => {
                 </Dialog>
               </TableRow>
             ))}
+          </TableBody>
+        </Table>
+      </Card>
+      <Card
+        className='mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center'
+        decoration='bottom'
+        decorationColor='green'
+      >
+        <Table className='my-[-20px]'>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <TextInput
+                  type='text'
+                  className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black '
+                  placeholder='Loan'
+                  disabled={true}
+                />
+              </TableCell>
+              <TableCell>
+                <NumberInput
+                  type='text'
+                  className='p-1 bg-gradient-to-r from-gray-100 to-gray-300 font-semibold text-black'
+                  placeholder='Amount'
+                />
+              </TableCell>
+              <TableCell>
+                <div className='text-red-500 mx-3 cursor-pointer hover:text-red-300 flex justify-center'>
+                  <BootstrapTooltip title='Clear All' placement='top' arrow>
+                    <button onClick={handleClearAll}>
+                      <MdClear size={25} />
+                    </button>
+                  </BootstrapTooltip>
+                </div>
+              </TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </Card>

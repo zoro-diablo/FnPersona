@@ -86,11 +86,14 @@ export const combinedSlice = createSlice({
 
       const totalIncome = state.assetDetails.total;
       const profitShare =
-        state.profit.result * ((updatedPartner.income / totalIncome) * 100);
+        state.profit.result * (updatedPartner.income / totalIncome);
 
       updatedPartner.profitValue = profitShare;
 
       state.profit.partners[index] = updatedPartner;
+    },
+    clearPartners: (state) => {
+      state.table.partners = [{ name: '', income: '' }];
     },
 
     setRemainingValueError: (state, action) => {
@@ -106,7 +109,7 @@ export const combinedSlice = createSlice({
       state.profit.result = result;
       const totalIncome = state.assetDetails.total;
       state.profit.partners = state.profit.partners.map((partner) => {
-        const profitShare = result * ((partner.income / totalIncome) * 100);
+        const profitShare = result * (partner.income / totalIncome);
         return {
           ...partner,
           profitValue: profitShare,
@@ -128,6 +131,7 @@ export const {
   setRemainingValueError,
   updatePartnerDate,
   calculateAndUpdateProfits,
+  clearPartners
 } = combinedSlice.actions;
 
 export const selectRows = (state) => state.partnerAssets.assetDetails.asset;

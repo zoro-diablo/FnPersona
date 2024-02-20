@@ -148,6 +148,7 @@ const IncomeTable = ({ open, handleClose }) => {
               />
             </TableCell>
             <TableCell className='text-center flex gap-4 mt-2 '>
+            {tableData[currentMonthIndex]?.data.length > 1 && (
               <BootstrapTooltip title='Remove' placement='top' arrow>
                 <button>
                   <IoMdRemoveCircleOutline
@@ -159,6 +160,7 @@ const IncomeTable = ({ open, handleClose }) => {
                   />
                 </button>
               </BootstrapTooltip>
+            )}
               {index === tableData[currentMonthIndex]?.data.length - 1 && (
                 <BootstrapTooltip title='Add row' placement='top' arrow>
                   <div>
