@@ -49,7 +49,7 @@ const ProfitTable = () => {
                         {partner.name}
                       </div>
                       <Title className='text-gray-400'>
-                        $ {partner.profitValue}
+                        $ {partner.profitValue.toFixed(2)}
                       </Title>
                     </Card>
                   </TableCell>
