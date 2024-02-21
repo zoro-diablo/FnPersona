@@ -4,7 +4,7 @@ import { addMonth } from './partnerSlice';
 const initialState = {
   tableDataEx: [
     {
-      month: 'Nov-23',
+      month: 'NOV - 23',
       data: [
         {
           id: 1,
@@ -25,7 +25,7 @@ const initialState = {
       total: 2700,
     },
     {
-      month: 'Dec-23',
+      month: 'DEC - 23',
       data: [
         {
           id: 1,
@@ -46,7 +46,7 @@ const initialState = {
       total: 4700,
     },
     {
-      month: 'Jan-23',
+      month: 'JAN - 23',
       data: [
         {
           id: 1,

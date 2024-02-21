@@ -40,10 +40,14 @@ const ProfitTable = () => {
                   <TableCell>
                     <Card
                       className={`mt-4 bg-gradient-to-r from-gray-950 to-gray-800 flex justify-between items-center ${
-                        partner.profitValue < 0 ? 'border-red-500' : 'border-green-500'
+                        partner.profitValue < 0
+                          ? 'border-red-500'
+                          : 'border-green-500'
                       }`}
                       decoration='bottom'
-                      decorationColor={partner.profitValue < 0 ? 'red' : 'green'}
+                      decorationColor={
+                        partner.profitValue < 0 ? 'red' : 'green'
+                      }
                     >
                       <div className='text-gray-400 font-medium text-[18px]'>
                         {partner.name}

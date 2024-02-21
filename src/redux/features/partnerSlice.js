@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   tableData: [
     {
-      month: 'Nov-23',
+      month: 'NOV - 23',
       data: [
         {
           id: 1,
@@ -24,7 +24,7 @@ const initialState = {
       total: 3100,
     },
     {
-      month: 'Dec-23',
+      month: 'DEC - 23',
       data: [
         {
           id: 1,
@@ -45,7 +45,7 @@ const initialState = {
       total: 4500,
     },
     {
-      month: 'Jan-23',
+      month: 'JAN - 23',
       data: [
         {
           id: 1,

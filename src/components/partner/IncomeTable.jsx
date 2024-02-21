@@ -31,9 +31,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { FaPlus } from 'react-icons/fa';
 import Slide from '@mui/material/Slide';
 import {
-  setCurrentMonthIndex,
   incrementMonthIndex,
   decrementMonthIndex,
+  
 } from '../../redux/features/currentMonthSlice';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -65,13 +65,36 @@ const IncomeTable = ({ open, handleClose }) => {
     return monthData.reduce((total, item) => total + item.income, 0);
   };
 
-   const moveToPreviousMonth = () => {
+  const moveToPreviousMonth = () => {
     dispatch(decrementMonthIndex());
   };
 
   const moveToNextMonth = () => {
+    if (currentMonthIndex >= tableData.length - 1) {
+      const lastMonth = tableData[tableData.length - 1];
+      const [lastMonthName, lastYear] = lastMonth.month.split("-");
+      const lastMonthDate = new Date(`${lastMonthName}-01-${lastYear}`);
+      const nextMonthDate = new Date(lastMonthDate.setMonth(lastMonthDate.getMonth() + 1));
+      
+      const nextMonthName = nextMonthDate.toLocaleDateString('en-GB', {
+        year: '2-digit',
+        month: 'short'
+      }).replace(' ', ' - ');
+  
+      const newMonthData = lastMonth.data.map(item => ({
+        ...item,
+        id: Date.now() + Math.random() 
+      }));
+      
+      dispatch(addMonth({
+        monthName: nextMonthName.toUpperCase(), 
+        data: newMonthData
+      }));
+    }
+  
     dispatch(incrementMonthIndex());
   };
+  
 
   const handleEditData = (monthIndex, dataIndex, newData) => {
     dispatch(editData({ monthIndex, dataIndex, newData }));
@@ -112,7 +135,7 @@ const IncomeTable = ({ open, handleClose }) => {
               variant='outlined'
               className='flex items-center justify-between gap-2'
               onClick={moveToNextMonth}
-              disabled={currentMonthIndex === tableData.length - 1}
+              // disabled={currentMonthIndex === tableData.length - 1}
             >
               <IoMdArrowForward className='text-2xl text-gray-200' />
             </Button>
@@ -148,19 +171,19 @@ const IncomeTable = ({ open, handleClose }) => {
               />
             </TableCell>
             <TableCell className='text-center flex gap-4 mt-2 '>
-            {tableData[currentMonthIndex]?.data.length > 1 && (
-              <BootstrapTooltip title='Remove' placement='top' arrow>
-                <button>
-                  <IoMdRemoveCircleOutline
-                    onClick={() =>
-                      handleDeleteRow(currentMonthIndex, rowData.id)
-                    }
-                    className='text-red-500 cursor-pointer hover:text-red-300'
-                    size={25}
-                  />
-                </button>
-              </BootstrapTooltip>
-            )}
+              {tableData[currentMonthIndex]?.data.length > 1 && (
+                <BootstrapTooltip title='Remove' placement='top' arrow>
+                  <button>
+                    <IoMdRemoveCircleOutline
+                      onClick={() =>
+                        handleDeleteRow(currentMonthIndex, rowData.id)
+                      }
+                      className='text-red-500 cursor-pointer hover:text-red-300'
+                      size={25}
+                    />
+                  </button>
+                </BootstrapTooltip>
+              )}
               {index === tableData[currentMonthIndex]?.data.length - 1 && (
                 <BootstrapTooltip title='Add row' placement='top' arrow>
                   <div>
